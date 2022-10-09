@@ -1,0 +1,40 @@
+<?php include_once APPLICATION_PATH.'/Misc/Util.php';
+
+$this->headTitle()->set('Quiz Participants List');
+echo $this->headTitle();
+?>
+<div class="content">
+    <div class="list-head">
+        <h2>Quiz Participants</h2>
+    </div>
+    <?php if($this->paginator) { ?>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Sno</th>
+                <th>Username</th>
+                <th>Category</th>
+                <th>Score</th>
+                <th>Attempts</th>
+                <th>Date</th>
+            </tr>
+            <?php $i = ($this->currentPage-1)*$this->limit; ?>
+            <?php foreach ($this->paginator as $user):?>
+                <tr>
+                    <td><?php echo ++$i; ?></td>
+                    <td><?php echo $user->username; ?></td>
+                    <td><?php echo $user->category; ?></td>
+                    <td><?php echo $user->score; ?></td>
+                    <td><?php echo $user->attempts; ?></td>
+                    <td><?php echo Util::makeTime(strtotime($user->created)); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <div id="pagination" class="pagination">
+            <?php echo $this->paginationControl($this->paginator,
+                'Jumping',
+                'includes/paginationcontrol.phtml');
+            ?>
+        </div>
+    <?php } ?>
+
+</div>

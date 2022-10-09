@@ -1,0 +1,101 @@
+<div class="forumCont category">
+    <div id="content">
+<?php if(!$this->error){?>
+<?php
+$this->headTitle()->set('Forum - '.$this->categoryName);
+echo $this->headTitle();
+
+	$mdlForumReply=new Model_ForumReply();
+	$flag=false;?>
+	<h1 class="category_heading"><?php echo $this->categoryName;?></h1>
+<?php if($this->topics){
+	$i=1;?>
+
+	<table class="forum table">
+	<thead>
+		<tr><th id="sno">#</th>
+			<th class="col-sm-6" id="topics">Topics</th>
+			<th class="col-sm-1" id="posts">Replies</th>
+			<th class="col-sm-2">Last Reply</th>
+			<th id="last_post">Created By</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php foreach($this->topics as $topic){?>
+<tr>
+	<td><?php echo $i++;?></td>
+<?php $viewTopic=$this->url(array('controller'=>'forum','action'=>'topics', 'cat'=>$this->catId,'id'=>$this->id, 'topic'=>$topic->topic_id),null,true);?>
+	<td class="topics"><a href="<?php echo $viewTopic;?>"><?php echo $topic->topic_name;?></a><br />
+	<span><?php if($topic->topic_description){
+		echo substr($topic->topic_description,0,75);
+		if(strlen($topic->topic_description)>75)
+		echo "....";
+		}	?>
+	</span></td>
+	<td><?php echo $topic->replies;?></td>
+	<td class="last_post"><?php
+	$reply=$mdlForumReply->findLastReplyByTopicId($topic->topic_id);
+	if($reply!=null){
+		echo substr($reply->reply, 0, 100);
+		if(strlen($reply->reply)>100)
+		echo "....";
+		?>
+<?php $replyBy=$this->url(array('controller'=>'profile','action'=>'index','user'=>$reply->reply_by),null, true);?>
+	<?php echo " - <a href=\"".$replyBy."\">".$reply->reply_by."</a>";?><br />
+	<?php
+	$createdReply=strtotime($reply->reply_at);
+	$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+	$frmUser=new Form_User();
+	$t1=$frmUser->makeTime($current,$createdReply);
+	?>
+	<span class="created">
+	<?php echo $t1."</span>"; 
+	}else echo "None";?></td>
+	<?php
+		$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+		$createdTopic=strtotime($topic->created_at);
+		$frmUser=new Form_User();
+		$t2=$frmUser->makeTime($current,$createdTopic);
+	?>
+<?php $createdBy=$this->url(array('controller'=>'profile','action'=>'index','user'=>$topic->created_by),null, true);?>
+	<td class="created"><?php echo "<a href=\"".$createdBy."\">".$topic->created_by."</a>";?><br />
+	<span class="created_time">
+	<?php echo $t2;?></span></td>
+
+</tr>
+<?php } ?>
+<?php }else{
+	$flag=true;
+	 } ?>
+</tbody>
+</table>
+	<?php if($flag){?>
+	<p id="no_topic">No topics in this category currently. Have a question? Click the link below to create a new topic.</p>
+	<?php
+	}
+
+	$forum=$this->url(array('controller'=>'forum', 'action'=>''), null, true);
+	$newTopic=$this->url(array('controller'=>'forum','action'=>'create-topic', 'cat'=>$this->catId,'id'=>$this->id),null,true);
+	?>
+
+<div class="buttons">
+    <div class="topicLink btn btn-primary">
+        <a href="<?php echo $newTopic ?>">Create New Topic</a>
+    </div>
+    <div class="btn btn-success">
+        <a href="<?php echo $forum;?>">Back To Forum</a>
+    </div>
+</div>
+<?php }else{
+$back=$this->url(array('controller'=>'forum', 'action'=>''), null, true);
+?>
+<div id="error">
+	<h3>Oops! Page not found.</h3>
+</div>
+<div class="btn btn-success">
+<a href="<?php echo $back;?>">Back To Forum</a>
+</div>
+
+<?php }?>
+</div>
+</div>

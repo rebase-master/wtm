@@ -1,0 +1,13 @@
+<?php $this->headTitle()->set('Add Java Questions');
+echo $this->headTitle();
+?>
+<div class="content" style="padding-left:20px;">
+<h1>Add Java Questions</h1>
+<div id="add_quiz">
+<?php if(isset($this->result)){ echo $this->result;}?>
+
+<?php echo $this->form; ?>
+</div>
+</div>
+<?php $list=$this->url(array('controller'=>'fun','action'=>'java-questions-list'),null,true); ?>
+<br /><a href="<?php echo $list;?>">back to list</a>

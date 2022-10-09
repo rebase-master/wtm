@@ -1,0 +1,56 @@
+<?php $this->headTitle()->set('List - Fun Facts');
+echo $this->headTitle();
+?>
+<?php
+    $add=$this->url(array('controller'=>'fun', 'action'=>'add-fun-facts'));
+    $update=$this->url(array('controller'=>'fun', 'action'=>'update-fun-fact'));
+?>
+
+<div id="main" class="col-sm-12">
+    <div class="content">
+        <div class="clearfix">
+            <h1 class="pull-left">Facts list</h1>
+            <a class="btn btn-primary pull-right" href="<?php echo $add; ?>">Add facts</a>
+        </div>
+        <hr />
+            <?php
+                 if($this->paginator):
+                    $i=($this->currentPage * $this->recordsPerPage +1) - $this->recordsPerPage ;
+            ?>
+                <table class="table table-responsive table-striped table-hover table-list funfacts">
+                    <tr>
+                        <th>Sno</th>
+                        <th>Fact</th>
+                        <th>Date Added</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php
+                    foreach($this->paginator as $fact):?>
+
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $fact->fact; ?></td>
+                            <td><?php echo $fact->date_added; ?></td>
+                            <td colspan="2">
+                                <a class="btn btn-xs btn-danger delete-fact" href="#">Delete</a>
+                                <input type="hidden" name="id" value="<?php echo $fact->id; ?>" />
+                                <a class="btn btn-xs btn-info update-fact" href="<?php echo $update.'/id/'.$fact->id;?>">Update</a>
+                            </td>
+                        </tr>
+
+                    <?php
+                        $i++;
+                        endforeach;
+                    ?>
+                </table>
+                <div id="pagination" class="pagination">
+                     <div class="controls">
+                         <?php		echo $this->paginationControl($this->paginator,
+                         'Sliding',
+                         'includes/paginationcontrol2.phtml');
+                         ?>
+                     </div>
+                </div>
+         <?php	endif;	?>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<?php
+	$this->headTitle()->set('Ask your question');
+	echo $this->headTitle();
+?>
+<?php
+	$askQuestion=$this->url(array('controller'=>'programs','action'=>'ask-question'),null,true);
+	$allQuestions=$this->url(array('controller'=>'programs','action'=>'questions'),null,true);	
+?>
+<div id="ask_question" class="programs_com">
+
+<?php if($this->error){?>
+<p class="error"><?php echo $this->error; ?></p>	
+<?php } ?>
+<?php echo $this->form; ?>
+</div>
+<div id="questions_right">
+	<br />
+	<div class="link_ques">
+		<a href="<?php echo $allQuestions;?>">View All Questions</a>
+	</div><br />
+<div id="questions_right_ad">
+<script type="text/javascript">
+google_ad_client = "ca-pub-1662490668144398";
+///* papers */
+google_ad_slot = "6342513298";
+google_ad_width = 336;
+google_ad_height = 280;
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div id="tags">
+<h2>Find questions by topic</h2>
+<?php
+	$loopsSeriesT=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'loops-series'),null,true);
+	$loopsPatternsT=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'loops-patterns'),null,true);
+	$loopsO=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'loops-other'),null,true);
+	$functionsT=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'functions'),null,true);
+	$dataStructuresT=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'data-structures'),null,true);
+	$arrays1=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'arrays-1-d'),null,true);
+	$arrays2=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'arrays-2-d'),null,true);
+	$strings=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'strings'),null,true);
+	$recF=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'recursive-functions'),null,true);
+	$classObj=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'classes-and-Objects'),null,true);
+	$ll=$this->url(array('controller'=>'programs','action'=>'questions','tag'=>'linked-lists'),null,true);
+	?>
+	<a href="<?php echo $loopsSeriesT;?>">Loops-Series </a>
+	<a href="<?php echo $loopsPatternsT;?>">Loops-Patterns </a>
+	<a href="<?php echo $loopsO;?>">Loops-Other </a>
+	<a href="<?php echo $arrays1;?>">Arrays 1-D</a>
+	<a href="<?php echo $arrays2;?>">Arrays 2-D </a>
+	<a href="<?php echo $strings;?>">Strings </a>
+	<a href="<?php echo $functionsT;?>">Functions </a>
+	<a href="<?php echo $recF;?>">Recursive Functions</a>
+	<a href="<?php echo $classObj;?>">Classes/Objects </a>
+	<a href="<?php echo $dataStructuresT;?>">Data Structures </a>
+	<a href="<?php echo $ll;?>">Linked Lists </a>
+<br style="clear:left" />
+</div>
+</div>

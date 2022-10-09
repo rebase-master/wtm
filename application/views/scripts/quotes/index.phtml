@@ -1,0 +1,93 @@
+<?php $this->headTitle()->set('Quotes');
+echo $this->headTitle();
+?>
+<div class="content bg _quotes">
+    <h1 class="text-center">Quotes</h1><hr />
+    <?php if($this->paginator):?>
+        <div class="quotes-cont">
+            <div class="clearfix">
+                <div class="col-sm-12 alpha">
+                    <?php $c=1; foreach($this->paginator as $key => $record):?>
+                    <?php
+	                    $quote      =   $record->quote;
+	                    $author     =   $record->author;
+	                    $slug       =   null;
+
+	                    if(!empty($quote)){
+		                    $escapedQuote = htmlspecialchars_decode($quote);
+		                    $author       = htmlspecialchars_decode($author);
+		                    $slug         = $record->slug;
+	                    }else{
+		                    $escapedQuote = "Teach you to wield the force, I shall.";
+		                    $author       = "Yoda";
+	                    }
+
+	                    if(empty($slug))
+		                    $dataUrl    = BASE_URL.'quotes';
+	                    else
+		                    $dataUrl    = BASE_URL.'quote/'.$record->slug;
+
+	                    $tweet = strlen($escapedQuote)>70?substr($escapedQuote, 0,70)."...":$escapedQuote;
+
+                    ?>
+
+	                    <div class="quotes" id="quote-<?php echo $record->id; ?>" data-url="<?php echo $dataUrl; ?>">
+	                        <div class="qc">
+		                        <div class="quote">
+			                        <blockquote class="qtext">
+				                        <?php echo $quote; ?>
+			                        </blockquote>
+		                        </div>
+		                        <div class="clearfix">
+			                        <div class="author pull-right">
+				                        - <?php echo $author; ?>
+			                        </div>
+
+			                        <div class="share-g pull-left clearfix">
+				                        <div class="fb-quote-publish ssi">
+					                        <img src="<?php echo $this->baseUrl('/images/social/fb-share.png'); ?>" alt="Facebook share icon" title="Share on Facebook" />
+				                        </div>
+				                        <div class="twitter ssi">
+					                        <div class="twitter-share ss">
+						                        <a class="twitter-share-button"
+						                           href="https://twitter.com/share"
+						                           data-size="small"
+						                           data-url="<?php echo $dataUrl; ?>"
+						                           data-via="wethementors"
+						                           data-related="quotes, inspiration"
+						                           data-hashtags="quote, quoteoftheday"
+						                           data-text="<?php echo $tweet; ?>">
+							                        Tweet
+						                        </a>
+					                        </div>
+				                        </div>
+			                        </div>
+
+		                        </div>
+	                        </div>
+
+
+                            <input type="hidden" class="qid" name="qid" value="<?php echo $record->id; ?>" />
+                        </div>
+                        <?php if($c == 6): ?>
+                            <div class="quotes ad">
+                                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-rectangle.php'; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php $c++; endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+	<hr />
+	<div id="pagination" class="pagination">
+	    <div class="controls text-center">
+	        <?php
+	        echo $this->paginationControl($this->paginator,
+	            'Sliding',
+	            'includes/paginationcontrol2.phtml');
+	        ?>
+	    </div>
+	</div>
+</div>
+

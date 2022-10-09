@@ -1,0 +1,77 @@
+<?php $this->headTitle()->set('Forum - Computers, Physics, Chemistry, Biology, Mathematics, English, Electronics and more');
+echo $this->headTitle();
+?>
+<div class="forumCont">
+<div class="content">
+	<h1>Forum</h1>
+<?php
+	for($i=0;$i<count($this->data);$i++){
+		if($this->data[$i][0]==1){
+	?>
+
+<table class="forum table">
+<thead>
+	<tr><td class="category_heading" colspan="4"><?php echo $this->data[$i][1]?></td></tr>
+	<tr><th id="sno">#</th><th id="topics">Category</th><th id="posts">Topics</th>
+		<th id="last_post">Created On</th></tr>
+</thead>
+<?php if($this->data[$i][3]){?>
+<tbody>
+<?php	$j=1;
+		$mdlForumTopic=new Model_ForumTopic();	
+		foreach($this->data[$i][3] as $data){?>
+<?php
+	    $numOfTopics=$mdlForumTopic->countTopics($this->data[$i][2],$data->id);
+?>		
+		<tr>
+			<td class="sno"><?php echo $j++;?></td>
+			<?php $cat=$this->url(array('controller'=>'forum','action'=>'category', 'cat'=>$this->data[$i][2],'id'=>$data->id ),null,true);?>
+			<td class="topics"><a href="<?php echo $cat;?>"><?php echo ucfirst($data->category_name); ?></a></td>
+			<td><?php echo $numOfTopics;?></td>
+			<?php
+				$created=strtotime($data->created_at);
+				$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+				$frmUser=new Form_User();
+				$t=$frmUser->makeTime($current,$created);
+			?>
+			<td class="created"><?php echo $t."<br />by ".$data->created_by;?></td>
+		</tr>
+		
+<?php }//foreach category ?>
+</tbody>
+<?php }//if category present ?>
+	<tfoot>
+	<tr>
+		<th>&nbsp;</th><th>&nbsp;</th>
+		<th colspan="2">
+			<?php $createCat=$this->url(array('controller'=>'forum','action'=>'create-category', 'id'=>$this->data[$i][2]),null,true);?>
+			<a href="<?php echo $createCat; ?>">Create New Category</a></th>
+	</tr>
+	</tfoot>
+</table>
+<?php
+}//is_visible
+	}//for
+	?>
+	<table id="table_footer">
+		<thead>
+		<tr>
+			<?php $cat_head=$this->url(array('controller'=>'forum','action'=>'create-category-heading'),null,true);?>
+		<th>Want a new category heading? Submit your category heading <a href="<?php echo $cat_head?>">here</a>.</th>
+		</tr>
+		</thead>
+		<tfoot>
+		<tr></tr>
+		<tr>
+			<th colspan="2">Rules and Guidelines</th>
+		</tr>
+		<tr><td colspan="4"><ol>
+		<li>Please do a quick search before posting new topics.</li>
+		<li>Try to help others by sharing your knowledge.</li>
+		<li>Refrain from posting comments not related to topic.</li>
+		<li>Choose your content/language carefully. Profanity of any sort will not be tolerated. You will be banned from the forum if your content is found objectionable.</li>
+		</ol></td></tr>
+		</tfoot>
+	</table>
+</div>
+</div>

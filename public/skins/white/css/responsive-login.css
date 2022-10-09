@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body{
+    background-color:#fff;
+    color:#000;
+    font: 16px 'Source Sans Pro', "Trebuchet MS", Tahoma, Arial, Geneva, Helvetica, "Lucida Sans", Trebuchet, Verdana, sans-serif;
+    line-height:1.3em;
+    position:relative;
+}
+a{
+    color: #0B486B
+}
+a:link,a:visited{
+    outline:none;
+}
+a:hover{
+    color:#1b1d77;
+    text-decoration:underline;
+}
+h1,h2,h3{
+    color:#0B486B;
+}
+ul,li{
+    list-style-type: none;
+    line-height: 1.8em;
+}
+#contentWrapper{
+    margin-top: 70px;
+}
+#page{
+    -moz-border-radius:5px;
+    /*height: 100%;*/
+    position:relative;
+    margin:0 auto;
+}
+#page.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#header{
+    z-index:1999;
+    font-size: 80%;
+    min-height:50px;
+    background-color:#0B486B;
+    position:fixed;
+    color:#ffe6a3;
+    width: 100%;
+}
+#header .navbar{
+    border: none;
+    margin-bottom: 0;
+}
+#header a{ color:#ffe6a3}
+#header #logo img {
+    height: 40px;
+    margin-top: 5px;
+}
+#shortcut{
+    margin-top: 10px;
+}
+#menu_holder{
+    background-color:#0B486B;
+}
+#menu {
+    z-index: 1000;
+}
+
+#menu li ul{background-color:#0B486B;}
+menu li:hover{
+    background-color: #0B486B;
+}
+
+#menu .dropdown-menu > li > a:hover, #menu .dropdown-menu > li > a:focus {
+    background-color: #ffe6a3;
+    color: #0B486B !important;
+}
+#menu .navbar-brand{
+    font-size: 24px;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+    background-color: #ffe6a3;
+    color: #0B486B !important;
+}
+.nav > li > a:hover, .nav > li > a:focus, .nav > li > a:active{
+    background-color: #0B486B;
+}
+.navbar-toggle .icon-bar {
+    background-color: #ffe6a3;
+}
+
+#Two4ka1{background-color:#0B486B;left:0;width:100%;z-index:-1;}
+
+#footer {
+    background-color:#0B486B;
+    font-size: 80%;
+    line-height: 2em;
+    padding: 10px 5px;
+    text-align: center;
+}
+#footer span{ color:#ffe6a3;}
+#footer a{color:#ffe6a3; font-weight:bold}
+#footer a:visited{color:#ffe6a3; font-weight:bold}
+
+/* MEDIA QUERIES*/
+@media (max-width:768px){
+    #menu_holder{
+        padding-left: 0;
+    }
+    #contentWrapper {
+        margin-top: 80px;
+    }
+    #shortcut{
+       margin-top: 0;
+    }
+
+}
+@media (max-width:359px){
+    #shortcut{
+        width: 100%;
+    }
+}
+@media (min-width:768px) and (max-width: 980px){
+    #menu{
+        overflow-y: scroll;
+    }
+    #contentWrapper {
+        margin-top: 350px;
+    }
+}

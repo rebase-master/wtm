@@ -1,0 +1,27 @@
+<div class="content">
+		<h1>ICSE/ISC Results of Coaching Students</h1>
+<p  id="notice"><i>*The results of the students mentioned here are in Computer Science/Applications.</i></p>
+
+	<div id="s_container">
+<?php
+	if($this->results){
+		foreach($this->results as $result){?>
+<div class="student">
+	<?php if($result->gender=='m')
+		$gender="male";
+		else
+		$gender="female";
+	?>
+	<img src='/images/placeholder_<?php echo $gender;?>.png' />
+<p class="name"><?php echo ucfirst($result->first_name)." ".
+ucfirst(strtolower($result->last_name))." (Class ".$result->grade.")";?></p>
+<p><?php echo $result->marks."%";?></p>
+<p><?php /*echo "Class: ".$result->grade;*/?></p>
+<p class="school"><?php echo strtoupper($result->school);?></p>
+</div>
+<?php
+	}
+	}
+?>
+</div>
+</div>

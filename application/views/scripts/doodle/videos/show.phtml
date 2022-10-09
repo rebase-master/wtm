@@ -1,0 +1,16 @@
+<div class="content videos">
+<?php if($this->error){?>
+<p><?php echo $this->error; ?></p>
+<?php }?>
+<?php if($this->video){?>
+	<div class="linkHead">
+		<h1><?php echo $this->video->heading;?></h1>
+		<div class="video-page">
+		<iframe src="<?php echo $this->video->link;?>"></iframe>
+		</div>	
+		<div class="video-desc">
+		<?php echo $this->video->description;?>
+		</div>
+	</div>
+<?php } ?>
+</div>

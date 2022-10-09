@@ -1,0 +1,21 @@
+<?php
+    $this->headTitle()->set('Recursive function in Java');
+    echo $this->headTitle();
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Recursive Function</h1><hr />
+    <div class="content">
+        <p> A function which calls itself is known as a <b class="boldKeywords">recursive</b> function. A recursive function has two cases:</p>
+        <ul>
+            <li><b class="boldKeywords">Recursive Case</b></li>
+            <p>It is the actual problem that needs to be solved. <b class="boldKeywords">Recursive</b> case is where the logic is applied.</p>
+            <li><b class="boldKeywords">Base Case</b></li>
+            <p>The part of the problem whose solution is known to us is known as the <b class="boldKeywords">base</b> case or the <b class="boldKeywords">stopping</b> case.
+            In other words, it is the part which is used to control the recursion.</p>
+        </ul>
+        <p>The figure below explains recursion.</p>
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl(); ?>/images/recursion_full.png" alt="Recursive function" title="Recursive function" />
+        </div>
+    </div>
+</div>

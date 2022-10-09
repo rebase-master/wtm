@@ -1,0 +1,133 @@
+<?php
+	$this->headTitle()->set('Add Annual Exam Question');
+	echo $this->headTitle();
+?>
+<div class="content">
+    <div class="list-head">
+        <h2>Add Annual Exam Question</h2>
+    </div>
+    <div class="form_short full-stretch">
+
+        <form class="form-horizontal" role="form" method="post" action="<?php echo $this->baseUrl().'/admin/create-yearly-question'; ?>">
+            <div class="form-group">
+                <label for="subject" class="col-sm-2 control-label">Subject</label>
+                <div class="col-sm-10">
+                    <select name="subject" id="subject" class="form-control">
+                        <?php foreach ($this->subjects as $subject): ?>
+	                        <option value="<?php echo $subject->id; ?>"><?php echo $subject->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="year" class="col-sm-2 control-label">Year</label>
+                <div class="col-sm-10">
+                    <select name="year" id="year" class="form-control">
+                        <?php for($i=date('Y')+1; $i>=2000; $i--): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="position" class="col-sm-2 control-label">Position</label>
+                <div class="col-sm-10">
+                    <select name="position" id="position" class="form-control">
+                        <?php for($i=1; $i<=10; $i++): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-10">
+                    <select name="type" id="type" class="form-control">
+	                    <option value="theory">Theory</option>
+	                    <option value="practical">Practical</option>
+                        <option value="guess">Guess</option>
+                        <option value="specimen">Specimen</option>
+                    </select>
+                </div>
+            </div>
+
+	        <div class="form-group">
+		        <label for="heading" class="col-sm-2 control-label">Heading</label>
+		        <div class="col-sm-10">
+			        <input type="text" class="form-control" placeholder="Add Heading" name="heading" id="heading" value="" />
+		        </div>
+	        </div>
+
+	        <div class="form-group">
+		        <label class="col-sm-2 control-label" for="question">Question</label>
+		        <div class="col-sm-10">
+			        <div id="question-button-bar" class="wmd-button-row"></div>
+			        <textarea id="question_html" class="form-control"></textarea><br />
+			        <div id="question-preview"></div>
+<!--			        <div id="question_html"></div>-->
+			        <strong>Output</strong>
+			        <textarea name="question" id="question" class="form-control"></textarea>
+		        </div>
+	        </div>
+<br />
+	        <div class="form-group">
+		        <label class="col-sm-2 control-label" for="solution_html">Solution</label>
+		        <div class="col-sm-10">
+			        <div id="solution-button-bar" class="wmd-button-row"></div>
+			        <textarea id="solution_html" class="form-control"></textarea><br />
+<!--			        <div id="solution-preview"></div>-->
+<!--			        <div id="solution_html"></div>-->
+			        <strong>Output</strong>
+			        <textarea name="solution" id="solution" class="form-control"></textarea>
+		        </div>
+	        </div>
+
+	        <div class="form-group">
+		        <label class="col-sm-2 control-label" for="topics">Tags</label>
+		        <div class="col-sm-10">
+			        <select class="form-control" id="topics" name="topics[]" multiple>
+				        <?php foreach ($this->topics as $topic): ?>
+					        <option label="<?php echo $topic->topic; ?>" value="<?php echo $topic->id; ?>"><?php echo $topic->topic; ?></option>
+				        <?php endforeach; ?>
+			        </select>
+		        </div>
+	        </div>
+
+	        <div class="form-group">
+		        <label class="col-sm-2 control-label" for="visible">Visible</label>
+		        <div class="col-sm-10">
+			        <select class="form-control" id="visible" name="visible">
+				        <option label="Yes" value="1">Yes</option>
+				        <option label="No" value="0">No</option>
+			        </select>
+		        </div>
+	        </div>
+
+	        <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit" />
+                </div>
+            </div>
+
+
+
+	        <script type="text/javascript">
+		        setup_wmd({
+			        input: "question_html",
+			        button_bar: "question-button-bar",
+			        preview: "question-preview",
+			        output: "question"
+		        });
+		        setup_wmd({
+			        input: "solution_html",
+			        button_bar: "solution-button-bar",
+			        preview: "solution-preview",
+			        output: "solution"
+		        });
+	        </script>
+        </form>
+    </div>
+</div>

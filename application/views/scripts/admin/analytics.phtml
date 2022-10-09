@@ -1,0 +1,38 @@
+<?php
+$this->headTitle()->set('Analytics');
+echo $this->headTitle();
+?>
+
+<div class="content">
+	<div class="list-head">
+		<h2>Analytics</h2>
+	</div>
+	<?php if($this->paginator) { ?>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Sno</th>
+				<th>Resource</th>
+				<th>Total Downlaods</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+			<?php foreach ($this->paginator as $download): ?>
+	                <tr>
+	                    <td><?php echo ++$i; ?></td>
+	                    <td><?php echo $download['resource'];?></td>
+	                    <td><?php echo $download['total']; ?></td>
+	                </tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+		<div id="pagination" class="pagination">
+			<?php echo $this->paginationControl($this->paginator,
+				'Jumping',
+				'includes/paginationcontrol.phtml');
+			?>
+		</div>
+	<?php } ?>
+
+</div>

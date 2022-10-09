@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin>
+	<stylesheets>
+<!--	<stylesheet>layout.css</stylesheet>
+		<stylesheet>text.css</stylesheet>
+		<stylesheet>nav.css</stylesheet>-->
+<!--		<stylesheet>form.css</stylesheet>
+-->		<stylesheet>style11.css</stylesheet>
+		<stylesheet>style2.css</stylesheet>
+		<stylesheet>profile.css</stylesheet>
+		<stylesheet>forum.css</stylesheet>
+		<stylesheet>tutorials.css</stylesheet>
+<!--	<stylesheet>styleIE1min.css</stylesheet>
+		<stylesheet>styleIE2min.css</stylesheet>-->
+	<stylesheet>nivo-slider.css</stylesheet>
+	</stylesheets>
+</skin>

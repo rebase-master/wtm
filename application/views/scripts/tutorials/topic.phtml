@@ -1,0 +1,66 @@
+<?php
+	$title = isset($this->title)?$this->title:'Page not found';
+	$this->headTitle()->set($title);
+	echo $this->headTitle();
+?>
+<div class="topic-container">
+	<div class="col-sm-12 col-md-4">
+		<?php require_once APPLICATION_PATH.'/../layouts/templates/_tuts_sidebar-left.php'; ?>
+	</div>
+
+	<div id="tutorials" class="content bg tuts col-sm-12 col-md-8">
+		<div class="topic-container">
+			<?php if(isset($this->paginator)): ?>
+				<?php foreach($this->paginator as $note): ?>
+					<div class="topic <?php echo str_replace(' ', '-', strtolower($this->title)); ?>">
+
+						<div class="heading">
+							<h1><?php echo $note->heading; ?>
+								<?php if(isset($_SESSION['user']['admin'])  && $_SESSION['user']['admin']): ?>
+									<?php $editNote = $this->baseUrl('/admin/update-notes-content/id/'.$note->ncid); ?>
+										<a class="btn btn-xs btn-info" href="<?php echo $editNote; ?>">Edit Note</a>
+								<?php endif; ?>
+							</h1>
+						</div>
+
+						<div class="addthis share-post">
+							<div class="addthis_inline_share_toolbox ss-cont"></div>
+						</div>
+
+						<hr />
+
+						<div>
+							<?php echo $note->content; ?>
+						</div>
+
+						<?php if(!empty($note->source)): ?>
+							<div class="content-source">
+								<hr />
+								<?php $sources = explode(",", $note->source); ?>
+								<?php foreach($sources as $source): ?>
+									<a href="<?php echo urldecode($source); ?>" target="_blank" rel="nofollow">
+										<?php echo urldecode($source); ?>
+									</a>
+							   <?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+
+					</div><!-- topic -->
+				<?php endforeach; ?>
+				<div id="pagination" class="pagination text-center">
+					<?php echo $this->paginationControl($this->paginator,
+						'Jumping',
+						'includes/paginationcontrol.phtml');
+					?>
+				</div>
+			<?php else: ?>
+				<div class="alert alert-danger">
+					<p>No result found!</p>
+				</div>
+			<?php endif; ?>
+
+		</div>
+
+	</div>
+
+</div>

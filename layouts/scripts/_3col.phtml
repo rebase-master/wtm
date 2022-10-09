@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+    <head>
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/_common_meta.php'; ?>
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/_default_social_meta.php'; ?>
+	    <?php echo $this->headTitle(); ?>
+        <?php
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+            $this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+        ?>
+        <?php
+	    if(APPLICATION_ENV == 'production'){
+		    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style.min.css');
+	    }else{
+		    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/bootstrap.min.css');
+//                $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/pagination.css');
+		    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+	    }
+        ?>
+        <?php
+            echo $this->headLink();
+        ?>
+    </head>
+<body>
+
+    <div id="page" class="container-fluid">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/_head_nav.php'; ?>
+
+	    <?php if(isset($this->isMobile) && $this->isMobile): ?>
+		    <!-- for mobile-->
+		    <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/pagelevel_gad.php'; ?>
+	    <?php else: ?>
+		    <!-- for non mobiles-->
+		    <div class="gad-lb text-center">
+			    <?php
+			    if(intval(date('h')) % 2 == 0)
+				    require_once APPLICATION_PATH.'/../layouts/templates/ads/gad-leaderboard.php';
+			    else
+				    require_once APPLICATION_PATH.'/../layouts/templates/ads/flipkart-leaderboard.php';
+			    ?>
+		    </div>
+	    <?php endif; ?>
+
+	    <div id="contentWrapper" class="container">
+
+            <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+            <div class="col-sm-12 col-md-4 col-lg-3" id="sidebar_left">
+                <?php include_once APPLICATION_PATH.'/../layouts/templates/_sidebar-left.php'; ?>
+            </div><!--sidebar_right-->
+
+            <div id="main" class="col-sm-12 col-md-8 col-lg-6">
+                <?php echo $this->layout()->content; ?>&nbsp;
+            </div><!--main-->
+
+            <div class="col-sm-12 col-md-12 col-lg-3" id="sidebar_right">
+                <?php include_once APPLICATION_PATH.'/../layouts/templates/_sidebar-right.php'; ?>
+            </div><!--sidebar_right-->
+
+         </div><!--contentWrapper-->
+
+    </div><!-- page -->
+
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+	<?php echo $this->headScript(); ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/addthis.php'; ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/fb_sdk.php'; ?>
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/social/twitter_sdk.php'; ?>
+
+</body>
+</html>

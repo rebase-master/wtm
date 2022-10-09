@@ -1,0 +1,97 @@
+<?php include_once APPLICATION_PATH.'/Misc/Util.php';
+
+    $this->headTitle()->set('Users List');
+    echo $this->headTitle();
+?>
+
+<div class="content">
+	<div id="users">
+<?php	static $i=1;
+	if($this->result==1){?>
+        <div id="sorter" class="list-head">
+            <span>Sort: </span>
+            <button class="btn btn-primary active" id="all-sort-btn">All</button>
+            <button class="btn btn-primary" id="year-sort-btn">Year</button>
+            <select class="select-year">
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+            </select>
+        </div>
+            <table id="year-sort-table" class="table table-bordered hide">
+                <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Month</th>
+                        <th>Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+<table id="user-info-table" class="table table-bordered table-responsive table-hover">
+	<thead>
+		<tr>
+			<th>Sno</th>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Type</th>
+			<th>Verified</th>
+			<th>Created</th>
+			<th>Last Login</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+	if($this->paginator){
+		foreach($this->paginator as $user){?>
+		<tr class="<?php echo $user->blocked?'bg-danger':($user->confirmed?'':'bg-warning'); ?>" data-id="<?php echo $user->id; ?>">
+			<td><?php echo $i++;?></td>
+			<td><?php echo $user->username?></td>
+			<td><?php echo $user->first_name." ".$user->last_name?></td>
+			<td><?php echo $user->email?></td>
+			<td><?php echo $user->type?></td>
+			<td>
+				<?php if($user->confirmed): ?>
+					<span class="label label-success">YES</span>
+				<?php else: ?>
+					<span class="label label-danger">NO</span>
+				<?php endif; ?>
+			</td>
+			<td><?php echo Util::makeTime(strtotime($user->created)); ?></td>
+			<td><?php echo Util::makeTime(strtotime($user->last_login)); ?></td>
+			<td>
+				<?php
+					$blockStatus = $user->blocked?'Unblock':'Block';
+					$verifyStatus = $user->confirmed?'Unverify':'Verify';
+				?>
+				<button class="btn btn-xs btn-block btn-<?php echo $user->blocked?'success':'danger'; ?> block_user" data-mode="<?php echo $blockStatus; ?>">
+					<?php echo $blockStatus; ?>
+				</button>
+				<button class="btn btn-xs btn-block btn-<?php echo $user->confirmed?'success':'danger'; ?> verify_user" data-mode="<?php echo $verifyStatus; ?>">
+					<?php echo $verifyStatus; ?>
+				</button>
+			</td>
+		</tr>	
+<?php }?>
+	</tbody>
+</table>
+<div id="pagination" class="pagination">
+<?php echo $this->paginationControl($this->paginator,
+				'Jumping',
+				'includes/paginationcontrol.phtml');
+?>
+</div>
+<?php }?>
+
+
+<?php }else{?>
+<h3>No registered user</h3>
+<?php }?>
+</div>
+</div>

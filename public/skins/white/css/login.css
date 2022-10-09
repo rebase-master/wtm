@@ -1,0 +1,84 @@
+.cont-mixed {
+    margin-top: 30px;
+}
+#login-page-ad{
+    /*border: 1px solid #f00;*/
+    min-height: 400px;
+    margin-top: 50px;
+}
+.openid-login .login-button img {
+    border-radius: 1ex;
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+#openid-login-cont .login{
+    margin-bottom: 20px;
+}
+.login form {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.login ._top-form label{
+    display: none;
+}
+.login .checkbox{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+.login .form-group .checkbox label{
+    padding-left: 10px;
+
+}
+.login .form-group .checkbox input{
+    margin-left: 0;
+
+}
+.login .fpwd{
+    font-size: 12px;
+}
+.login .fpwd a{
+    margin-left: 20px;
+}
+.separater {
+    color: #333;
+    font-size: 16px;
+    margin: 20px auto;
+    text-align: center;
+}
+.buttons{
+    color: #333;
+}
+.buttons > a {
+    text-decoration: underline;
+}
+
+#register_form {
+    /*border: 1px solid #f00;*/
+    /*font-family: Arial, sans-serif;*/
+    margin: -20px auto 0;
+    width: 60%;
+}
+#register_form form{
+    width: 60%;
+    margin: 20px auto;
+}
+.zend_form .errors {
+    background: none repeat scroll 0 0 #f2dede;
+    border: 1px solid #ddd;
+    color: #a94442;
+    margin: 10px;
+    padding: 10px 20px;
+}
+.center50{
+    width: 50%;
+    margin: 0 auto;
+}
+form label{
+    font-weight: 500;
+}

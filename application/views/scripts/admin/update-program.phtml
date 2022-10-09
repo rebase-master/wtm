@@ -1,0 +1,98 @@
+<?php
+	$this->headTitle()->set('Update Program');
+	echo $this->headTitle();
+	$list = $this->baseUrl('/admin/read-programs');
+?>
+
+<div class="content">
+
+	<div class="list-head">
+		<h2>Update Program</h2>
+		<a href="<?php echo $list; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-list"></i>
+			List Programs
+		</a>
+	</div>
+
+	<div class="form_short stretch">
+
+		<?php if(empty($this->program)): ?>
+			<div class="alert alert-danger">
+				<p>Program not found!</p>
+			</div>
+		<?php else: ?>
+			<?php $form = $this->form; ?>
+			<form class="form-horizontal" method="<?php echo $form->getMethod() ?>" action="<?php echo $form->getAction()?>">
+				<div class="form-group">
+					<?php echo $form->topic_id->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<?php echo $form->topic_id->renderViewHelper() ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<?php echo $form->heading->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<?php echo $form->heading->renderViewHelper() ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<?php echo $form->slug->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<?php echo $form->slug->renderViewHelper() ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<?php echo $form->question->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<div id="question-button-bar" class="wmd-button-row"></div>
+						<textarea id="question_html" class="form-control"><?php echo ($this->program['question']); ?></textarea><br />
+				        <div id="question-preview"></div>
+				        <div id="question_html"></div>
+						<strong>Output</strong>
+						<?php echo $form->question->renderViewHelper() ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<?php echo $form->solution->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<div id="solution-button-bar" class="wmd-button-row"></div>
+						<textarea id="solution_html" class="form-control"><?php echo ($this->program['solution']); ?></textarea><br />
+						<div id="solution-preview"></div>
+						<div id="solution_html"></div>
+						<strong>Output</strong>
+						<?php echo $form->solution->renderViewHelper() ?>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->visible->renderLabel() ?>
+					<div class="col-md-8 col-lg-9">
+						<?php echo $form->visible->renderViewHelper() ?>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-8 col-lg-9 sol-md-offset-4 col-lg-offset-3">
+						<?php echo $form->submit->renderViewHelper() ?>
+					</div>
+				</div>
+			</form>
+		<?php endif; ?>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	setup_wmd({
+		input: "question_html",
+		button_bar: "question-button-bar",
+		preview: "question-preview",
+		output: "question"
+	});
+	setup_wmd({
+		input: "solution_html",
+		button_bar: "solution-button-bar",
+		preview: "solution-preview",
+		output: "solution"
+	});
+</script>

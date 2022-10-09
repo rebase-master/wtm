@@ -1,0 +1,87 @@
+<?php
+	$title = isset($this->title)?$this->title:'Page not found';
+	$this->headTitle()->set($title);
+	echo $this->headTitle();
+?>
+
+<div id="tutorials" class="content subNotes bg tuts">
+	<div class="topic-container">
+		<?php if(isset($this->notes)): ?>
+		<?php $note = $this->notes; ?>
+				<div class="topic">
+
+					<div class="heading">
+						<h1 title="<?php echo $note->heading; ?>"><?php echo $note->heading; ?>
+							<?php if(isset($_SESSION['user']['admin'])  && $_SESSION['user']['admin']): ?>
+								<?php $editNote = $this->baseUrl('/admin/update-notes-content/id/'.$note->id); ?>
+									<a class="btn btn-xs btn-info" href="<?php echo $editNote; ?>">Edit Note</a>
+							<?php endif; ?>
+						</h1>
+					</div>
+
+					<div class="addthis share-post">
+						<div class="addthis_inline_share_toolbox ss-cont"></div>
+					</div>
+
+					<hr />
+
+					<div>
+						<?php if(!empty($note->cover_image)): ?>
+							<div class="unit_image">
+								<img class="img-thumbnail" src="<?php echo $this->baseUrl('/images/content/uploads/'.$note->cover_image); ?>" alt="<?php echo ucwords($note->heading); ?> Notes" />
+							</div>
+						<?php endif; ?>
+
+						<div class="note_desc">
+							<?php echo $note->content; ?>
+						</div>
+					</div>
+
+					<?php if(!empty($note->source)): ?>
+						<div class="content-source">
+							<hr />
+							<?php $sources = explode(",", $note->source); ?>
+							<?php foreach($sources as $source): ?>
+								<a href="<?php echo urldecode($source); ?>" target="_blank" rel="nofollow">
+									<?php echo urldecode($source); ?>
+								</a>
+						   <?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+
+				</div>
+			<div class="ad-notes">
+				<?php require_once APPLICATION_PATH.'/../layouts/templates/ads/gad-notes.php'; ?>
+			</div>
+				<?php if(count($this->related) > 0): ?>
+					<div class="related">
+						<h2>Related Notes</h2><hr />
+						<ul>
+							<?php foreach ($this->related as $related): ?>
+								<li>
+									<div class="rn_unit">
+										<div class="imgcont">
+											<img class="img-thumbnail pull-left" src="<?php echo $this->baseUrl('/images/content/uploads/'.$related['cover_image']); ?>" alt="<?php echo ucwords($note['heading']); ?> Notes" />
+										</div>
+										<div class="headingCont">
+											<?php $link = $this->baseUrl('notes/'.strtolower(str_replace(' ','-', $related['category'])).'/'.$related['slug']); ?>
+											<a class="" href="<?php echo $link; ?>"><?php echo $related['heading']; ?></a>
+										</div>
+										<div class="overlay"></div>
+									</div>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endif; ?>
+
+		<?php else: ?>
+			<div class="alert alert-danger">
+				<p>No result found!</p>
+			</div>
+		<?php endif; ?>
+
+	</div>
+
+</div>
+

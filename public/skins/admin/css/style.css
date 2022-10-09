@@ -1,0 +1,220 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body, html {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+body {
+    background-color:#fff;
+    color:#000;
+    font:16px 'Source Sans Pro', "Trebuchet MS", Tahoma, Arial, Geneva, Helvetica, "Lucida Sans", Trebuchet, Verdana, sans-serif;
+    line-height:1.4em;
+    position:relative;
+}
+a {
+    color:#3DB5D0;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    outline:0;
+}
+
+a:hover {
+    color:#555;
+    text-decoration: none;
+}
+
+h1 {
+    color:#3DB5D0;
+}
+h2,h3, h4{
+    color: #555;
+}
+h1,h2,h3{
+    margin-top: 0;
+
+}
+li, ul {
+    line-height:1.8em;
+}
+textarea{
+    resize: vertical;
+}
+#pagination {
+    display:block;
+    margin:30px auto;
+    padding: 0 20px;
+}
+
+.pagination a, .pagination span {
+    background-color:#fff;
+    border:1px solid #ddd;
+    color:#333;
+    display: inline-block;
+    font-size:14px;
+    margin:5px;
+    padding:5px 10px;
+}
+
+.pagination span {
+    background-color:#555;
+    color:#fff;
+}
+
+#page {
+    background: url("../../../images/photography.png") repeat ;
+    min-height: 100%;
+    padding: 0;
+}
+#header .navbar-brand{
+    height: auto;
+    max-width: 250px;
+    padding: 5px 10px;
+}
+#header .navbar.navbar-default {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    height: auto;
+}
+#menu {
+    margin-left: 20px;
+    margin-top: 7px;
+}
+#adminWrapper{
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+#topbar{
+    border-bottom: 5px solid #3DB5D0;
+    padding: 20px;
+}
+#content-admin {
+    color: #555;
+    font-size: 14px;
+}
+#content-admin table td span.label{
+    display: inline-block;
+}
+#sidebar{
+    padding: 0;
+}
+#sidebar #accordion .divider {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+}
+#sidebar #accordion{
+    color: #555;
+    font-size: 14px;
+}
+#sidebar #accordion .panel-title{
+    font-size: 14px;
+}
+#sidebar a{
+    display: block;
+}
+#sidebar .panel {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+#sidebar .panel-group .panel + .panel{
+    border-radius: 0;
+    margin: 0;
+}
+#sidebar .panel-group .panel + .panel {
+    margin-top: 0;
+}
+#sidebar .panel-heading, #sidebar .panel-body{
+    padding: 0;
+}
+#sidebar .panel-title a{
+    padding: 10px 20px;
+}
+#sidebar .panel-body a{
+    color: #C9302C;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+#sidebar ul li{
+    list-style-type: none;
+}
+#sidebar ul li .btn{
+    border-radius: 0;
+}
+
+#sidebar li > ol {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+#sidebar li > ol p{
+    margin: 0;
+}
+#sidebar .panel-body a:hover{
+    background-color: #eee;
+}
+
+.list-head {
+    margin: 20px;
+    border-bottom: 1px solid #eee;
+}
+.list-head .sort {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: text-bottom;
+}
+
+.list-head h2, .list-head h3  {
+    display: inline-block;
+}
+.list-head a .glyphicon{
+    margin-right: 5px;
+}
+.form_short{
+    margin-left: 50px;
+    width: 50%;
+}
+.form_short select option{
+    padding: 10px 20px 5px;
+}
+.form_short.stretch{
+    width: 70%;
+}
+.form_short.full-stretch{
+    width: 90%;
+}
+.form_short dt, .form_short dd{
+    margin-top: 10px;
+} 
+.zend_form .errors {
+    color: #c9302c;
+    margin-left: 20px;
+}
+.form_short textarea{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+#yqForm #question-preview {
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+#yqForm #topics {
+    min-height: 150px;
+}
+
+.notes-form #preview-image {
+    border: 1px solid #ccc;
+
+    margin-top: 10px;
+}

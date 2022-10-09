@@ -1,0 +1,54 @@
+<?php
+    $this->headTitle()->set('Confirm Requests');
+    echo $this->headTitle();
+    $profile=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$this->currentUser),null,true);
+?>
+<div class="content col-md-9 col-md-offset-1">
+	<h1 class="text-center">Confirm Requests</h1>
+    <?php if(!empty($this->requests)):  ?>
+        <div class="req-cont">
+            <?php foreach($this->requests as $request): ?>
+            <?php
+            $name = $request['first_name'] ." ".$request['last_name'];
+            $inviterPhoto = $request['dp'];
+               if(empty($inviterPhoto)){
+                   if($friends['gender'] == 'f'){
+                       $src = BASE_URL.'images/ft.png';
+                   }else{
+                       $src = BASE_URL.'images/mt.png';
+                   }
+               }else{
+                   if(stripos($inviterPhoto, 'http') !== false)
+                       $src = $inviterPhoto;
+                   else
+                       $src = BASE_URL.$inviterPhoto;
+               }
+            $city = $request['city'];
+            $country = $request['country'];
+            $school = $request['school'];
+            ?>
+                <div class="request clearfix">
+                    <div class="request_photo col-md-2"><img src="<?php echo $src; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></div>
+                    <div class="request_info col-md-7">
+                        <h4><?php echo $name; ?></h4>
+                        <?php if(!empty($school)):?>
+                            <p><?php echo $school; ?></p>
+                        <?php endif; ?>
+                        <?php if(!empty($city) || !empty($country)):?>
+                            <p><?php echo !empty($city)?(!empty($country)?ucwords($city).", ".ucwords($country):ucwords($city)): ucwords($country); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="request_response col-md-3">
+                        <input type="hidden"  value="<?php echo $request['id']; ?>" />
+                        <button class="btn btn-primary btn-xs accept">Accept</button>
+                        <button class="btn btn-danger btn-xs reject">Reject</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="alert alert-info text-center">
+            <p>You don't have any pending requests at the moment.</p>
+        </div>
+    <?php endif; ?>
+</div>

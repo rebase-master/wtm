@@ -1,0 +1,43 @@
+<?php
+	$this->headTitle()->set($this->category.' Questions');
+	echo $this->headTitle();
+?>
+
+<div class="content bg">
+
+	<div id="cat-programs">
+		<div class="list-head text-center">
+			<h2><strong>Category: <?php echo $this->category; ?></strong></h2><hr />
+		</div>
+		<?php if($this->paginator): ?>
+			<div class="list programs">
+				<ul>
+					<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+					<?php foreach($this->paginator as $question): ?>
+						<li>
+							<a href="<?php echo $this->baseUrl('/program/'.$question['slug']);?>">
+								<?php echo (substr(strip_tags($question->question),0,200)); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<div id="pagination" class="pagination">
+				<?php echo $this->paginationControl($this->paginator,
+					'Elastic',
+					'includes/paginationcontrol.phtml');
+				?>
+			</div>
+
+			<div class="addthis share-post">
+				<h3>Share with others</h3>
+				<div class="addthis_inline_share_toolbox ss-cont"></div>
+			</div>
+
+		<?php else: ?>
+			<div class="alert alert-info text-center">
+				<p>No programs in this category so far.</p>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>

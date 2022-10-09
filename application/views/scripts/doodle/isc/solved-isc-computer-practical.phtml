@@ -1,0 +1,46 @@
+<div class="content col-md-offset-1 col-md-11 col-xs-12">
+     <?php if($this->error==1){?>
+        <div class="alert alert-danger text-center">
+            <p>Page Not Found!</p>
+        </div>
+     <?php }else{ ?>
+        <?php $this->headTitle()->set('Solved ISC '.$this->year.' Computer Practical');
+        echo $this->headTitle();
+        ?>
+     <div id="icp" class="text-read solved">
+        <h1>ISC Computer Practical <?php echo $this->year;?> Solved</h1><hr />
+        <?php if(!empty($this->programs)): ?>
+        <div class="years">
+            <ol>
+                <?php $count = 0; ?>
+                <?php
+                    foreach($this->programs as $program):
+                     $count++;
+                ?>
+                    <?php if($program['solution']): ?>
+                        <li>
+                            <div class="qdesc">
+                                <p><?php echo $program['question']; ?></p>
+                                <button class="btn btn-xs btn-primary">View/Hide Solution</button>
+                                <div class="solution hide">
+                                    <pre><?php echo $program['solution']; ?></pre>
+                                </div>
+                            </div>
+                            <?php if($count == 2):?>
+                                <div class="google-ad">
+                                    <?php include APPLICATION_PATH.'/../layouts/templates/google-ad-horizontal.php'; ?>
+                                </div>
+                            <?php endif; ?>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach;  ?>
+            </ol>
+        </div>
+        <?php else: ?>
+            <div class="alert alert-info text-center">
+                <p>Solutions will be uploaded shortly. Please check back soon!</p>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php } ?>
+</div>

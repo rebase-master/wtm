@@ -1,0 +1,55 @@
+<?php
+	$this->headTitle()->set('Notes SubCategory List');
+	echo $this->headTitle();
+	$create = $this->url(array('controller'=>'admin', 'action'=>'create-notes-sub-category'));
+?>
+
+<div class="content">
+
+	<div class="list-head clearfix">
+		<h2>Notes SubCategory List</h2>
+		<a href="<?php echo $create; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-plus"></i>
+			Create Notes SubCategory
+		</a>
+	</div>
+	<?php if($this->paginator): ?>
+		<table class="table table-bordered table-striped notes_category">
+			<thead>
+				<tr>
+					<th>Sl no</th>
+					<th>Category</th>
+					<th>Sub Category</th>
+					<th>Visible?</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+				<?php foreach($this->paginator as $category): ?>
+					<tr>
+						<td><?php echo ++$i; ?></td>
+						<td><?php echo $category->category; ?></td>
+						<td><?php echo $category->sub_category; ?></td>
+						<td><?php echo $category->visible?"True":"False"; ?></td>
+						<?php
+							$update=$this->url(array('controller'=>'admin', 'action'=>'update-notes-sub-category','id'=>$category->id));
+						?>
+						<td>
+							<a class="btn btn-xs btn-danger delete-ncat" href="javascript:void(0);">Delete</a>
+							<input type="hidden" value="<?php echo $category->id; ?>" />
+							<a class="btn btn-xs btn-info"  href="<?php echo $update; ?>">Update</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<div id="pagination" class="pagination">
+			<?php echo $this->paginationControl($this->paginator,
+				'Elastic',
+				'includes/paginationcontrol.phtml');
+			?>
+		</div>
+	<?php endif; ?>
+
+</div>

@@ -1,0 +1,54 @@
+<?php
+    $this->headTitle()->set('Riddles List');
+    echo $this->headTitle();
+?>
+<div class="content">
+
+    <div class="list-head">
+        <h2>Riddles List</h2>
+    </div>
+    <?php if($this->paginator): ?>
+        <?php $i=($this->currentPage * $this->recordsPerPage +1) - $this->recordsPerPage ; ?>
+        <table class="table table-bordered table-striped riddles">
+            <tr>
+                <th>Sno</th>
+                <th>Riddle</th>
+                <th>Answer</th>
+                <th>Visible</th>
+                <th>Created</th>
+                <th>Action</th>
+            </tr>
+            <?php
+            foreach($this->paginator as $riddle):?>
+
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo htmlentities($riddle->riddle); ?></td>
+                    <td><?php echo htmlentities($riddle->answer); ?></td>
+                    <td><?php echo $riddle->visible?"TRUE":"FALSE"; ?></td>
+                    <td><?php echo $riddle->created; ?></td>
+	                <?php
+		                $update=$this->url(array('controller'=>'admin', 'action'=>'update-riddle','id' => $riddle->id));
+	                ?>
+	                <td>
+		                <a class="btn btn-xs btn-danger delete-riddle" href="javascript:void(0);">Delete</a>
+		                <input type="hidden" value="<?php echo $riddle->id; ?>" />
+		                <a class="btn btn-xs btn-info" href="<?php echo $update; ?>">Update</a>
+	                </td>
+                </tr>
+
+            <?php
+                $i++;
+                endforeach;
+            ?>
+        </table>
+        <div id="pagination" class="pagination">
+             <div class="controls">
+                 <?php		echo $this->paginationControl($this->paginator,
+                 'Sliding',
+                 'includes/paginationcontrol2.phtml');
+                 ?>
+             </div>
+        </div>
+     <?php	endif;	?>
+</div>

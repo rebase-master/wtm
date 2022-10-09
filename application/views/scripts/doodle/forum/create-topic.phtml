@@ -1,0 +1,38 @@
+<?php $this->headTitle()->set('Forum - Create Topic');
+echo $this->headTitle();
+?>
+<div class="content">
+	<div class="replyCont">
+        <?php if($this->error==1){
+        $forum=$this->url(array('controller'=>'forum', 'action'=>''), null, true);
+        $login=$this->url(array('controller'=>'user','action'=>'login'),null,true);
+        ?>
+        <p>You must be logged in to create a topic.</p>
+        <div class="buttons">
+            <div class="btn btn-primary">
+                <a href="<?php echo $forum;?>">Back To Forum</a>
+            </div>
+            <div class="btn btn-danger">
+                <a href="<?php echo $login ?>">Log In</a>
+            </div>
+        </div>
+
+        <?php }elseif($this->error==2){?>
+        <p>Oops! Category Not Found.</p>
+        <?php }elseif($this->result){?>
+            <p><?php echo $this->result;?></p>
+        <?php }else{
+            $category = $this->url(array('controller' => 'forum', 'action' => 'category', 'cat' => $this->cat, 'id' => $this->id), null, true);
+        ?>
+        <h2>
+            <a href="<?php echo $category; ?>"><?php echo $this->categoryName;?></a> &gt;&gt;
+            Create new Topic
+        </h2>
+        <?php if($this->exists){?>
+        <p>A topic with the same name already exist.</p>
+        <?php }?>
+        <?php echo $this->form;
+            } ?>
+    </div>
+</div>
+

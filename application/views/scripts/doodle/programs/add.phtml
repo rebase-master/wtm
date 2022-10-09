@@ -1,0 +1,15 @@
+<?php
+$list=$this->url(array('controller'=>'programs','action'=>'list'),null,true);
+?>
+<div class="fcgq">
+    <div class="clearfix">
+        <h1 class="pull-left">Add Programs</h1>
+        <a href="<?php echo $list; ?>" class="btn btn-sm btn-primary pull-right">List Questions</a>
+    </div>
+    <hr />
+    <?php if(isset($this->success)): ?>
+        <p class="text-center alert alert-success"><?php echo $this->success; ?></p><br />
+    <?php endif; ?>
+<?php echo $this->form; ?><br />
+
+</div>

@@ -1,0 +1,59 @@
+<?php echo $this->doctype();?>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+        <meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+        <meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years'
+        solved papers, quiz, riddles, doodle, forum, user profile and much more.">
+        <meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+        <meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important,PCM,computer
+         applications,english,literature,10,12,computer coaching,java coaching,programs,board questions,sample
+          papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+        <link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+        <?php
+            $this->headTitle()->set('Welcome to Mentors');
+            echo $this->headTitle();
+        ?>
+
+    <?php
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/login/index.js");
+    ?>
+    <!--    Styles-->
+    <?php
+//        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/common/css/bootstrap.min.css');
+//        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/common/css/bootstrap-responsive.min.css');
+//        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/white/css/responsive-login.css');
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-login.css');
+    ?>
+    <?php
+        echo $this->headLink();
+        echo $this->headScript();
+    ?>
+</head>
+    <body>
+    <div id="fb-root"></div>
+        <div id="page" class="container-fluid">
+            <?php require_once APPLICATION_PATH.'/../layouts/templates/login_header.php'; ?>
+            <div id="contentWrapper" class="row-fluid">
+                <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+                <div id="main" class="col-lg-12">
+                    <?php echo $this->layout()->content; ?>&nbsp;
+                </div>
+
+            </div>
+        </div>
+
+    <!--FOOTER-->
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+    <!--END FOOTER-->
+
+    <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-28531454-1']);_gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script>
+    </body>
+</html>

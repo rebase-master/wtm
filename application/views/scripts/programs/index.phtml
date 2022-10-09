@@ -1,0 +1,113 @@
+
+<?php
+	$this->headTitle()->set(ucwords($this->program->heading));
+	echo $this->headTitle();
+	$shareUrl = BASE_URL."program/".$this->slug;
+?>
+
+<div class="content bg programs">
+
+
+	<div class="list-head clearfix">
+		<h1><?php echo ucwords($this->program->heading); ?></h1>
+		<?php if(isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'] == true): ?>
+			<a class="btn btn-primary pull-right" href="<?php echo $this->baseUrl('/admin/update-program/id/'.$this->program->id); ?>">Edit</a>
+		<?php endif; ?>
+		<div class="addthis share-post">
+			<div class="addthis_inline_share_toolbox ss-cont"></div>
+		</div>
+
+		<hr />
+	</div>
+
+	<div>
+
+		<blockquote>
+			<h3><?php echo $this->program->question; ?></h3>
+		</blockquote>
+
+		<div class="solution">
+			<?php if(!empty($this->program->solution)): ?>
+				<?php echo $this->program->solution; ?>
+				<div class="others share-post fb">
+					<h4>
+						Found this program useful? You can
+						<span class="fb-save fb ss-cont" data-uri="<?php echo $shareUrl; ?>" data-size="small"></span>
+						or
+						<span class="fb-send fb ss-cont" data-href="<?php echo $shareUrl; ?>" data-size="small"></span>
+						to facebook friends.
+					</h4>
+				</div>
+				<br />
+			<?php else: ?>
+				<div class="alert alert-info">
+					<h4>No solution found for this question. Share it amongst your friends on social media
+					to see if anyone can solve it.</h4>
+				</div>
+			<?php endif; ?>
+		</div>
+
+		<?php if(!empty($this->relatedPrograms)): ?>
+			<div class="related-programs">
+				<h2>Related Programs</h2>
+				<ul>
+					<?php foreach ($this->relatedPrograms as $row): ?>
+						<li>
+							<a href="<?php echo $this->baseUrl('/program/'.$row->slug); ?>">
+								<?php echo $row->heading; ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif; ?>
+
+		<div id="ccomments">
+			<input type="hidden" value="<?php echo $this->program->id; ?>" />
+			<div class="post-cc">
+				<?php if(isset($_SESSION['user'])): ?>
+					<div class="aqc">
+						<form id="aqform" class="form" action="javascript:void(0);">
+							<div class="form-group">
+								<label class="control-label sr-only" for="comment">Comment</label>
+								<div>
+									<textarea name="comment" id="comment" placeholder="Write your comment here..." class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<input type="submit" name="Submit" value="Post Comment" class="btn btn-primary" />
+							</div>
+						</form>
+					</div>
+				<?php else: ?>
+					<h3>
+						Have something to say? <a class="" href="<?php echo $this->baseUrl('/login'); ?>">Log in</a> to comment on this post.
+					</h3>
+				<?php endif; ?>
+			</div>
+<!--			<hr />-->
+			<?php require_once APPLICATION_PATH.'/Misc/Util.php';?>
+			<?php $cc = $this->comments->count();  ?>
+
+			<div id="user-comments">
+					<div class="ccount text-warning"><p><span class="cctr"><?php echo count($this->comments); ?></span> comments</p></div>
+					<div class="cc <?php echo $cc == 0?'hide':''; ?>">
+						<?php if($cc != 0): ?>
+							<?php foreach($this->comments as $comment): ?>
+								<div class="comment">
+									<a href="<?php echo $this->baseUrl('u/'.$comment['username']); ?>"><?php echo $comment['username']; ?></a>
+									<p>
+										<?php echo $comment['comment']; ?>
+										<span class="ctime"><?php echo  Util::makeTime(strtotime($comment['created'])); ?></span>
+									</p>
+								</div>
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>

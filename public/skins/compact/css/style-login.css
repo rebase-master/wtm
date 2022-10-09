@@ -1,0 +1,112 @@
+@import url('common.css');
+
+.content.pptou {
+    margin: 0 auto;
+    padding: 20px 10px;
+    width: 70%;
+}
+.cont-mixed {
+    margin-top: 30px
+}
+.openid-login .login-button img {
+    border-radius: 1ex;
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box
+}
+#openid-login-cont .login {
+    margin-bottom: 20px
+}
+.sessions form {
+    /*background-color: #f5f5f5;*/
+    /*border: 1px solid #ddd;*/
+    padding: 20px 30px 10px;
+}
+.sessions form .input-group{
+    margin-bottom: 10px;
+}
+.sessions ._top-form label {
+    display: none
+}
+.sessions .checkbox {
+    display: inline;
+    margin: 0;
+    padding: 0
+}
+.sessions .fpwd {
+    font-size: 90%;
+    margin: 20px 5px 15px;
+}
+.sessions.fpwd {
+    padding: 10px;
+}
+.sessions .fpwd a {
+    margin-left: 10px
+}
+.buttons {
+    color: #333;
+    text-align: center;
+}
+.buttons > a {
+    text-decoration: underline
+}
+.sessions {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 20px auto 50px;
+    min-width: 320px;
+    max-width: 400px;
+    padding: 10px;
+}
+.sessions select option {
+    padding: 5px 0 5px 10px;
+}
+.sessions #captcha-element {
+    margin-left: -15px;
+}
+#register_form p.note{
+    width: 90%;
+    margin: 10px auto;
+}
+.sessions .login_or {
+    color: #aaa;
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.sessions .span_or {
+    background-color: #fcfcfc;
+    display: block;
+    left: 50%;
+    margin-left: -25px;
+    position: absolute;
+    text-align: center;
+    top: -14px;
+    width: 50px;
+}
+
+.zend_form .errors {
+    background: none repeat scroll 0 0 #f2dede;
+    border: 1px solid #ddd;
+    color: #a94442;
+    margin: 10px;
+    padding: 10px 20px
+}
+form label {
+    font-weight: 500
+}
+
+.ahc{
+    padding: 10px 20px;
+}
+.ahc a {
+    font-size: 18px;
+    padding: 0;
+    text-decoration: underline;
+    vertical-align: baseline;
+}

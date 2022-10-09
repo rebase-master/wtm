@@ -1,0 +1,409 @@
+<?php require_once APPLICATION_PATH.'/Misc/Util.php'; ?>
+<?php
+    $askQuestion =  $this->baseUrl('/qa/ask-question');
+    $allQuestions =  $this->baseUrl('/qa/');
+    $recent =  $this->baseUrl('/qa/index/sort/recent');
+    $popular =  $this->baseUrl('/qa/index/popular');
+    $unanswered =  $this->baseUrl('/qa/index/unanswered');
+    $tagLink =  $this->baseUrl('/qa/questions');
+
+   if(isset($this->tag))
+        $qaLink =  $this->baseUrl('/qa/questions/tagged/'.$this->tag);
+
+?>
+
+<div id="main" class="_qna qa-cont col-sm-12 col-md-8 col-lg-8">
+    <?php if(isset($this->paginator)): ?>
+        <?php
+            $this->headTitle()->set("Questions tagged: \"".$this->tag."\"");
+            echo $this->headTitle();
+        ?>
+        <div class="tagged_container">
+        <div class="clearfix">
+            <h2 class="pull-left">Questions tagged: &lsquo;<?php echo $this->tag; ?>&rsquo;</h2>
+
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort By <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="<?php echo $recent; ?>" class="<?php echo $this->sorter == 'recent'? 'disabled': ''; ?>">Recent</a></li>
+                    <li><a href="<?php echo $popular; ?>" class="<?php echo $this->sorter == 'popular'? 'disabled': ''; ?>">Popular</a></li>
+                    <li><a href="<?php echo $unanswered; ?>" class="<?php echo $this->sorter == 'unanswered'? 'disabled': ''; ?>">Unanswered</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        <?php $c=0; foreach($this->paginator as $question){$c++;?>
+            <?php
+            $created=strtotime($question['created']);
+            $current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+            $t=Util::makeTime($created);
+            $quesLink =  $this->baseUrl('/qa/questions/id/'.$question['id']);
+            $dpThumb = $question['dp'];
+
+            if($question['gender']=='m')
+                $placeholderThumb = "images/placeholder_male.png";
+            else
+                $placeholderThumb = "images/placeholder_female.png";
+
+            if($dpThumb == null){
+
+                $dp = BASE_URL.$placeholderThumb;
+
+            }else{
+                if(strpos($dpThumb, 'http') === 0 || strpos($dpThumb, 'https') === 0)
+                    $dp = $dpThumb;
+                else
+                    $dp = BASE_URL.$dpThumb;
+            }
+
+            $userLink =  $this->baseUrl('/u/'.$question['username']);
+            $description = strlen($question['description']) >= 200? substr($question['description'],0,200)."...":$question['description'];
+            $title = strlen($question['question']) >= 50? substr($question['question'],0,50)."...":$question['question'];
+            $noa = isset($question['answer_count']) && !empty($question['answer_count'])?$question['answer_count']:0;
+            $nov = isset($question['vote_count']) && !empty($question['vote_count'])?$question['vote_count']:0;
+        ?>
+        <div class="ques_each clearfix">
+            <div class="metrics col-sm-3">
+                <div class="vote-counts vacounters">
+                    <span><?php echo $nov ;?></span>
+                    <div class="vote-count">votes</div>
+                </div>
+                <div class="ans-counts vacounters<?php echo $noa > 0?' border':''; ?>">
+                    <span><?php echo $noa ;?></span>
+                    <div class="ans-count">answers</div>
+                </div>
+            </div><!-- .metrics.col-md-5 -->
+
+            <div class="col-sm-9 question">
+                <?php if($this->uid==$question['uid']):?>
+                    <span class="post_rc pull-right hide" onclick="rtc(this);"><img src="<?php echo $this->baseUrl();?>/images/del.png" title="Delete this question" alt="Delete this question" /></span>
+                <?php endif; ?>
+                <div class="title">
+                    <h3>
+                        <a href="<?php echo $quesLink;?>"><?php echo htmlentities($title);?></a>
+                    </h3>
+                </div>
+                <input type="hidden" value="<?php echo $question['id'];?>" />
+                <div class="tagged col-xs-6">
+                    <?php
+                    $tags = $question['tags'];
+                    if(!empty($tags)): ?>
+                        <?php foreach(explode(",",$tags) as $tag): ?>
+                            <a href="<?php echo $tagLink."/tagged/".trim($tag);?>" title="<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="asker col-xs-6">
+                    <span class="date_asked">asked <?php echo $t;?></span> by
+                    <a class="username" href="<?php echo $userLink;?>"><?php echo $question['username'];?></a>
+                </div>
+            </div><!-- .question.col-md-7 -->
+        </div><!-- .ques_each.clearfix -->
+        <?php }	?>
+        <br />
+        <div id="pagination" class="pagination">
+            <div class="controls text-center">
+                <?php
+                echo $this->paginationControl($this->paginator,
+                'Sliding',
+                'includes/paginationcontrolQ.phtml',
+                array('link' => $qaLink)
+                );
+                ?>
+            </div>
+        </div><!-- #pagination-->
+    </div><!--tagged_container-->
+    <?php else: ?>
+        <div class="qa-single">
+        <?php if(isset($this->question) && !empty($this->question)):?>
+        <?php
+            $this->headTitle()->set(substr($this->question['question'],0,50).(strlen($this->question['question'])>=50?"...":""));
+            echo $this->headTitle();
+            $question = $this->question;
+            $loginUrl =  $this->baseUrl('/user/login').'?next='. urlencode(BASE_URL.'qa/questions/id/'.$this->question['id']);
+            $dpThumb = $question['dp'];
+            $quesLink =  $this->baseUrl('/qa/questions/id/'.$this->question['id']);
+
+            if($question['gender']=='m')
+                $placeholderThumb = "/images/placeholder_male.png";
+            else
+                $placeholderThumb = "/images/placeholder_female.png";
+
+            if($dpThumb == null){
+
+                $dp = BASE_URL.$placeholderThumb;
+
+            }else{
+                if(strpos($dpThumb, 'http') === 0 || strpos($dpThumb, 'https') === 0)
+                    $dp = $dpThumb;
+                else
+                    $dp = BASE_URL.$dpThumb;
+            }
+
+            $userLink =  $this->baseUrl('/u/'.$question['username']);
+            if(isset($this->username))
+                $curUserLink =  $this->baseUrl('/u/'.$this->username);
+            else
+                $curUserLink="#";
+            $votes = intval($question['upvotes'])-intval(($question['downvotes']));
+            $own = $this->uid == $question['uid']?' own':'';
+            $login = $this->uid == -1?' login':'';
+            $userVotes = $this->userQuestionVotes;
+            if(is_array($this->userQuestionVotes) && array_key_exists($question['id'], $this->userQuestionVotes)){
+                $upvoted = intval($userVotes[$question['id']]) == 1? ' vu': '';
+                $downvoted = intval($userVotes[$question['id']]) == -1? ' vd': '';
+            }else{
+                $upvoted = $downvoted = '';
+            }
+        ?>
+        <div id="qHead" class="aqc clearfix">
+            <div class="aqc-vc col-xs-2 col-sm-2 col-md-2 col-lg-1">
+                <div class="metrics text-center pull-right">
+                    <div class="alert alert-dismissable alert-warning vote-error hide" role="alert">
+	                    <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <p>You cannot vote on your own question.</p>
+                    </div>
+                    <div onclick="qv(this,1)" class="arrow-up vote-i <?php echo $own.$login.$upvoted; ?>" title="This question is useful"></div>
+                    <div class="qv-count">
+                        <p><?php echo $votes; ?></p>
+                    </div>
+                    <div onclick="qv(this,-1)" class="arrow-down vote-i <?php echo $own.$login.$downvoted; ?>" title="This answer is not useful"></div>
+                </div>
+            </div>
+            <div class="aqc-qc col-xs-10 col-sm-10 col-md-10 col-lg-11">
+                <div class="clearfix">
+                    <div class="user-action">
+                        <?php if($this->uid == $question['uid']):?>
+                            <span class="post_rc pull-right hide" onclick="rtq(this);"><img src="<?php echo $this->baseUrl();?>/images/del.png" title="Delete this question" alt="Delete this question" /></span>
+                        <?php endif; ?>
+                    </div>
+                    <h1>
+                        <a href="<?php echo $quesLink; ?>"><?php echo $this->question['question'];?></a>
+                    </h1>
+                    <br />
+                </div>
+                <input type="hidden" id="qid" value="<?php echo $question['id'];?>" />
+                <?php
+                    $created=strtotime($question['created']);
+                    $t=Util::makeTime($created);
+                ?>
+                <div class="feedback">
+                    <?php echo nl2br($question['description']); ?>
+                </div><!--feedback-->
+                <br />
+                <div class="tagged col-xs-6 col-md-8">
+                    <?php
+                    $tags = $question['tags'];
+                    if(!empty($tags)): ?>
+                        <?php foreach(explode(",",$tags) as $tag): ?>
+                            <a href="<?php echo $tagLink."/tagged/".$tag;?>" title="<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                </div><!--tagged-->
+                <div class="asker col-xs-6 col-md-4 clearfix">
+                    <div class="asker_pic pull-left">
+                        <a href="<?php echo $userLink;?>">
+                            <img src="<?php echo $dp; ?>"
+                                 alt="<?php echo $question['username'];?>"
+                                 title="<?php echo $question['username'];?>"
+                                 onerror="this.src='<?php echo BASE_URL.$placeholderThumb; ?>'"
+                            />
+                        </a>
+                    </div>
+                    <div class="asker_username pull-left">
+                        <a class="username" href="<?php echo $userLink;?>"><?php echo $question['username'];?></a>
+                        <span class="date_asked"> <?php echo $t;?></span>
+                    </div>
+                </div><!-- asker -->
+            </div><!--aqc-qc-->
+        </div><!--aqc-->
+        <div id="user_sols">
+            <?php if(!empty($this->answers)): ?>
+                <p class="noc col-md-offset-1"><?php echo count($this->answers); ?> answers</p>
+                <?php $ctr = 1; ?>
+                <?php foreach($this->answers as $answer):?>
+                    <?php $votes = intval($answer['upvotes'])-intval(($answer['downvotes']));
+                          $own = $this->uid == $answer['uid']?' own':'';
+                          $login = $this->uid == -1?' login':'';
+                        $userVotes = $this->userAnswerVotes;
+                        if(is_array($this->userAnswerVotes) && array_key_exists($answer['id'], $this->userAnswerVotes)){
+                            $upvoted = intval($userVotes[$answer['id']]) == 1? ' vu': '';
+                            $downvoted = intval($userVotes[$answer['id']]) == -1? ' vd': '';
+                        }else{
+                            $upvoted = $downvoted = '';
+                        }
+                    ?>
+                    <div class="aoq">
+                        <div class="clearfix">
+                            <div class="aqc-vc col-xs-2 col-sm-2 col-md-2">
+                                <div class="metrics text-center pull-right">
+                                    <div class="alert alert-dismissable alert-warning vote-error hide" role="alert">
+                                        <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <p>You cannot vote on your own answer.</p>
+                                    </div>
+                                    <div onclick="acv(this,1)" class="arrow-up vote-i <?php echo $own.$login.$upvoted; ?>" title="This answer is useful"></div>
+                                        <div class="qv-count">
+                                            <p><?php echo $votes; ?></p>
+                                        </div>
+                                    <div onclick="acv(this,-1)" class="arrow-down vote-i <?php echo $own.$login.$downvoted; ?>" title="This answer is not useful"></div>
+                                </div>
+                            </div>
+                            <div class="aqc-qc res_cont col-xs-10 col-sm-10 col-md-10">
+                                <input type="hidden" value="<?php echo $answer['id'];?>" />
+                                <?php
+
+                                    $dpThumb = $answer['dp'];
+
+                                    if($answer['gender']=='m')
+                                        $placeholderThumb = "/images/placeholder_male.png";
+                                    else
+                                        $placeholderThumb = "/images/placeholder_female.png";
+
+                                    if($dpThumb == null){
+
+                                        $dp = BASE_URL.$placeholderThumb;
+
+                                    }else{
+                                        if(strpos($dpThumb, 'http') === 0 || strpos($dpThumb, 'https') === 0)
+                                            $dp = $dpThumb;
+                                        else
+                                            $dp = BASE_URL.$dpThumb;
+                                    }
+
+                                    $userLink =  $this->baseUrl('/u/'.$answer['username']);
+                                    $created=strtotime($answer['created']);
+                                    $t=Util::makeTime($created);
+                                ?>
+                                <div class="feedback col-md-12">
+                                    <?php if($this->uid==$answer['uid']):?>
+                                        <span class="post_rc pull-right hide" onclick="rta(this);"><img src="<?php echo $this->baseUrl();?>/images/del.png" title="Delete answer" alt="Delete answer" /></span>
+                                    <?php endif; ?>
+                                    <p class="reply_text"><?php echo nl2br(($answer['answer']));?></p>
+                                </div>
+                                <br />
+                                <div class="asker col-xs-6 col-md-4 col-md-offset-8 clearfix">
+                                    <div class="asker_pic pull-left">
+                                        <a href="<?php echo $userLink;?>">
+                                            <img src="<?php echo $dp;?>"
+                                                 alt="<?php echo $answer['username'];?>"
+                                                 title="<?php echo $answer['username'];?>"
+                                                 onerror="this.src='<?php echo BASE_URL.$placeholderThumb; ?>'"
+                                                />
+                                        </a>
+                                    </div>
+                                    <div class="asker_username pull-left">
+                                        <a class="username" href="<?php echo $userLink;?>"><?php echo $answer['username'];?></a>
+                                        <span class="date_asked"><?php echo $t;?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- aoq -->
+                    <?php if($ctr == 1): ?>
+                        <div class="aoq">
+                            <div class="clearfix">
+                                <div class="col-md-offset-2 col-md-10 text-center">
+                                    <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad.php'; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php $ctr++; else:?>
+                <?php endif;?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="clearfix">
+                    <div class="aqc-vc col-md-offset-1 col-md-10">
+                        <p class="nosol">No solutions for this question so far. Share this question on Facebook, Google, Twitter or
+                            <?php if($this->uid == $question['uid']):?>
+                                answer your question.
+                            <?php else: ?>
+                                answer this question.
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div><!--user_sols-->
+        <div class="clearfix">
+            <div class="aqc res_c col-md-offset-1 col-md-10">
+                    <hr />
+                <?php if($this->uid != -1): ?>
+                    <h3 class="text-left">Your Answer</h3>
+                    <div class="comment_post">
+                        <textarea name="answer"></textarea>
+                    </div>
+                    <div class="post-options">
+                        <button class="btn btn-primary" onclick="aans(this);">Post your answer</button>
+                        <div class="loading hide"><img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading..." /></div>
+                    </div>
+                <?php else: ?>
+                    <p><a class="btn btn-primary" href="<?php echo $loginUrl; ?>">Log in </a> &nbsp; to your account to answer this questions.</p>
+                <?php endif; ?>
+            </div><!-- aqc -->
+        </div>
+        <br />
+        <div class="other-options">
+            <p>Not the answer you're looking for?
+            <?php
+                $tags = $question['tags'];
+                if(!empty($tags)): ?>
+                    Browse other questions tagged
+                    <span class="tags">
+                        <?php foreach(explode(",",$tags) as $tag): ?>
+                            <a href="<?php echo $tagLink."/tagged/".$tag;?>" title="<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                        <?php endforeach; ?>
+                    </span>
+            <?php else: ?>
+                    Browse <a href="<?php echo $allQuestions; ?>">other</a> questions.
+            <?php endif; ?>
+                or <a href="<?php echo $askQuestion; ?>">ask your own question.</a></p>
+        </div>
+
+        <?php else: ?>
+        <div class="alert alert-danger text-center">
+            <p>Question not found. This question may have been deleted by the asker.</p>
+        </div>
+            <div class="">
+                Browse <a href="<?php echo $allQuestions; ?>">other</a> questions.
+                or <a href="<?php echo $askQuestion; ?>">ask your own question.</a></p>
+            </div>
+    <?php endif; ?>
+    </div><!--qa-single-->
+    <?php endif; ?>
+</div><!--main-->
+
+<div id="sidebar_right" class="col-sm-12 col-md-4 col-lg-4 qna">
+    <a class="btn btn-danger btn-lg btn-block" href="<?php echo $askQuestion;?>">Ask Question</a><br />
+    <?php if(!empty($this->relatedQuestions)): ?>
+    <div class="panel panel-warning home_right related-ques">
+        <div class="panel-heading">
+            <h3 class="panel-title">Related Questions</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <?php foreach($this->relatedQuestions as $question):
+                    $quesLink =  $this->baseUrl('/qa/questions/id/'.$question['id']);
+                ?>
+                <li  class="clearfix">
+                    <p title="Total votes on this question"><?php echo !empty($question['vote_count'])?$question['vote_count']:0; ?></p>
+                    <div class="link-cont">
+                        <a href="<?php echo $quesLink; ?>"><?php echo substr($question['question'], 0, 100); echo strlen($question['question'])>=100?'...':''; ?></a>
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div><!--panel-->
+    <?php endif; ?>
+    <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad.php'; ?>
+    <?php include APPLICATION_PATH.'/../layouts/templates/quesByTopic.php'; ?>
+</div><!--sidebar_right-->
+
+
+
+
+

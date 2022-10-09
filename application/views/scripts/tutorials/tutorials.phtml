@@ -1,0 +1,37 @@
+<?php
+    $this->headTitle()->set('Tutorials');
+    echo $this->headTitle();
+    $for = $this->url(array('controller'=>'programming-in-java', 'action'=>'for-loop'),null,true);
+    $arrays1 = $this->url(array('controller'=>'programming-in-java', 'action'=>'array1-D'),null,true);
+    $arrays2 = $this->url(array('controller'=>'programming-in-java', 'action'=>'array2-D'),null,true);
+    $strings = $this->url(array('controller'=>'programming-in-java', 'action'=>'strings'),null,true);
+    $functions = $this->url(array('controller'=>'programming-in-java', 'action'=>'functions'),null,true);
+    $eng_lang = $this->url(array('controller'=>'resources', 'action'=>'english-language'),null,true);
+    $eng_litt = $this->url(array('controller'=>'resources', 'action'=>'english-literature'),null,true);
+?>
+
+<div class="content">
+	<div class="programming topicsList tutorials-list">
+       <h1>Tutorials</h1><hr />
+       <div class="links">
+            <div class="head">
+                <h2>English</h2>
+                <ul>
+                    <li><a href="<?php echo $eng_litt; ?>">Literature</a></li>
+                    <li><a href="<?php echo $eng_lang; ?>">Language</a></li>
+                </ul>
+            </div>
+
+            <div class="head">
+                <h2>Computers</h2>
+                <ul>
+                    <li><a href="<?php echo $for; ?>">Loops</a></li>
+                    <li><a href="<?php echo $arrays1; ?>">Arrays 1-D</a></li>
+                    <li><a href="<?php echo $arrays2; ?>">Arrays 2-D</a></li>
+                    <li><a href="<?php echo $functions; ?>">Functions</a></li>
+                    <li><a href="<?php echo $strings; ?>">Strings</a></li>
+                </ul>
+            </div>
+       </div>
+    </div>
+</div>

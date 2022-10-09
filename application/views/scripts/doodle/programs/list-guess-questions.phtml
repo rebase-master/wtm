@@ -1,0 +1,42 @@
+<?php $this->headTitle()->set('List Guess Questions - ISC Computer Practical');
+echo $this->headTitle();
+?>
+<div id="main" class="col-sm-12">
+    <div class="content">
+        <h1>Programs list</h1>
+            <?php $add=$this->url(array('controller'=>'programs', 'action'=>'add-guess-question')); ?>
+            <a href="<?php echo $add; ?>" class="btn btn-primary pull-right">Add more questions</a><br />
+            <?php
+                if($this->questions!=null){
+                    $i=0;
+            ?>
+                <table class="table table-responsive table-striped table-hover table-list">
+                    <tr>
+                        <th>Sl no</th>
+                        <th>Year</th>
+                        <th>Question</th>
+                        <th>Solution</th>
+                        <th>Action</th>
+                    </tr>
+                <?php
+                    foreach($this->questions as $question){
+                        $i++;
+                        ?>
+
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $question->year; ?></td>
+                            <td><?php echo substr($question->question,0,200); ?></td>
+                            <td><?php echo substr($question->solution,0,200); ?></td>
+                            <td>
+                                <a class="btn btn-xs btn-danger btn-block" href="#">Delete</a>
+                                <a class="btn btn-xs btn-info btn-block" href="#">Update</a>
+                            </td>
+                        </tr>
+                <?php
+                    }
+                ?>
+                </table>
+        <?php	}	?>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<?php
+    $this->headTitle()->set('Update Riddle');
+    echo $this->headTitle();
+?>
+<div class="content">
+	<div class="list-head">
+		<h2>Update Riddle</h2>
+	</div>
+	<div class="form_short">
+	    <?php if(empty($this->record)): ?>
+	        <div class="alert alert-danger">
+	            <p>Record not found!</p>
+	        </div>
+	    <?php else: ?>
+	        <div class="alert alert-danger hide">
+	            <p>Something went wrong. Please try again later.</p>
+	        </div>
+	        <div class="alert alert-success hide">
+	            <p>Record updated successfully.</p>
+	        </div>
+	        <form role="form" action="javascript:void(0);" id="update-riddle">
+	            <div class="form-group">
+	                <label for="fun-fact">Riddle</label>
+	                <textarea rows="10" name="riddle" class="form-control" id="riddle" placeholder="Riddle"><?php echo $this->record->riddle; ?></textarea>
+	            </div>
+	            <div class="form-group">
+	                <label for="fun-fact">Answer</label>
+	                <textarea rows="10" name="answer" class="form-control" id="answer" placeholder="Answer"><?php echo $this->record->answer; ?></textarea>
+	            </div>
+	            <input type="hidden" name="id" value="<?php echo $this->record->id; ?>" />
+	            <button class="btn btn-primary" onclick="updateRiddle(this);">Update</button>
+	            <span class="loading hide">Please wait ...
+	                <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+	            </span>
+
+	        </form>
+	    <?php endif; ?>
+	</div>
+</div>

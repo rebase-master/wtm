@@ -1,0 +1,142 @@
+<?php $this->headTitle()->set('ISC Computer Practical Questions');
+echo $this->headTitle();
+?>
+<div class="content">
+ <?php if(isset($this->guess)){?>
+ <?php $this->headTitle()->set('Guess Questions - ISC Computer Practical');
+echo $this->headTitle();
+?>
+
+    <div id="guess_questions" class="divsContent text-read">
+        <h1 class="text-center">Guess Questions for ISC Computer Practical</h1>
+        <hr />
+        <div class="notice alert alert-info hide">
+            <p></p>
+        </div>
+        <div class="years">
+            <?php if(!empty($this->guessQuestions)): ?>
+            <ol>
+                <?php $i=0; foreach($this->guessQuestions as $guess): ?>
+                <?php if($i == 4): ?>
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-1662490668144398";
+                    /* Sidebar */
+                    google_ad_slot = "2811909247";
+                    google_ad_width = 250;
+                    google_ad_height = 250;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+
+                <?php $i++; endif; ?>
+                <li>
+                    <div class="qdesc">
+                        <p><?php echo $guess['question']; ?></p>
+                        <button class="btn btn-sm btn-primary">View/Hide Solution</button>
+                        <div class="solution hide">
+                            <pre><?php echo $guess['solution']; ?></pre>
+                        </div>
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            </ol>
+            <?php endif; ?>
+                <div class="fb-comments" data-href="http://www.wethementors.com/isc/isc-computer-practical?v=guess-questions" data-width="auto" data-num-posts="10"></div>
+        </div>
+    </div>
+<?php }else{ ?>
+
+<div id="icp" class="text-read">
+ <h1 class="text-center"> ISC Practical Questions Solved</h1>
+    <hr />
+  <div id="practicals" class="login_page qotd">
+    <h3 class="slide">Important guidelines for Computer practical <span class="caret"></span></h3>
+        <div id="guidelines" class="hide years">
+            <div class="qdesc">
+               <p>The total time to be spent on the Planning session and the Examination session is Three hours.
+                After completing the Planning Session, the candidate may begin with the Examination Session.
+                A maximum of 90 minutes is permitted for the Planning Session.
+                However, if candidates finish earlier, they are to be permitted to begin the Examination Session.
+                (Maximum Marks : 80)</p><br />
+                <p class="color">As it is a practical examination the candidate is expected to do the following :</p><br />
+                <table>
+                    <tr>
+                        <td>1. Write an algorithm for the selected problem.
+                            (Algorithm should be expressed clearly using any standard scheme such as pseudo code or in steps
+                            which are simple enough to be obviously computable)</td><td>[10]</td>
+                    </tr>
+                    <tr>
+                        <td>2. Write a program in JAVA language. The program should follow the algorithm and should be logically
+                            and syntactically correct.</td><td>[20]</td>
+                    </tr>
+                    <tr>
+                        <td>3. Document the program using mnemonic names/comments, identifying and clearly describing the choice
+                            of data types and meaning of variables.</td><td>[10]</td></tr>
+                    <tr>
+                        <td>4. Code / Type the program on the computer and get a printout (Hard Copy). Typically, this should be a
+                            program that compiles and runs correctly.</td><td>[10]</td></tr>
+                    <tr>
+                        <td>5. Test run the program on the computer using the given sample data and get a printout of the output in the
+                            format specified in the problem.</td><td>[10]</td></tr>
+                    <tr>
+                        <td>6. Viva-Voce on the Selected Problem.</td><td>[20]</td></tr>
+                </table>
+            </div>
+        </div>
+
+      <?php $ctr = 1; foreach($this->practicalQuestions as $question): ?>
+        <?php if($ctr == 4): ?>
+          <li>
+<!--              <script type="text/javascript"><!---->
+<!--              google_ad_client = "ca-pub-1662490668144398";-->
+<!--              /* Sidebar */-->
+<!--              google_ad_slot = "2811909247";-->
+<!--              google_ad_width = 250;-->
+<!--              google_ad_height = 250;-->
+<!--              //-->-->
+<!--              </script>-->
+<!--              <script type="text/javascript"-->
+<!--                      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">-->
+<!--              </script>-->
+
+              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- header-responsive-1 -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-1662490668144398"
+                   data-ad-slot="1779527681"
+                   data-ad-format="auto"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+
+          </li>
+        <?php endif; ?>
+
+      <h2>ISC Computer Science Practical <?php echo $question['year']; ?></h2>
+          <div class="years">
+            <ol>
+              <?php $i = 1; foreach($question['questions'] as $row): ?>
+                <li>
+                  <h4>Question <?php echo $i; ?></h4>
+                  <div class="hide qdesc">
+                      <p><?php echo $row['question']; ?></p>
+                      <button class="btn btn-xs btn-primary">View/Hide Solution</button>
+                      <div class="solution hide">
+                          <pre><?php echo $row['solution']; ?></pre>
+                      </div>
+                  </div>
+              </li>
+              <?php $i++; endforeach; ?>
+            </ol>
+          </div>
+      <?php $ctr++; endforeach; ?>
+
+
+    </div>
+<br />
+</div>
+<?php } ?>
+</div>

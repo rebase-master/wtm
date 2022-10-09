@@ -1,0 +1,59 @@
+<?php $this->headTitle()->set('Riddles/Brainteasers');
+echo $this->headTitle();
+?>
+<link  href="<?php echo $this->baseUrl();?>/skins/reds/css/quiz.css" media="screen" rel="stylesheet" type="text/css" >
+<div class="content">
+	<h1>Brainteasers/Riddles</h1><br />
+<?php if($this->paginator):?>
+    <div id="riddles">
+    <ol>
+        <?php $c=0;	foreach($this->paginator as $riddle):$c++;?>
+        <li><?php echo $riddle->riddle;?>
+        <br /><button class="btn btn-primary">View/Hide Answer</button>
+        <div class="solution quiz_answer">
+            <p><?php echo (nl2br($riddle->answer));?></p>
+        </div>
+        </li><br />
+        <?php if($c==6):?>
+            <div class="ads">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-1662490668144398";
+                /* doodle-fb */
+                google_ad_slot = "7616414125";
+                google_ad_width = 728;
+                google_ad_height = 90;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+            </div>
+        <?php endif; ?>
+        <?php if($c==18):?>
+        <div class="papers_ad">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-1662490668144398";
+        /* banner - medium */
+        google_ad_slot = "1422268513";
+        google_ad_width = 468;
+        google_ad_height = 60;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+        </div>
+    <br />	<?php endif; ?>
+        <?php endforeach;?>
+    </ol>
+    </div>
+    <div id="pagination" class="pagination">
+        <div class="controls">
+            <?php		echo $this->paginationControl($this->paginator,
+                            'Sliding',
+                            'includes/paginationcontrol2.phtml');
+            ?>
+        </div>
+    </div>
+    <?php endif;?>
+</div>

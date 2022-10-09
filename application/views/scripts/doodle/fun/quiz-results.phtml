@@ -1,0 +1,79 @@
+<?php $this->headTitle()->set('Quiz Results');
+echo $this->headTitle();
+?>
+    <link  href="<?php echo $this->baseUrl();?>/skins/reds/css/quiz.css" media="screen" rel="stylesheet" type="text/css" >
+    <div class="content quiz">
+        <div id="container_fun_quiz" class="col-md-9 col-lg-8">
+            <div class="result-screen text-center">
+                <h1 style="font-weight:normal">The
+                    <?php if(strcasecmp($this->page,'physics-advanced')==0)
+                        echo "Physics Advanced";
+                    else
+                        echo ucfirst($this->page);
+                    ?> Quiz</h1>
+                <h2>Result</h2>
+                <p><?php echo $this->result; ?></p>
+                <p id="quiz_score"><?php echo $this->score; ?></p>
+                <p><?php echo $this->message; ?></p>
+            </div>
+            <?php $retake=$this->url(array('controller'=>'fun', 'action'=>$this->page), null, true); ?>
+            <p>You get a randomly selected new set of questions each time you take the quiz. Want to try Again? Click <a href="<?php echo $retake;?>">here</a>.</p>
+            <div id="socials">
+                <div class="fb-like" data-href="http://www.wethementors.com/fun" data-send="false" data-width="450" data-show-faces="true"></div>
+                <!--    <div class="fb-comments" data-href="http://www.wethementors.com/fun" data-num-posts="10" data-width="700"></div>-->
+            </div>
+            <div id="other_quiz" class="clearfix">
+                <?php
+                    $acronyms=$this->url(array('controller'=>'Fun', 'action'=>'acronyms'),null,true);
+                    $comp_basics=$this->url(array('controller'=>'Fun', 'action'=>'computer-basics'),null,true);
+                    $physics=$this->url(array('controller'=>'Fun', 'action'=>'physics'),null,true);
+                    $physicsAdv=$this->url(array('controller'=>'Fun', 'action'=>'physics-advanced'),null,true);
+                    $chemistry=$this->url(array('controller'=>'Fun', 'action'=>'chemistry'),null,true);
+                    $chemistryAdv=$this->url(array('controller'=>'Fun', 'action'=>'chemistry-advanced'),null,true);
+                    $biology=$this->url(array('controller'=>'Fun', 'action'=>'biology'),null,true);
+                    $internet=$this->url(array('controller'=>'Fun', 'action'=>'internet'),null,true);
+                    $other=$this->url(array('controller'=>'Fun', 'action'=>'acronyms'),null,true);
+                    $inventions=$this->url(array('controller'=>'Fun', 'action'=>'inventions'),null,true);
+                    $discoveries=$this->url(array('controller'=>'Fun', 'action'=>'discoveries'),null,true);
+                ?>
+                <h1>Other Quizzes which might interest you</h1><br />
+                <?php if(strcasecmp($this->page, 'acronyms')!=0){?>
+                    <div class="mcq"><a href="<?php echo $acronyms; ?>">Acronyms</a></div>
+                <?php } ?>
+                <?php if(strcasecmp($this->page, 'physics')!=0){?>
+                    <div class="mcq"><a href="<?php echo $physics; ?>">Physics</a></div>
+                <?php } ?>
+                <?php if(strcasecmp($this->page, 'chemistry')!=0){?>
+                    <div class="mcq"><a href="<?php echo $chemistry; ?>">Chemistry</a></div>
+                <?php } ?>
+                <?php if(strcasecmp($this->page, 'biology')!=0){?>
+                    <div class="mcq"><a href="<?php echo $biology; ?>">Biology</a></div>
+                <?php } ?>
+                <?php if(strcasecmp($this->page, 'physics-advanced')!=0){?>
+                    <div class="mcq"><a href="<?php echo $physicsAdv; ?>">Physics - Advanced</a></div>
+                <?php } ?>
+            </div>
+    </div>
+    <div id="quiz_result_msg" class="quiz_results col-md-3 col-lg-4">
+        <div id="leaderboard" class="quiz_results">
+            <h2>Leaderboard</h2>
+            <?php
+            if($this->highscores==null)
+                echo "<p>No scores recorded yet.</p>";
+            else{?>
+                <table>
+                    <?php
+                    $i=1;
+                    foreach($this->highscores as $result){
+                        $user=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$result->username),null, true);
+                        echo "<tr>";
+                        echo "<td>".$i++.".   <a href=".$user.">".$result->username."</a></td>";
+                        echo "<td>".$result->score." points <span class=\"atmp\">(".$result->attempts." attempt".($result->attempts>1?"s":"").")</span></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </table>
+                <?php } ?>
+        </div>
+    </div>
+</div>

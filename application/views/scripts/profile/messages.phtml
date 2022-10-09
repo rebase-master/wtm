@@ -1,0 +1,132 @@
+<?php
+    require_once APPLICATION_PATH.'/Misc/Util.php';
+    $this->headTitle()->set('Messages');
+    echo $this->headTitle();
+    $mdlUserData=new Model_UserData();
+    $mdlUser=new Model_User();
+    $inbox=$this->url(array('controller'=>'profile', 'action'=>'messages'),null,true);
+?>
+ <div class="profileCont clearfix">
+    <div id="sidebar_left" class="col-xs-12 col-sm-4 col-md-3">
+        <div class="head">
+            <input type="hidden" value="<?php echo $this->loggedInUsername; ?>" />
+            <h2><a href="<?php echo $inbox; ?>">Inbox</a></h2>
+        </div>
+        <?php if($this->allMessages): ?>
+            <?php foreach($this->allMessages as $message):
+
+                if($message->is_read == '0')
+                    $unread = "selected";
+                else
+                    $unread = "";
+                if($message->from_id == $this->senderId)
+                    $active = 'active';
+                else
+                    $active = '';
+                $dp = $mdlUserData->findOrMakePhotoById($message->from_id);
+                $username = $message->username;
+                $id=$mdlUser->encodeUsername($username);
+                $userLink=$this->url(array('controller'=>'profile', 'action'=>'messages'),null,true).'?read='.$id;
+                $created=strtotime($message->date_created);
+                $time = Util::makeTime($created);
+            ?>
+                <div class="msgGroup <?php echo $active; ?>">
+                    <a href="<?php echo $userLink; ?>" class="groupMsg<?php echo " ".$unread; ?>">
+                        <div class="replies clearfix">
+                            <aside class="col-xs-3 col-sm-3">
+                                <img src="<?php echo $dp; ?>" height="50" width="50" />
+                            </aside>
+                            <div class="reply col-xs-9 col-sm-9">
+                                <p class="msgText">
+                                    <b><?php echo $username;?></b>
+                                    <span class="msgTime"><?php echo $time; ?></span><br />
+                                            <span class="reply-text">
+                                                <?php
+                                                $replyText=htmlspecialchars_decode($message->body);
+                                                $replyText=substr(str_replace('<','< ',$replyText), 0, 10);
+                                                echo nl2br($replyText);
+                                                ?>&hellip;
+                                            </span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach ?>
+        <?php endif; ?>
+    </div>
+    <div class="profile col-xs-12 col-sm-8 col-md-6">
+        <?php if(isset($this->hover)): ?>
+            <div class="content">
+                <div id="messageContainer" class="clearfix">
+                    <div class="replyLink pull-right">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-msg-modal">New Message</button>
+                    </div>
+                </div>
+                <div id="inbox">
+                    <div class="empty-message">
+                        <p>Select a message</p>
+                    </div>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="content">
+                <div id="messageContainer" class="clearfix">
+                    <?php $userLink=$this->url(array('controller'=>'profile', 'action'=>'index', 'user' => $this->sender),null,true); ?>
+                    <?php $create=$this->url(array('controller'=>'profile', 'action'=>'create-message'),null,true);?>
+                    <?php $back=$this->url(array('controller'=>'profile', 'action'=>'messages'),null,true);?>
+                    <h2 class="pull-left"><a href="<?php echo $userLink; ?>"><?php echo $this->sender; ?></a></h2>
+                    <div class="replyLink pull-right">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-msg-modal">New Message</button>
+                        <a class="btn btn-primary btn-sm" href="<?php echo $back?>">Back To Messages</a>
+                    </div>
+                </div>
+                <div id="inbox">
+                    <input type="hidden" value="<?php echo $this->senderId; ?>" />
+                    <?php if(!empty($this->messages)):?>
+                        <?php  foreach($this->messages as $message): ?>
+                            <?php
+                                $created = strtotime($message['date_created']);
+                                $time = Util::makeShortTime($created);
+                                $dp= $mdlUserData->findOrMakePhotoById($message['from_id']);
+                                $username = $message['username'];
+                                $userLink=$this->url(array('controller'=>'profile', 'action'=>'index', 'user' => $username),null,true);
+                            ?>
+                            <div class="replies clearfix">
+                                <aside class="col-xs-2 col-sm-2">
+                                    <img src="<?php echo $dp; ?>" height="30" width="30" />
+                                </aside>
+                                <div class="reply col-xs-10 col-sm-10">
+                                    <div class="msgTime">
+                                        <p><?php echo $time; ?></p>
+                                    </div>
+                                    <p class="name"><a href="<?php echo $userLink;?>"><?php echo $username;?></a></p>
+                                    <p class="reply-text">
+                                        <?php
+                                            $replyText = htmlspecialchars_decode($message['body']);
+                                            $replyText = str_replace('<','< ',$replyText);
+                                            echo nl2br($replyText);
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="user-response">
+                    <div class="msgbox col-md-10">
+                        <label for="message" class="sr-only">Type your message:</label>
+                        <textarea id="message" class="form-control" placeholder="type your message here..."></textarea>
+                    </div>
+                    <div class="response-box col-md-2">
+                        <input type="hidden" value="<?php echo $this->loggedInUserDp; ?>" />
+                        <button id="stcon" class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div id="sidebar_right" class="col-xs-12 col-sm-12 col-md-3">
+<!--        --><?php //require_once APPLICATION_PATH.'/../layouts/templates/google-ad-vertical.php'; ?>
+    </div>
+ </div>

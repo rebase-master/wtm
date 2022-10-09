@@ -1,0 +1,56 @@
+<?php $this->headTitle()->set('Java Questions List');
+echo $this->headTitle();
+?>
+<?php  $add=$this->url(array('controller'=>'fun','action'=>'add-java-questions'),null,true);?>
+ <div class="content">
+<h1>Java Questions</h1>
+		<p> <a href="<?php echo $add; ?>">Add more questions</a></p>
+<?php
+if($this->questions!=null){
+	$i=0;
+?>
+<table class="spreadsheet" cellpadding="0" cellspacing="0" style="width:90%;">
+	<tr>
+		<th>Sl no</th>
+		<th>level</th>
+		<th>Question</th>
+		<th>Answer</th>
+		<th colspan="2">Links</th>
+	</tr>
+<?php
+	foreach($this->questions as $note){
+		$i++;
+        if(strcasecmp($note->level,"0")==0){
+            $level='beginner';
+        }elseif(strcasecmp($note->level,"1")==0){
+            $level='intermediate';
+        }elseif(strcasecmp($note->level,"2")==0){
+            $level='advanced';
+        }
+?>
+		<tr>
+			<td><?php echo $i; ?></td>
+			<td><?php echo $level; ?></td>
+			<td><?php echo substr($note->question,0,200); ?></td>
+			<td><?php echo $note->answer; ?></td>
+			<?php
+			$delete=$this->url(array('controller'=>'fun', 'action'=>'java-question-delete','id'=>$note->id));
+			$update=$this->url(array('controller'=>'fun', 'action'=>'java-question-update','id'=>$note->id));
+			?>
+			<td><a href="<?php echo $delete; ?>">Delete</a></td> 
+			<td><a href="<?php echo $update; ?>">Update</a></td>
+		</tr>
+<?php
+	}
+?>
+</table>
+		<p> <a href="<?php echo $add; ?>">Add more questions</a></p>
+<?php
+	}else{
+	  $add=$this->url(array('controller'=>'fun','action'=>'add-java-questions'),null,true);
+		?>
+	<p>You do not have any programs yet. <a href="<?php echo $add; ?>">Add one now</a></p>
+	<?php
+	}
+	?>
+</div>

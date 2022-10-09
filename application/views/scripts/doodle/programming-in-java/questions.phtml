@@ -1,0 +1,52 @@
+<?php
+        $this->headTitle()->set($this->heading);
+        echo $this->headTitle();
+
+    $for=$this->url(array('controller'=>'programming-in-java', 'action'=>'for-loop'),null,true);
+    $while=$this->url(array('controller'=>'programming-in-java', 'action'=>'while-loop'),null,true);
+    $doWhile=$this->url(array('controller'=>'programming-in-java', 'action'=>'do-while-loop'),null,true);
+    $arrays1=$this->url(array('controller'=>'programming-in-java', 'action'=>'array1-D'),null,true);
+    $arrays2=$this->url(array('controller'=>'programming-in-java', 'action'=>'array2-D'),null,true);
+    $strings=$this->url(array('controller'=>'programming-in-java', 'action'=>'strings'),null,true);
+    $functions=$this->url(array('controller'=>'programming-in-java', 'action'=>'functions'),null,true);
+    $overloading=$this->url(array('controller'=>'programming-in-java', 'action'=>'function-overloading'),null,true);
+    $recursive=$this->url(array('controller'=>'programming-in-java', 'action'=>'recursive-function'),null,true);
+?>
+
+<div class="col-md-offset-1 programming topicsList">
+    <?php if(!empty($this->programs)){ ?>
+        <h1 class="text-center"><?php echo $this->heading; ?></h1><hr />
+        <div class="content">
+            <p class="alert alert-info text-center">* Some of the questions have been left usolved for practice. </p>
+
+            <div class="questions-list">
+                <ol>
+                    <?php $count = 0; ?>
+                    <?php foreach($this->programs as $program): $count++; ?>
+                    <li><?php echo $program['question']; ?>
+                        <?php if($program['solution']): ?>
+                            <br/> <button class="btn btn-primary btn-xs">View/Hide Solution</button>
+                            <pre class="solution hide"><?php echo $program['solution']; ?>
+                                    </pre>
+                            <?php endif; ?>
+                    </li>
+                    <?php endforeach ;?>
+                    <?php  if($count == 9): ?>
+                    <?php endif; ?>
+                </ol>
+            </div>
+        </div>
+    <?php }else if(isset($this->invalid)) { ?>
+        <div class="content">
+            <div class="alert alert-danger text-center">
+                <p><?php echo $this->invalid; ?></p>
+            </div>
+        </div>
+    <?php }else { ?>
+        <div class="content">
+            <div class="alert alert-info text-center">
+                <p>No question has been added to this topic yet. Please check back soon!</p>
+            </div>
+        </div>
+    <?php } ?>
+</div>

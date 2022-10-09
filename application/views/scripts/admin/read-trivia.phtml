@@ -1,0 +1,52 @@
+<?php
+    $this->headTitle()->set('Trivia List');
+    echo $this->headTitle();
+
+    $update=$this->url(array('controller'=>'admin', 'action'=>'update-trivia'));
+?>
+<div class="content">
+
+    <div class="list-head">
+        <h2>Trivia List</h2>
+    </div>
+    <?php if($this->paginator): ?>
+        <?php $i=($this->currentPage * $this->recordsPerPage + 1) - $this->recordsPerPage ; ?>
+        <table class="table table-bordered table-striped trivia">
+            <tr>
+                <th>Sno</th>
+                <th>Trivia</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </tr>
+            <?php
+            foreach($this->paginator as $trivia):?>
+
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo htmlentities($trivia->fact); ?></td>
+                    <td><?php echo $trivia->created; ?></td>
+	                <?php
+		                $update=$this->url(array('controller'=>'admin', 'action'=>'update-trivia','id' => $trivia->id));
+	                ?>
+	                <td>
+		                <a class="btn btn-xs btn-danger delete-trivia" href="javascript:void(0);">Delete</a>
+		                <input type="hidden" value="<?php echo $trivia->id; ?>" />
+		                <a class="btn btn-xs btn-info" href="<?php echo $update; ?>">Update</a>
+	                </td>
+                </tr>
+
+            <?php
+                $i++;
+                endforeach;
+            ?>
+        </table>
+        <div id="pagination" class="pagination">
+             <div class="controls">
+                 <?php		echo $this->paginationControl($this->paginator,
+                 'Sliding',
+                 'includes/paginationcontrol2.phtml');
+                 ?>
+             </div>
+        </div>
+     <?php	endif;	?>
+</div>

@@ -1,0 +1,63 @@
+<?php
+        $this->headTitle()->set('Programming In Java - Questions, Solutions, Explanations');
+        echo $this->headTitle();
+
+    $for=$this->url(array('controller'=>'programming-in-java', 'action'=>'for-loop'),null,true);
+    $while=$this->url(array('controller'=>'programming-in-java', 'action'=>'while-loop'),null,true);
+    $doWhile=$this->url(array('controller'=>'programming-in-java', 'action'=>'do-while-loop'),null,true);
+    $arrays1=$this->url(array('controller'=>'programming-in-java', 'action'=>'array1-D'),null,true);
+    $arrays2=$this->url(array('controller'=>'programming-in-java', 'action'=>'array2-D'),null,true);
+    $strings=$this->url(array('controller'=>'programming-in-java', 'action'=>'strings'),null,true);
+    $functions=$this->url(array('controller'=>'programming-in-java', 'action'=>'functions'),null,true);
+    $overloading=$this->url(array('controller'=>'programming-in-java', 'action'=>'function-overloading'),null,true);
+    $recursive=$this->url(array('controller'=>'programming-in-java', 'action'=>'recursive-function'),null,true);
+?>
+
+<div class="col-md-offset-1 programming topicsList">
+  <h1 class="text-center">Programming in Java</h1>
+  <div class="content">
+      <div class="about">
+          <p>
+              Java is a programming language and computing platform first released by Sun Microsystems in 1995.
+              Java programming language is concurrent, class-based, object-oriented, and specifically
+              designed to have as few implementation dependencies as possible. It is intended to let programmers
+              "write once, run anywhere" (WORA), meaning that code that runs on one platform does not need to be recompiled
+              to run on another. Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM)
+              regardless of computer system. There are lots of applications and websites that will not work unless you have Java installed,
+              and more are created every day. Java is fast, secure, and reliable. From laptops to data centers,
+              game consoles to scientific supercomputers, cell phones to the Internet, Java is everywhere!
+          </p>
+      </div>
+      <div class="links clearfix">
+           <div class="head">
+                <h2>Loops</h2>
+                <ul>
+                    <li><a href="<?php echo $for;?>">For loop</a></li>
+                    <li><a href="<?php echo $while;?>">While loop</a></li>
+                    <li><a href="<?php echo $doWhile;?>">Do-While loop</a></li>
+                </ul>
+           </div>
+          <div class="head">
+              <h2>Functions</h2>
+              <ul>
+                  <li><a href="<?php echo $functions ;?>">Functions</a></li>
+                  <li><a href="<?php echo $overloading;?>">Function Overloading</a></li>
+                  <li><a href="<?php echo $recursive;?>">Recursive Function</a></li>
+              </ul>
+          </div>
+          <div class="head">
+              <h2>Arrays</h2>
+                <ul>
+                    <li><a href="<?php echo $arrays1;?>">Single Dimension(1-D) Arrays</a></li>
+                    <li><a href="<?php echo $arrays2;?>">Double Dimension(2-D) Arrays</a></li>
+                </ul>
+          </div>
+          <div class="head">
+              <h2>Strings</h2>
+                <ul>
+                    <li><a href="<?php echo $strings;?>">String </a></li>
+                </ul>
+          </div>
+      </div>
+  </div>
+</div>

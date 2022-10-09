@@ -1,0 +1,170 @@
+<?php
+	$home = $this->baseUrl('/');
+    $edit = $this->baseUrl('/profile/edit');
+    $photo_upload = $this->baseUrl('/profile/edit-photo');
+?>
+<?php if(empty($this->visitor)): ?>
+    <div class="content col-md-offset-2 col-md-8 ">
+        <div class="alert bg-warning cerror">
+            <h1>User not Found!</h1>
+            <p> We are unable to track this user. Most probably the person never registered on <a href="<?php echo $home;?>">wethementors.com</a>.</p>
+        </div>
+    </div>
+    <?php else: ?>
+    <?php
+        $class=$school=$stream=$city=$country=$about_me=$ssc=$hsc=$graduation=$post_graduation=$dp=$phone=$activities="";
+        $record=$this->userData;
+        $createdReply=strtotime($this->visitor->last_login);
+        $current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+        $frmUser=new Form_User();
+        $t1=$frmUser->makeTime($current,$createdReply);
+
+        for($i=0;$i<count($record);$i++){
+            if($record[$i]->option_id==1)
+                $class=$record[$i]->data;
+            if($record[$i]->option_id==2)
+                $school=$record[$i]->data;
+            if($record[$i]->option_id==3)
+                $stream=$record[$i]->data;
+            if($record[$i]->option_id==4)
+                $city=$record[$i]->data;
+            if($record[$i]->option_id==5)
+                $country=$record[$i]->data;
+            if($record[$i]->option_id==6)
+                $about_me=$record[$i]->data;
+            if($record[$i]->option_id==7)
+                $ssc=$record[$i]->data;
+            if($record[$i]->option_id==8)
+                $hsc=$record[$i]->data;
+            if($record[$i]->option_id==9)
+                $graduation=$record[$i]->data;
+            if($record[$i]->option_id==10)
+                $post_graduation=$record[$i]->data;
+            if($record[$i]->option_id==11)
+                //			    $dp= $this->baseUrl().$record[$i]->data;
+                $dp= $record[$i]->data;
+            if($record[$i]->option_id==12)
+                $phone=$record[$i]->data;
+            if($record[$i]->option_id==13)
+                $activities=$record[$i]->data;
+        }
+
+        if(empty($dp)){
+            if($this->visitor->gender=='m')
+                //			$dp=$this->baseUrl().'/images/placeholder_male.png';
+                $dp='/images/placeholder_male.png';
+            else
+                //			$dp=$this->baseUrl().'/images/placeholder_female.png';
+                $dp='/images/placeholder_female.png';
+        }else{
+            if(stripos($dp, "http") === false)
+                $dp = BASE_URL.$dp;
+        }
+            if($this->loggedUser && $this->param==$this->loggedUser->username){
+                $this->headTitle()->set($this->loggedUser->username);
+                echo $this->headTitle();
+            }else{
+                $this->headTitle()->set($this->visitor->username);
+                echo $this->headTitle();
+            }
+     $name = $this->visitor->first_name." ".$this->visitor->last_name;
+    ?>
+	<div id="main" class="col-sm-8 col-md-8 col-lg-8">
+    <div class="content bg clearfix">
+       <div id="profile_left" class="col-md-3">
+            <div class="sidebar-group">
+                <div id="dp-cont" class="center-block">
+                    <input type="hidden" value="<?php echo $this->visitor->id; ?>" />
+                    <img src="<?php	echo $dp;?>" />
+                    <?php if($this->self):?>
+                       <div class="front">
+                           <a id="change-dp" href="javascript:void(0);">
+                            Update Picture
+                           </a>
+                           <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                               <input type="file" value="" name="dp" id="user-dp" style="display: none">
+                           </form>
+                       </div>
+                       <div class="overlay"></div>
+                    <?php endif; ?>
+                    <div class="profile_name ellipsis text-center">
+                        <?php echo $name; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="profile_center" class="col-md-9">
+            <div class="interaction clearfix">
+                <div class="pull-right">
+                    <?php if($this->self){?>
+                        <a class="btn btn-primary" href="<?php echo $edit; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp; &nbsp;Edit Profile</a>
+                    <?php } ?>
+                </div>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#aboutme">About Me</a></li>
+                <li><a data-toggle="tab" href="#education">Education</a></li>
+                <?php if($this->loggedUser && $this->param==$this->loggedUser->username): ?>
+                    <li><a data-toggle="tab" href="#contactinfo">Contact Info</a></li>
+                <?php endif; ?>
+                <li><a data-toggle="tab" href="#activities">Activities/Interests</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="aboutme" class="tab-pane fade in active">
+                    <p><?php echo $about_me;?> </p>
+                    <table class="table">
+                        <tr><th>Name:</th><td><?php echo ucwords($name); ?></td></tr>
+                        <tr><th>Gender:</th><td><?php echo $this->visitor->gender == 'f'? 'Female':'Male'; ?></td></tr>
+                        <?php if(!empty($city) || !empty($country)):?>
+                            <tr><th>Lives in: </th><td><?php echo !empty($city)?(!empty($country)?ucwords($city).", ".ucwords($country):ucwords($city)): ucwords($country); ?></td></tr>
+                        <?php endif; ?>
+                        <tr><th>last seen:</th><td><?php echo $t1; ?></td></tr>
+                    </table>
+                </div>
+                <div id="education" class="tab-pane fade">
+                    <table class="table">
+                        <?php if(!empty($class)):?>
+                            <tr><th>Class:</th><td> <?php echo ucwords($class); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($school)):?>
+                            <tr><th>School:</th><td> <?php echo ucwords($school); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($stream)):?>
+                            <tr><th>Stream:</th><td> <?php echo ucwords($stream); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($ssc)):?>
+                            <tr><th>SSC:</th><td> <?php echo strtoupper($ssc); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($hsc)):?>
+                            <tr><th>HSC:</th><td> <?php echo strtoupper($hsc); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($graduation)):?>
+                            <tr><th>Graduation: </th><td><?php echo strtoupper($graduation); ?></td></tr>
+                        <?php endif; ?>
+                        <?php if(!empty($post_graduation)):?>
+                            <tr><th>Post Graduation:</th><td><?php echo strtoupper($post_graduation); ?></td></tr>
+                        <?php endif; ?>
+                    </table>
+                </div>
+                <div id="contactinfo" class="tab-pane fade">
+                    <?php if($this->loggedUser && $this->param==$this->loggedUser->username): ?>
+                        <p>This information is private. Your email and phone number will not appear in profile visits by others.</p>
+                        <p><b>Email:</b>&nbsp;&nbsp;<?php echo $this->visitor->email;?></p>
+                        <?php if(!empty($phone)): ?>
+                            <p>Phone:<?php echo $phone?></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div id="activities" class="tab-pane fade">
+                    <p><?php echo $activities?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+	<div class="col-sm-4 col-md-4 col-lg-4" id="sidebar_right">
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/_sidebar-right.php'; ?>
+</div>
+
+<?php endif; ?>

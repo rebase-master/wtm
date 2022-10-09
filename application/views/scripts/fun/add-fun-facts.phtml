@@ -1,0 +1,35 @@
+<?php $this->headTitle()->set('Add - Fun Facts');
+    echo $this->headTitle();
+?>
+<div class="content">
+<?php
+    $list=$this->url(array('controller'=>'fun','action'=>'list-fun-facts'),null,true);
+?>
+
+    <div class="fcgq">
+        <div class="clearfix">
+            <h1 class="pull-left">Add Fun Fact</h1>
+            <a href="<?php echo $list; ?>" class="btn btn-sm btn-primary pull-right">List Facts</a>
+        </div>
+        <hr />
+        <div class="admin-form-center">
+            <div class="alert alert-danger hide">
+                <p>Something went wrong. Please try again later.</p>
+            </div>
+            <div class="alert alert-success hide">
+                <p>Record added successfully.</p>
+            </div>
+            <form role="form" action="#" id="add-fact">
+                <div class="form-group">
+                    <label for="fun-fact">Fact</label>
+                    <textarea rows="10" class="form-control" id="fun-fact" placeholder="What's the fact?"></textarea>
+                </div>
+                <button class="btn btn-primary">Submit</button>
+                <span class="loading hide">Please wait ...
+                    <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+                </span>
+
+            </form>
+	    </div>
+    </div>
+</div>

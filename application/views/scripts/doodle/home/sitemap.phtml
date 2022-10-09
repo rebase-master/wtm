@@ -1,0 +1,155 @@
+<div class="content">
+	<div id="sitemap" class="link-green">
+	<h1>Sitemap</h1><hr />
+        <div class="col-md-6 col-lg-6">
+        <div class="linkHead">
+            <h2>Home</h2>
+            <ul>
+                <?php
+                $contact=$this->url(array('controller'=>'home','action'=>'trial-class'),null, true);
+                $coachingR=$this->url(array('controller'=>'home','action'=>'coaching-results'),null, true);
+                $icseR=$this->url(array('controller'=>'home','action'=>'icse-results'),null, true);
+                $iscR=$this->url(array('controller'=>'home','action'=>'isc-results'),null, true);
+                ?>
+                <li><a href="<?php echo $contact; ?>">Contact Us</a></li>
+                <li><a href="<?php echo $contact; ?>">Trial Class</a></li>
+                <li><a href="<?php echo $coachingR; ?>">Coaching Results</a></li>
+                <li><a href="<?php echo $icseR; ?>">ICSE Results</a></li>
+                <li><a href="<?php echo $iscR; ?>">ISC Results</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>ICSE</h2>
+            <ul>
+                <?php
+                    $icseS=$this->url(array('controller'=>'icse','action'=>'syllabus'),null, true);
+                    $icseSP=$this->url(array('controller'=>'icse','action'=>'sample-papers'),null, true);
+                    $icsePY=$this->url(array('controller'=>'icse','action'=>'previous-years'),null, true);
+                ?>
+                <li><a href="<?php echo $icseS; ?>">Syllabus</a></li>
+                <li><a href="<?php echo $icseSP; ?>">Sample Papers</a></li>
+                <li><a href="<?php echo $icsePY; ?>">Previous Years' Papers</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>ISC</h2>
+            <ul>
+                <?php
+                    $iscS=$this->url(array('controller'=>'isc','action'=>'syllabus'),null, true);
+                    $iscSP=$this->url(array('controller'=>'isc','action'=>'sample-papers'),null, true);
+                    $iscPY=$this->url(array('controller'=>'isc','action'=>'previous-years'),null, true);
+                    $iscCP=$this->url(array('controller'=>'isc','action'=>'isc-computer-practical'),null, true);
+                    $iscVV=$this->url(array('controller'=>'isc','action'=>'viva-voce'),null, true);
+                ?>
+                <li><a href="<?php echo $iscS; ?>">Syllabus</a></li>
+                <li><a href="<?php echo $iscSP; ?>">Sample Papers</a></li>
+                <li><a href="<?php echo $iscPY; ?>">Previous Years' Papers</a></li>
+                <li><a href="<?php echo $iscCP; ?>">Computer Practical</a></li>
+                <li><a href="<?php echo $iscVV; ?>">Viva-Voce</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Forum</h2>
+            <ul>
+                <?php
+                    $forum=$this->url(array('controller'=>'forum'),null, true);
+                ?>
+                <li><a href="<?php echo $forum; ?>">Forum</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6">
+        <div class="linkHead">
+            <h2>Java Programming</h2>
+            <ul>
+                <?php
+                    $for=$this->url(array('controller'=>'programming-in-java','action'=>'for-loop'),null, true);
+                    $while=$this->url(array('controller'=>'programming-in-java','action'=>'while-loop'),null, true);
+                    $doWhile=$this->url(array('controller'=>'programming-in-java','action'=>'do-while-loop'),null, true);
+                    $array1=$this->url(array('controller'=>'programming-in-java','action'=>'array1-D'),null, true);
+                    $array2=$this->url(array('controller'=>'programming-in-java','action'=>'array2-D'),null, true);
+                    $strings=$this->url(array('controller'=>'programming-in-java','action'=>'strings'),null, true);
+                    $functions=$this->url(array('controller'=>'programming-in-java','action'=>'functions'),null, true);
+                    $functionO=$this->url(array('controller'=>'programming-in-java','action'=>'function-overloading'),null, true);
+                    $functionR=$this->url(array('controller'=>'programming-in-java','action'=>'recursive-function'),null, true);
+                ?>
+                <li><a href="<?php echo $for; ?>">for-loop</a></li>
+                <li><a href="<?php echo $while; ?>">while-loop</a></li>
+                <li><a href="<?php echo $doWhile; ?>">do-while loop</a></li>
+                <li><a href="<?php echo $array1; ?>">Single Dimension(1-D) Arrays</a></li>
+                <li><a href="<?php echo $array2; ?>">Double Dimension(2-D) Arrays</a></li>
+                <li><a href="<?php echo $strings; ?>">Strings</a></li>
+                <li><a href="<?php echo $functions; ?>">Functions</a></li>
+                <li><a href="<?php echo $functionR; ?>">Recursive Functions</a></li>
+                <li><a href="<?php echo $functionO; ?>">Function Overloading</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Programs(Q & A)</h2>
+            <ul>
+                <?php
+                    $series=$this->url(array('controller'=>'programming-in-java','action'=>'series'),null, true);
+                    $patterns=$this->url(array('controller'=>'programming-in-java','action'=>'patterns'),null, true);
+                    $ton=$this->url(array('controller'=>'programming-in-java','action'=>'types-of-numbers'),null, true);
+                    $general=$this->url(array('controller'=>'programming-in-java','action'=>'general'),null, true);
+                    $array2dQ=$this->url(array('controller'=>'programming-in-java','action'=>'array2d-questions'),null, true);
+                    $search=$this->url(array('controller'=>'programming-in-java','action'=>'search'),null, true);
+                    $sort=$this->url(array('controller'=>'programming-in-java','action'=>'sort'),null, true);
+                    $stringsB=$this->url(array('controller'=>'programming-in-java','action'=>'strings-basic'),null, true);
+                    $stringsA=$this->url(array('controller'=>'programming-in-java','action'=>'strings-advanced'),null, true);
+                ?>
+                <li><a href="<?php echo $series; ?>">Series</a></li>
+                <li><a href="<?php echo $patterns; ?>">Patterns</a></li>
+                <li><a href="<?php echo $ton; ?>">Types Of Numbers</a></li>
+                <li><a href="<?php echo $general; ?>">Arrays 1-D</a></li>
+                <li><a href="<?php echo $array2dQ; ?>">Arrays 2-D</a></li>
+                <li><a href="<?php echo $search; ?>">Searching</a></li>
+                <li><a href="<?php echo $sort; ?>">Sorting</a></li>
+                <li><a href="<?php echo $stringsB; ?>">Strings - Basic</a></li>
+                <li><a href="<?php echo $stringsA; ?>">Strings - Advanced</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Quotes</h2>
+            <ul>
+                <?php
+                    $quotes=$this->url(array('controller'=>'quotes'),null, true);
+                ?>
+                <li><a href="<?php echo $quotes; ?>">View Quotes</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Tutorials</h2>
+            <ul>
+                <?php
+                    $litt=$this->url(array('controller'=>'resources','action'=>'english-literature'),null, true);
+                    $lang=$this->url(array('controller'=>'resources','action'=>'english-language'),null, true);
+                ?>
+                <li><a href="<?php echo $litt; ?>">English Literature</a></li>
+                <li><a href="<?php echo $lang; ?>">English Language</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Gallery</h2>
+            <ul>
+                <?php
+                    $gallery=$this->url(array('controller'=>'gallery','action'=>'index'),null, true);
+                ?>
+                <li><a href="<?php echo $gallery; ?>">Gallery</a></li>
+            </ul>
+        </div>
+        <div class="linkHead">
+            <h2>Resources</h2>
+            <ul>
+                <?php
+                    $poe=$this->url(array('controller'=>'resources','action'=>'people'),null, true);
+                    $ant=$this->url(array('controller'=>'resources','action'=>'installing-ant'),null,true);
+                ?>
+
+                <li><a href="<?php echo $poe; ?>">Persons Of Eminence</a></li>
+                <li><a href="<?php echo $ant; ?>">Installing Ant on Windows</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>

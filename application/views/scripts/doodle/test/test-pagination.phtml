@@ -1,0 +1,21 @@
+<div class="content">
+<table cellpadding="0" cellspacing="0">	
+<?php if($this->paginator){
+		foreach($this->paginator as $item){?>
+	<tr><td><?php echo $item;?></td></tr>
+<?php }?>
+<tr><td>
+<?php
+echo $this->paginationControl($this->paginator,
+				'Sliding',
+				'includes/paginationcontrol.phtml');
+?>
+</td></tr>
+</table>
+<?php
+	}else{
+		echo "No result to show";
+	}
+	?>
+
+</div>

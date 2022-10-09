@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+  <head>
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/_common_meta.php'; ?>
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/_default_social_meta.php'; ?>
+	<?php echo $this->headTitle(); ?>
+    <?php
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/prism.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/angularjs/angular.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/angularjs/angular-animate.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/angularjs/angular-route.min.js');
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/iscyq/app.js");
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/iscp.js");
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+    ?>
+    <?php
+        if(APPLICATION_ENV == 'production')
+	        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style.min.css');
+		else{
+			$this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/bootstrap.min.css');
+			$this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/prism.css');
+			$this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+		}
+    ?>
+    <?php
+        echo $this->headLink();
+    ?>
+  </head>
+
+  <body>
+
+    <div id="page" class="container-fluid">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/_head_nav.php'; ?>
+
+	    <?php if(isset($this->isMobile) && $this->isMobile): ?>
+		    <!-- for mobile-->
+		    <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/pagelevel_gad.php'; ?>
+	    <?php else: ?>
+		    <!-- for non mobiles-->
+		    <div class="gad-lb">
+			    <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/gad-leaderboard.php'; ?>
+		    </div>
+	    <?php endif; ?>
+
+
+	    <div id="contentWrapper" class="container-fluid">
+
+            <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+            <div id="main" class="col-sm-8 col-md-8 col-lg-8">
+                <?php echo $this->layout()->content; ?>
+            </div><!--main-->
+
+            <div class="col-sm-4 col-md-4 col-lg-4" id="sidebar_right">
+                <?php include_once APPLICATION_PATH.'/../layouts/templates/_sidebar-right-angular.php'; ?>
+            </div><!--sidebar_right-->
+
+         </div><!--contentWrapper-->
+
+    </div><!-- page -->
+
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+	<?php echo $this->headScript(); ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/fb_sdk.php'; ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/twitter_sdk.php'; ?>
+
+  </body>
+</html>

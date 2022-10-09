@@ -1,0 +1,39 @@
+<?php
+	$this->headTitle()->set('Guess Questions - ISC Computer Practical');
+	echo $this->headTitle();
+?>
+
+<div class="content bg">
+
+    <div id="guess_questions" class="text-read practical">
+        <h1 class="text-center">Guess Questions for ISC Computer Practical</h1>
+        <hr />
+        <div class="notice alert alert-info hide">
+            <p></p>
+        </div>
+        <div class="years">
+            <?php if(!empty($this->guessQuestions)): ?>
+            <ol>
+                <?php $i=1; foreach($this->guessQuestions as $guess): ?>
+                <?php if($i % 4 == 0): ?>
+                    <div class="google-ad">
+                        <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+                    </div>
+                <?php endif; ?>
+                <li>
+                    <div class="qdesc">
+                        <p><?php echo $guess['question']; ?></p>
+                        <button class="btn btn-sm btn-primary vhs">View/Hide Solution</button>
+                        <div class="solution hide">
+                            <?php echo $guess['solution']; ?>
+                        </div>
+                    </div>
+                </li>
+                <?php $i++; endforeach; ?>
+            </ol>
+            <?php endif; ?>
+                <div class="fb-comments" data-href="http://www.wethementors.com/isc/isc-computer-practical?v=guess-questions" data-width="auto" data-num-posts="10"></div>
+        </div>
+    </div>
+
+</div>

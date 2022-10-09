@@ -1,0 +1,51 @@
+<?php $this->headTitle()->set('ISC - Syllabus, Sample Papers, Previous Years\' Papers, Solved Computer Practical, Viva');
+echo $this->headTitle();
+?>
+<div class="content">
+	<div id="topicList">
+<?php
+	  $syllabus=$this->url(array('controller'=>'isc', 'action'=>'syllabus'),null,true);
+	  $sample=$this->url(array('controller'=>'isc', 'action'=>'sample-papers'),null,true);
+	  $previous=$this->url(array('controller'=>'isc', 'action'=>'previous-years'),null,true);
+	  $practical=$this->url(array('controller'=>'isc', 'action'=>'isc-computer-practical'),null,true);
+	  $viva=$this->url(array('controller'=>'isc', 'action'=>'viva-voce'),null,true);
+	$compProject=$this->url(array('controller'=>'isc', 'action'=>'computer-project'),null,true);
+?>
+
+<h2>ISC</h2>
+<ul>
+	<li><a href="<?php echo $syllabus; ?>">Syllabus</a></li>
+	<li><a href="<?php echo $sample; ?>">Sample Papers</a></li>
+	<li><a href="<?php echo $previous; ?>">Previous Years' Papers</a></li>
+	<li><a href="<?php echo $practical; ?>">ISC Computer Practical</a></li>
+	<li><a href="<?php echo $viva; ?>">Viva-Voce</a></li>
+	<li><a href="<?php echo $compProject; ?>">Computer Project</a></li>
+</ul>
+	</div>
+<div class="papers_ad">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1662490668144398";
+/* banner - medium */
+google_ad_slot = "1422268513";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="papers_ad">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1662490668144398";
+/* papers- horizontal medium */
+google_ad_slot = "8174382668";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>

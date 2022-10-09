@@ -1,0 +1,81 @@
+<?php
+$htmlbody=<<< email
+<html>
+<body>
+<div style="border:1px solid #ddd; font-size:14px;margin:10px;background-color:#ffffdf;width:45em;">
+  <h2 style="background-color:#0B486B;color:#ffe6a3;font-size:2em;margin:0;padding:5px 0;text-align:center;">Mentors</h2>
+  <blockquote>
+	<h3 style="color:#0061c1;font-size:1.2em;">Hi {$firstName} {$lastName},</h3>
+	<p>It's long since you've visited wethementors.com. See what you missed.</p>
+  </blockquote>
+<br />
+<div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="text-decoration:none;color:#0061c1;" href="http://www.wethementors.com/fun/java-quiz">Java Quiz</a></h3>
+	<p>Java Quiz designed especially for young minds who wish to test their mettle in programming.
+	The three different levels:
+	<ul>
+	  <li>Beginner</li>
+	  <li>Intermediate</li>
+	  <li>Advanced</li>
+	</ul>
+	cater to different levels of understanding and knowledge.</p>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/fun/java-quiz">Check it out now!</a>
+  </div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="color:#0061c1;text-decoration:none;" href="http://www.wethementors.com/resources/people">Persons of Eminence</a></h3>
+	<p>Learn about people who made a difference to the world. It is the life story of people who made their
+	way to the top in their respective fields by not giving up at the last moment.</p>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/resources/people">Read about these inspirational
+	people.</a>
+  </div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="color:#0061c1;text-decoration:none;" href="http://www.wethementors.com/forum">Forum</a></h3>
+	<p>The forum is designed just for the inquisitive minds. You don't get an anser anywhere, post it here.
+	We promise to deliver you just the answer you are looking for.</p>
+	<p>It is the unquenched mind that leads the race and the journey begins with a question.</p>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/forum">Ask a question now.</a>
+  </div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="color:#0061c1;text-decoration:none;" href="http://www.wethementors.com/icse">Exam Essentials</a></h3>
+	<p>We strive hard to provide students with the best of examination papers.
+	Our repository is continuously increasing with quality mock papers, sample papers, previous years'
+	exam papers etc.</p>
+	<p>Check out the resources for:</p>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/icse">Class X</a>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/isc">Class XII</a>
+  </div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="color:#0061c1;text-decoration:none;" href="http://www.wethementors.com/fun/riddles">Riddles</a></h3>
+	<p>It's always fun to riddle with your friends. Make sure you don't go riddled by your friends without a
+	counter riddle. We have gathered a vast repository of riddles just for you.</p>
+	<a style="color:#0061c1;" href="http://www.wethementors.com/fun/riddles">Start riddling</a>
+  </div>
+  <div style="border:1px solid #eee;display:block;font-size:1em;float:left;height:300px;padding:10px;margin:5px;margin-left:25px;width:200px;">
+	<h3 style="color:#0061c1;font-size:1.2em;text-align:center"><a style="color:#0061c1;text-decoration:none;" href="http://www.wethementors.com/doodle">Doodle</a></h3>
+	<p>Ever wanted to bring your inner artist on to the canvas?Doodle lets you draw your imagination on canvas.
+	Sometimes there is a strong urge to sketch things out of our mind on canvas; fragments of a dream,
+	figments of imagination or complete nonsense.If you feel that way, let's 
+	<a style="color:#0061c1;" href="http://www.wethementors.com/doodle">Doodle</a>.</p>
+  </div>
+</div>
+  <br style="clear:left" />
+<div style="margin-left:10px">
+  <p> Questions? Comments? Contact us at <a href="mailTo:admin@wethementors.com">admin@wethementors.com</a></p>
+<br />
+<h3 style="color:#0061c1;font-size:1.2em;">Thanks and Regards,</h3>
+<h4>Admin<br />
+<a style="color:#0061c1;" href="http://www.wethementors.com">www.wethementors.com</a>
+</h4>
+</div>
+<div style="background-color:#ffffdf;border:1px solid #ddd;font-size:10px;padding:10px;margin:10px 20px;text-align:center;width:50em;">
+<p>  This message was sent to <a style="color:#0061c1;" href="mailto:{$emailUser}">{$emailUser}</a>.
+	If you don't want to receive such emails from wethementors.com in the future, please send an email
+	to <a style="color:#0061c1;" href="mailto:admin@wethementors.com">admin@wethementors.com</a>.
+</p>
+</div>
+</div>
+</body>
+</html>
+email;
+?>

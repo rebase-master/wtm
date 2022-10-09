@@ -1,0 +1,41 @@
+<?php $this->headTitle()->set('Fun - Games, Quiz, Riddles/Brainteasers, Doodle and much more');
+echo $this->headTitle();
+?>
+<link  href="<?php echo $this->baseUrl();?>/skins/reds/css/quiz.css" media="screen" rel="stylesheet" type="text/css" >
+<div class="content">
+    <div id="container_fun_quiz">
+        <div  id="quiz_cat" class="quiz_list clearfix">
+            <h1>Quiz</h1>
+            <?php
+                $acronyms=$this->url(array('controller'=>'Fun', 'action'=>'acronyms'),null,true);
+                $comp_basics=$this->url(array('controller'=>'Fun', 'action'=>'computer-basics'),null,true);
+                $physics=$this->url(array('controller'=>'Fun', 'action'=>'physics'),null,true);
+                $physicsAdv=$this->url(array('controller'=>'Fun', 'action'=>'physics-advanced'),null,true);
+                $chemistry=$this->url(array('controller'=>'Fun', 'action'=>'chemistry'),null,true);
+                $chemistryAdv=$this->url(array('controller'=>'Fun', 'action'=>'chemistry-advanced'),null,true);
+                $biology=$this->url(array('controller'=>'Fun', 'action'=>'biology'),null,true);
+                $internet=$this->url(array('controller'=>'Fun', 'action'=>'internet'),null,true);
+                $other=$this->url(array('controller'=>'Fun', 'action'=>'acronyms'),null,true);
+                $inventions=$this->url(array('controller'=>'Fun', 'action'=>'inventions'),null,true);
+                $discoveries=$this->url(array('controller'=>'Fun', 'action'=>'discoveries'),null,true);
+                $java=$this->url(array('controller'=>'Fun', 'action'=>'java-quiz'),null,true);
+            ?>
+            <div class="mcq btn btn-primary"><a href="<?php echo $java; ?>">Java</a></div>
+            <div class="mcq btn btn-primary"><a href="<?php echo $acronyms; ?>">Acronyms</a></div>
+            <div class="mcq btn btn-primary"><a href="<?php echo $physics; ?>">Physics</a></div>
+            <div class="mcq btn btn-primary"><a href="<?php echo $chemistry; ?>">Chemistry</a></div>
+            <div class="mcq btn btn-primary"><a href="<?php echo $biology; ?>">Biology</a></div>
+            <div class="mcq btn btn-primary"><a href="<?php echo $physicsAdv; ?>">Physics - Advanced</a></div>
+        </div>
+        <div  class="quiz_list">
+            <h1>Doodle</h1>
+            <?php $doodle=$this->url(array('controller'=>'doodle'),null,true);?>
+            <p>Do you have an artist in you? Draw your imagination on canvas.Try <b><a href="<?php echo $doodle;?>">Doodle</a></b>.</p>
+        </div>
+        <div  class="quiz_list">
+            <h1>Brainteasers</h1>
+            <?php $riddles=$this->url(array('controller'=>'fun', 'action'=>'brainteasers'),null,true);?>
+            <p>Check out the <b><a href="<?php echo $riddles;?>">brainteasers/riddles</a></b>. Learn the riddles and have fun riddling your friends.</p>
+        </div>
+    </div>
+</div>

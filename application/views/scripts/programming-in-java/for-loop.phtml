@@ -1,0 +1,91 @@
+<?php
+    $this->headTitle()->set('for loop in Java');
+    echo $this->headTitle();
+    $series=$this->url(array('controller'=>'programming-in-java', 'action'=>'series'));
+    $patterns=$this->url(array('controller'=>'programming-in-java', 'action'=>'patterns'));
+    $ton=$this->url(array('controller'=>'programming-in-java', 'action'=>'types-of-numbers'));
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">For-Loop in Java</h1><hr />
+    <div class="content">
+        <blockquote>
+            The <i>for</i> loop in Java runs for a fixed number of times.
+            In other words, loop which executes a set of statements a fixed number of times is known as a <i>for</i> loop. <i>for</i> loop is an <i>entry-controlled</i> loop. That means decision whether the loop will run or not is taken at the beginning of the loop.
+        </blockquote>
+        <blockquote>
+            A <i>for</i> loop has three parts:
+            <ul>
+                <li>Initialization Expression</li>
+                <li>Test/Conditional Expression </li>
+                <li>Update Expression</li>
+            </ul>
+        </blockquote>
+
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl();?>/images/for-loop-parts.png" title="Three parts of for-loop" />
+        </div>
+
+        <blockquote>
+            <p>
+                The variable used in a <i>for</i> loop is known as a loop variable.
+                The <i>for</i> loop can be used in three different ways:
+            </p>
+
+             <ul>
+                    <li>Single line loop<br />
+<pre>
+    for(i=1;i<=10000;i++);</pre>
+                    </li>
+                    <li>Two line loop<br />
+<pre>
+    for(i=1;i<=10;i++)
+    System.out.print(i+" ");</pre></li>
+
+                    <li>Multi-line loop<br />
+<pre>
+    for(i=1;i<=10;i++){
+        a=i+2;
+        System.out.print(a+" ");
+        }</pre>
+                    </li>
+             </ul>
+        </blockquote>
+        <blockquote>
+            <p>
+                The <i>for</i> loop can be used to generate series, patterns,
+                traverse an array or simply repeat certain statements for a specified
+                number of times.
+                Following is a simple program to generate squares of
+                natural numbers up to 10 terms.
+            </p>
+        </blockquote>
+
+        <pre>
+            class NaturalSquares{
+
+               public static void main(String args[]){
+
+                   int i, a;
+
+                       for(i=1;i<=10;i++){
+
+                          a=i*i;
+
+                          System.out.print(a+" ");
+
+                       }//end of loop
+
+                     }//end of main
+
+               }//end of class
+        </pre>
+        <br />
+
+        <div class="text-center questions">
+            <h2>Questions</h2>
+            <a href="<?php echo $series?>">Series</a>  |
+            <a href="<?php echo $patterns; ?>">Patterns</a>  |
+            <a href="<?php echo $ton; ?>">Different types of numbers</a>
+        </div>
+    </div>
+</div>

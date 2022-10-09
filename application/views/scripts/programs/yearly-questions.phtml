@@ -1,0 +1,35 @@
+<?php
+	$subject = ucwords(str_replace('-',' ',$this->subject));
+	$type = ucwords($this->type);
+	$this->headTitle()->set('List of ISC '.$subject." ".$type.' Questions');
+	echo $this->headTitle();
+?>
+
+<div class="content bg">
+
+	<div class="list-head text-center">
+		<h2><strong>List of ISC <?php echo $subject." ".$type  ?> Questions</strong></h2><hr />
+	</div>
+	<?php if($this->paginator): ?>
+		<div class="list programs">
+			<ul>
+				<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+				<?php foreach($this->paginator as $question): ?>
+					<li>
+						<?php $guessQuesUrl = $this->baseUrl('isc/'.$question['url_name'].'/'.$question['type'].'/'.$question['slug']); ?>
+						<a href="<?php echo $guessQuesUrl; ?>">
+							<?php echo htmlentities(substr(strip_tags($question->question),0,200)); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		<div id="pagination" class="pagination">
+			<?php echo $this->paginationControl($this->paginator,
+				'Elastic',
+				'includes/paginationcontrol.phtml');
+			?>
+		</div>
+	<?php endif; ?>
+
+</div>

@@ -1,0 +1,129 @@
+<?php $this->headTitle()->set('Java Quiz');
+echo $this->headTitle();
+?>
+<div class="content">
+	<div id="java-quiz-result" class="col-md-9 col-lg-9">
+        <?php if(isset($this->quizName)){?>
+        <?php $this->headTitle()->set('Java Quiz Results');
+        echo $this->headTitle();
+        ?>
+        <h1 class="text-center">Java <?php echo ucfirst($this->quizName);?> Quiz - Result</h1><hr />
+        <?php
+        if($this->solutions==null && $this->answers==null){
+        echo "<p style='color:red; text-align:center;'> Your score is 0. You didn't attempt any question.
+        <br />Want to try again? Click on the link below.</p>";
+        }else{
+        if(count($this->answers) < .5*count($this->solutions))
+          echo "<h2><span style='color:red; text-align:center;'> Failed!</span>";
+        else
+          echo "<h2><span style='color:green;text-align:center;'> Passed!</span>";
+        ?>
+          You got <?php if(empty($this->answers))
+                            echo "0";
+                          else
+                            echo count($this->answers);
+                    ?>
+            out of <?php echo count($this->solutions); ?> answers correct.
+            Your score is <?php echo count($this->answers) * 2; ?> points.
+        </h2><br />
+        <?php
+            echo "<div class='quiz-answers'><ol>";
+            for($i=0;$i<count($this->solutions);$i++){
+                echo "<li>".$this->solutions[$i]['question']."<br />";
+                echo "<p class='ua'>Your Answer:<br />";
+                if(strcasecmp($this->solutions[$i]['result'],'correct')==0){
+                echo "<img class='pull-right' src='".$this->baseUrl()."/images/tick-icon.png' />";
+                }else{
+                  echo "<img  class='pull-right' src='".$this->baseUrl()."/images/wrong.png' />";
+                }
+                echo "<span>".$this->solutions[$i]['solution']."</span></p></li>";
+            }
+            echo "</ol></div>";
+        }?>
+
+    <div id="other-quizzes" class="link-buttons">
+        <?php
+          $retake=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level='.$this->quizName;
+          $begQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=beginner';
+          $interQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=intermediate';
+          $adQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=advanced';
+          $prepare=$this->url(array('controller'=>'programming-in-java'),null,true);
+          $cancel=$this->url(array('controller'=>''),null,true);
+        ?>
+        <a class="btn btn-primary" href="<?php echo $retake; ?>">Retake this quiz</a>
+        <?php if(strcasecmp($this->quizName,'beginner')!=0){ ?>
+        <a  class="btn btn-primary" href="<?php echo $begQuiz; ?>">Beginner Quiz</a>
+        <?php  } ?>
+        <?php if(strcasecmp($this->quizName,'intermediate')!=0){?>
+        <a  class="btn btn-primary" href="<?php echo $interQuiz; ?>">Intermediate Quiz</a>
+        <?php } ?>
+        <?php if(strcasecmp($this->quizName,'advanced')!=0){?>
+        <a  class="btn btn-primary" href="<?php echo $adQuiz; ?>">Advanced Quiz</a>
+        <?php } ?>
+
+        <a  class="btn btn-primary" href="<?php echo $prepare; ?>">Prepare</a>
+    </div>
+</div>
+<div id="quiz-result-sidebar" class="col-md-3 col-lg-3">
+    <h3>Leaderboard</h3>
+    <?php
+    if(!isset($this->highscores) && $this->highscores==null){
+        echo "<p>No highscores yet.</p>";
+    }else{?>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th id="java_sno">Sno</th>
+                <th id="java_name">Name</th>
+                <th id="java_score">Score</th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php
+                for($i=0;$i<count($this->highscores);$i++){
+                    $user=$this->url(array('controller'=>'profile','action'=>'index','user'=>$this->highscores[$i]['username']),null,true);
+                    if($i%2==1){
+                        echo "<tr class='even-row-color'>";
+                    }else{
+                        echo "<tr>";
+                    }
+                    echo "<td>".($i+1)."</td>";
+                    echo "<td><a href='".$user."'>".$this->highscores[$i]['username']."</a></td>";
+                    echo "<td>".$this->highscores[$i]['score']."<br /><span>(".$this->highscores[$i]['attempts']." attempt".($this->highscores[$i]['attempts']>1?"s":"").")</span></td>";
+                    echo "</tr>";
+
+                }
+                ?>
+            </tbody>
+        </table>
+        <?php } ?>
+</div>
+
+<?php
+}else{
+if(isset($this->questionSet)){
+  $questions=$this->questionSet;
+  for($i=0;$i<count($questions);$i++){ ?>
+	<div class="quiz_ques">
+	<?php
+		echo "<h1>Question ".($i+1)."</h1><br />";
+		echo "<p>".$questions[$i][1]."</p>";
+		$j=1;?>
+			<div id="options-group">
+	<?php
+	  foreach($questions[$i][3] as $question){?>
+	  <label for="<?php echo "options".$j;?>">
+	  <input type="radio" name="options" id="<?php echo "option".$j;?>" id="<?php echo $j++;?>" />
+	  <span class="option-group"><?php echo $question;?></span>
+	  </label><br />
+	<?php
+		}
+	?>
+			</div>
+	</div>
+<?php
+	}
+}
+}
+?>
+</div>

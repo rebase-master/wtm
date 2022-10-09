@@ -1,0 +1,24 @@
+<?php
+$htmlbody=<<< email
+<html>
+<body>
+<div style="border:1px solid #ddd; font-size:14px;margin:10px;background-color:#ffffdf;width:45em;">
+    <a href="http://www.wethementors.com/home" style="text-decoration: none; font-family: arial, sans-serf"><h2 style="background-color:#0B486B;color:#ffe6a3;font-size:2em;font-weight: 500; margin:0;padding:5px 0 5px 10px;text-align:left;">Mentors</h2></a>
+    <blockquote>
+        <h3 style="color:#0061c1;font-size:1.2em;">Dear {$toName},</h3>
+        <p>{$fromName} commented on a question you asked on http://www.wethementors.com. </p>
+        <blockquote style="font-weight: 600; font-size: 16px; margin: 20px 10px;">{$comment}... </blockquote>
+        <p>Check it out at {$questionLink}.</p>
+    </blockquote>
+    <br />
+</div>
+<div style="background-color:#ffffdf;border:1px solid #ddd;font-size:10px;padding:10px;margin:10px 30px;text-align:center;width:50em;">
+    <p>  This message was sent to <a style="color:#0061c1;" href="mailto:{$toEmail}">{$toEmail}</a>.
+        If you don't want to receive such emails from wethementors.com in the future, please send an email
+        to <a style="color:#0061c1;" href="mailto:admin@wethementors.com">admin@wethementors.com</a>.
+    </p>
+</div>
+</body>
+</html>
+email;
+?>

@@ -1,0 +1,32 @@
+<?php
+    $this->headTitle()->set('Computer Project');
+    echo $this->headTitle();
+    $loginUrl = $this->url(array('controller'=>'user','action'=>'login'),null,true).'?next='. urlencode(BASE_URL.'isc/computer-project');
+?>
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h1>Computer Project</h1><hr />
+    <div class="col-xs-12 col-md-8">
+        <p>The computer project consists of 20 solved programs with algorithms and solutions.
+            The questions are chosen in such a way that it covers almost all the
+            topics in ISC Computer Science syllabus.
+        </p><br />
+        <p>Download the project, read the questions, algorithms and their solutions. Give some
+            time to understand the logic behind the solution. If you need more programs or different programs you
+            can visit the coaching.
+        </p><br />
+        <fieldset>
+            <legend>ISC Computer Project</legend>
+        <?php if($this->loggedIn){?>
+            <a class="afds" href="<?php echo $this->baseUrl();?>/docs/ISC_Computer_Project.doc" title = "ISC Computer Project">
+                Click here to start downloading
+            </a>
+        <?php }else{ ?>
+            <p>You need to <a href="<?php echo $loginUrl; ?>">Login</a> to download this file</p>
+        <?php } ?>
+        </fieldset>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <?php include APPLICATION_PATH.'/../layouts/templates/google-ad-rectangle.php'; ?>
+    </div>
+
+</div>

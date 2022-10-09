@@ -1,0 +1,65 @@
+<div class="content">
+<h2>My profile</h2>
+<?php
+if($this->user != null){?>
+<p class="welcome">
+	<!--Hello,-->
+<?php
+//echo $this->user->username;
+?>
+</p>
+
+<div id="my_photo">
+</div>
+<div id="bio">
+	<p>Name: &nbsp;&nbsp;<?php echo $this->user->first_name." ".$this->user->last_name; ?></p>
+	<p>Class: <?php ?></p>
+	<p>School: <?php ?></p>
+	<p>E-mail: <?php echo $this->user->email; ?></p>
+	<a class="edit">Edit</a>
+	<p>Last Login: <?php echo $this->user->last_login; ?></p>
+</div>
+<div id="profile_data">
+<fieldset>
+	<legend>About Me</legend>
+		<p><?php echo $this->user1; ?></p>
+			<a class="edit">Edit</a>
+</fieldset>
+<fieldset>
+	<legend>Education</legend>
+		<h4>SSC:</h4>
+		<h4>HSC:</h4>
+		<h4>Graduation:</h4>
+		<h4>Post Graduation:</h4>
+		<a class="edit">Edit</a>
+</fieldset>
+<fieldset>
+	<legend>Contact Information</legend>
+		<h4>E-mail:</h4>
+		<h4>Phone:</h4>
+			<a class="edit">Edit</a>
+</fieldset>
+
+<fieldset>
+	<legend>Activities</legend>
+	<h6>Sports:</h6>
+	<h6>Music:</h6>
+	<h6>Drama:</h6>
+	<h6>Debate/Elocution:</h6>
+	<h6>Games:</h6>
+	<h6>Inter-School Events:</h6>
+	<h6>Other:</h6>
+	<a class="edit">Edit</a>
+</fieldset>
+
+<fieldset>
+	<legend>Awards and Recognitions</legend>
+		<h4></h4>
+			<a class="edit">Edit</a>
+
+</fieldset>
+</div>
+<?php }else{?>
+<p>You must log in to view this profile</p>
+<?php }?>
+</div>

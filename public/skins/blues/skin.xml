@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin>
+	<stylesheets>
+		<stylesheet>style1.css</stylesheet>
+		<stylesheet>style2.css</stylesheet>
+		<stylesheet>cover.css</stylesheet>
+	</stylesheets>
+</skin>

@@ -1,0 +1,17 @@
+<?php
+$list=$this->url(array('controller'=>'programs','action'=>'list'),null,true);
+?>
+<div id="main" class="col-sm-12">
+    <div class="content">
+
+            <div class="form-horizontal form-w70-zend">
+                <div class="clearfix">
+                    <h1 class="pull-left">Update Program</h1>
+                    <a href="<?php echo $list; ?>" class="btn btn-sm btn-primary pull-right">List Questions</a>
+                </div>
+
+                <hr />
+                <?php echo $this->form;?>
+            </div>
+    </div>
+</div>

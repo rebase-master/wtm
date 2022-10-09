@@ -1,0 +1,64 @@
+<?php
+$this->headTitle()->set('Java Quiz Questions List');
+echo $this->headTitle();
+?>
+
+<div class="content">
+    <div class="list-head">
+        <h2>Java Quiz Questions List</h2>
+    </div>
+<?php if($this->paginator) { ?>
+    <table class="table table-bordered table-striped java-questions">
+        <thead>
+            <tr>
+                <th>Sl no</th>
+                <th>level</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i = 0; ?>
+            <?php foreach ($this->paginator as $question): $i++;?>
+            <?php if(strcasecmp($question->level,"0")==0){
+                    $level='beginner';
+                }elseif(strcasecmp($question->level,"1")==0){
+                    $level='intermediate';
+                }elseif(strcasecmp($question->level,"2")==0){
+                    $level='advanced';
+                }else{
+		            $level = "NA";
+	            }
+            ?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $level; ?></td>
+                    <td><?php echo htmlentities(substr($question->question,0,200)); ?></td>
+                    <td><?php echo htmlentities(substr($question->answer,0,200)); ?></td>
+                    <?php
+                        $update=$this->url(array('controller'=>'admin', 'action'=>'update-java-question','id'=>$question->id));
+                    ?>
+                    <td>
+	                    <a class="btn btn-xs btn-danger delete-question" href="javascript:void(0);">Delete</a>
+	                    <input type="hidden" value="<?php echo $question->id; ?>" />
+	                    <a class="btn btn-xs btn-info" href="<?php echo $update; ?>">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div id="pagination" class="pagination">
+        <?php echo $this->paginationControl($this->paginator,
+            'Elastic',
+            'includes/paginationcontrol.phtml');
+        ?>
+    </div>
+    <?php
+        }else{
+          $add=$this->url(array('controller'=>'fun','action'=>'add-java-questions'),null,true);
+    ?>
+	<p>You do not have any programs yet. <a class="btn btn-primary" href="<?php echo $add; ?>">Add one now</a></p>
+<?php } ?>
+
+</div>

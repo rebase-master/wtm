@@ -1,0 +1,346 @@
+<?php
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype();
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+
+    <?php
+	//$this->loadSkin('reds');
+    echo $this->headTitle();
+	$this->headScript()->appendFile($this->baseUrl()."/scripts/jquery-1.6.2.min.js");
+	//$this->headScript()->appendFile($this->baseUrl()."/scripts/jquery.nivo.slider.pack.js");
+	//$this->headScript()->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
+	//$this->headScript()->appendFile($this->baseUrl()."/scripts/test.js");
+	//$this->headScript()->appendFile($this->baseUrl()."/scripts/subjects.js");
+	$this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+
+
+	echo $this->headScript();
+    echo $this->headLink();
+
+    $mdlUser=new Model_User();
+    $totalUsers=$mdlUser->getUserCount();
+    $friends=array();
+	$param=Zend_Controller_Front::getInstance()->getRequest()->getParam('user');
+  $totalFriends=0;
+	if (Zend_Auth::getInstance()->hasIdentity()) {
+		  $identity = Zend_Auth::getInstance()->getIdentity();
+		  $username=$identity->username;
+		  $currentUser=$mdlUser->getUserByEmail($identity->email);
+		  $mdlInvitations=new Model_Invitations();
+		  $result=$mdlInvitations->getInvitationsById($currentUser->id);
+		  $requests=count($result);
+		  $mdlFriends=new Model_Friends();
+		  $mdlUserData=new Model_UserData();
+//
+//						//$param=Zend_Controller_Front::getInstance()->getRequest()->getParam('user');
+//					  //  if(isset($param) && $param!=$identity->username)
+//					  //    $results=$mdlFriends->getFriends($param);
+//					  //  else
+//					  //	$results=$mdlFriends->getFriends($identity->username);
+//					  //echo $results;
+//		
+		  if(isset($param) && $param!=$identity->username){
+		    $userP=$mdlUser->getUserByUsername($param);
+		  }
+		  else{
+			$userP=$mdlUser->getUserByUsername($identity->username);
+		  }
+		$userId=$userP->id;
+        $results=$mdlFriends->getFriends($userP->username);
+        $totalFriends=$mdlFriends->getFriendCount($userP->username);
+
+        $i=0;
+		foreach($results as $result){
+            
+            if($result->my_id==$userP->id)
+                $find=$result->friends_id;
+            if($result->friends_id==$userP->id)
+                $find=$result->my_id;
+				
+			$user=$mdlUser->getUserById($find);
+            $friends[$i][1]=$user->username;
+           
+			$user_data=$mdlUserData->findUserById($find);
+                foreach($user_data as $data){
+                    if($data->option_id==11)
+                       $friends[$i][0]='/wethementors/public/users/thumbs/'.$user->username;
+                }
+				if(!isset($friends[$i][0])){
+				  if($user->gender=='m')
+				  $friends[$i][0]=$this->baseUrl().'/images/mt.png';
+				  else
+				  $friends[$i][0]=$this->baseUrl().'/images/ft.png';
+				}
+		$i++;
+		}
+	}else{
+		  $username = "";
+		  $identity="";
+		  }
+	  
+	  
+    ?>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=136925466383678";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=APP_ID";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="header">
+	<div id="topbar">
+		<div id="links">
+		  <?php
+		  $home=$this->url(array('module'=>'','controller'=>'home', 'action'=>'index'), null,true);
+		  $contact=$this->url(array('controller'=>'home', 'action'=>'contact-us'), null,true);
+		  $login=$this->url(array('controller'=>'user', 'action'=>'login'), null,true);
+		  $logout=$this->url(array('controller'=>'user', 'action'=>'logout'), null,true);
+		  $register=$this->url(array('controller'=>'user', 'action'=>'register'), null,true);
+		  $profile=$this->url(array('controller'=>'profile', 'action'=>'index', 'user'=>$username), null,true);
+		  ?>
+	  <?php $trial=$this->url(array('controller'=>'home', 'action'=>'trial-class'),null, true); ?>
+		  <span><a href='<?php echo $home;?>'>Home </a>| </span>
+		  <span><a href='<?php echo $trial;?>'>Contact Us </a>| </span>
+		  		  <?php if (!$identity) { ?>
+		  <a href="<?php echo $register;?>">Register</a> | <a href="<?php echo $login; ?>">Login</a>
+		  <?php } else { ?>
+		  Hello, <a href="<?php echo $profile; ?>"><?php echo $username; ?></a> | <a href="<?php echo $logout; ?>">Logout</a>
+		  <?php } ?>
+		<span>&nbsp;&nbsp;&nbsp;<?php echo $totalUsers;?> Registered Users!</span>
+		</div>
+		<div id="search">
+<!--		<span>
+		<input type="text" name="search" placeholder="Search" id="search" />
+		<input type="submit" name="submit" value="Go" />
+		</span>
+-->
+	  <?php
+      $frmSearch=new Form_SearchForm();
+      echo $frmSearch;
+	  ?>
+		</div>
+	</div>
+</div>
+<div id="page">
+
+	<div id="logobar">
+		<div id="logo">
+				<img src="<?php echo $this->baseUrl();?>/images/heading.png" />
+		</div>
+	</div>
+	<div id="menu_holder">
+	  <div id="menu">
+<?php $home=$this->url(array('controller'=>'Home'),null,true);
+	  $forum=$this->url(array('controller'=>'forum'),null,true);
+	  $tutorial=$this->url(array('controller'=>'resources'),null,true);
+	  $icse=$this->url(array('controller'=>'icse'),null,true);
+	  $isc=$this->url(array('controller'=>'isc'),null,true);
+	  $games=$this->url(array('controller'=>'fun'),null,true);
+?>
+	  <ul>
+		<li><a href="<?php echo $home;?>">Home</a></li>
+		<li><a href="<?php echo $icse;?>">ICSE</a></li>
+		<li><a href="<?php echo $isc;?>">ISC</a></li>
+		<li><a href="<?php echo $forum;?>">Forum</a></li>
+		<li><a href="<?php echo $tutorial;?>">Tutorials</a></li>
+		<li><a href="<?php echo $games;?>">Games</a></li>
+	  </ul>
+	  </div>
+	</div>
+<div id="contentWrapper">
+	
+	<div id="main">
+	  <?php
+	  
+            echo $this->layout()->content;
+	  ?>&nbsp;
+	</div>
+	<div id="sidebar_right">
+<!--	<div id="divsCoaching">-->
+<fieldset class="home_right">
+	  <legend>About the coaching</legend>
+		<div class="divsContent">
+			<p>We provide tuitions for Physics, Chemistry, Mathematics, Commerce, Computers and English. Coaching students have an edge as
+			they get quality classroom teaching along with notes,
+			important questions and in-depth problem solving sessions.
+			</p>
+			<?php $trial=$this->url(array('controller'=>'home', 'action'=>'trial-class'),null, true); ?>
+			<a href="<?php echo $trial;?>">Enrol for a trial class today!</a>
+		</div>
+</fieldset>
+<fieldset class="home_right">
+	  <legend>Quote Of The Day</legend>
+		<div class="divsContent">
+			<?php $mdlQuote=new Model_Quotes();
+				  $quote=$mdlQuote->randomQuote();
+			if($quote!=false){
+			?>
+			<p><?php echo $quote->quote;?> - <i><?php echo $quote->quote_by;?></i></p>
+			<?php }?>
+			<!--<a href='./quotes/add-quotes'>Add a quote</a>-->
+			<?php $allQuotes=$this->url(array('controller'=>'quotes', 'action'=>''),null, true); ?>
+			<a href='<?php echo $allQuotes;?>'>View all quotes</a>
+		</div>
+</fieldset>
+<fieldset class="home_right">
+	  <legend>What's cooking in the forums?</legend>
+		<div class="divsContent">
+			<?php
+			$mdlTopic=new Model_ForumTopic();
+			$topic=$mdlTopic->favTopic();
+			if($topic!=false){
+			?>
+			<h4><?php echo $topic->topic_name;?></h4>
+			<p><?php if($topic->topic_description){
+				  echo substr($topic->topic_description,0,75);
+				  if(strlen($topic->topic_description)>75)
+				  echo "....";?>
+				  <i><?php echo " - ".$topic->replies." replies";?></i>
+			<?php }?>
+			<br />-<?php echo $topic->created_by;?>
+			<?php }?>
+			<a href='./forum/topics/cat/<?php echo $topic->ch_id;?>/
+			id/<?php echo $topic->c_id;?>/topic/<?php echo $topic->topic_id;?>'>
+			Check this out!</a>
+			</p>
+		</div>
+</fieldset>
+
+<?php if($identity!=""){?>	  
+	  <div id="friends_box">
+	  <fieldset>
+		  <Legend>Friends (<?php echo $totalFriends;?>)</Legend>
+		  <div id="friendsLink">
+		  <?php
+		  if(count($friends)>0){
+			foreach($friends as $friend){
+			$fl=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$friend[1]), null ,true);
+			?>
+			  <a href="<?php echo $fl;?>"><img src="<?php echo $friend[0];?>" title="<?php echo $friend[1];?>"
+																  alt="<?php echo $friend[1];?>" /></a>
+		<?php
+			}
+		$allFriends=$this->url(array('controller'=>'profile', 'action'=>'friends','id'=>$userId),null, true);
+		echo "<p class=\"rtl1\"><a href=\"".$allFriends."\">Show All Friends</a></p>";
+		}else if($identity==""){?>
+	  <p>You must log in to see <i><?php echo $param;?>'s</i> friends.</p>
+	<?php }?>
+	 </div>
+		</fieldset>
+	  <fieldset>
+		  <Legend>Friend Requests</Legend>
+		<p>You have 
+		  <?php if(($requests)>0){
+				$confirmRequests=$this->url(array('controller'=>'profile','action'=>'confirm-requests'),null,true);
+				echo "<a href=\"{$confirmRequests}\"><b>".$requests."</b></a>";
+			  }else {
+				echo "no";
+			  }
+			  ?>
+		new friend request.
+		</p>
+	  </fieldset>
+	  </div>
+<?php }  ?>
+
+	  <div id="divsFb">
+<div class="fb-like-box" data-href="http://www.facebook.com/pages/Mentors/179112368809235" data-width="290" data-show-faces="true" data-stream="false" data-header="true"></div>
+	  </div>
+	  
+	</div>
+
+
+</div>
+</div>
+	
+  <div id="footer">
+	<div id="links_footer">
+		<div id="mf_1" class="mf">  
+			<h3>Home</h3>
+			  <ul>
+				<li><a href="/mentors/public/index.php">About</a></li>
+				<li><a href="/mentors/public/contact.php">Contact us</a></li>
+			  </ul>
+		</div>
+		<div class="mf">
+			<h3>Resources</h3>
+			  <ul>
+				<?php
+			  $tutorials=$this->url(array('controller'=>'Resources', 'action'=>'tutorials')); ?>
+				<li><a href="/mentors/public/video.php">Video</a></li>
+				<li><a href="<?php echo $tutorials; ?>">Tutorials</a></li>
+			  </ul>
+		</div>
+		<div class="mf">
+			<h3>Class X</h3>
+				<ul>
+				  <?php
+				  $sample_papers=$this->url(array('controller'=>'X', 'action'=>'sample-papers'));
+				  $syllabus=$this->url(array('controller'=>'X', 'action'=>'syllabus'));
+				  $previous_year=$this->url(array('controller'=>'X', 'action'=>'previous-years'));
+				  ?>
+				<li><a href='<?php echo $sample_papers; ?>'>Sample Papers</a></li>
+				<li><a href='<?php echo $syllabus; ?>'>Syllabus</a></li>
+				<li><a href='<?php echo $previous_year; ?>'>Previous Years</a></li>
+				</ul>
+		</div>
+		<div class="mf">
+			<h3>Class XII</h3>
+				<ul>
+				  <?php
+				  $sample_papers=$this->url(array('controller'=>'XII', 'action'=>'sample-papers'));
+				  $syllabus=$this->url(array('controller'=>'XII', 'action'=>'syllabus'));
+				  $previous_year=$this->url(array('controller'=>'XII', 'action'=>'previous-years'));
+				  $practical=$this->url(array('controller'=>'XII', 'action'=>'isc-computer-practical'));
+				  $viva=$this->url(array('controller'=>'XII', 'action'=>'viva-voce'));
+				  ?>
+				<li><a href='<?php echo $sample_papers; ?>'>Sample Papers</a></li>
+				<li><a href='<?php echo $syllabus; ?>'>Syllabus</a></li>
+				<li><a href='<?php echo $previous_year; ?>'>Previous Years</a></li>
+				<li><a href='<?php echo $practical; ?>'>ISC Computer Practical</a></li>
+				<li><a href='<?php echo $viva; ?>'>Viva</a></li>
+				</ul>
+		</div>
+	
+		<div class="mf">
+			<h3>Fun</h3>
+			  <ul>
+		  <?php
+				$quiz=$this->url(array('controller'=>'Fun', 'action'=>'quiz'));
+				$brainteasers=$this->url(array('controller'=>'Fun', 'action'=>'brainteasers'));
+				$games=$this->url(array('controller'=>'Fun', 'action'=>'games'));
+		  ?>
+				<li><a href='<?php echo $quiz; ?>'>Quiz</a></li>
+				<li><a href='<?php echo $brainteasers; ?>'>Brainteasers</a></li>
+				<li><a href='<?php echo $games; ?>'>Games</a></li>
+			  </ul>
+		</div>
+	</div>
+    <div id="copyright">
+        <span> &copy;<?php echo strftime("%Y", time()); ?> Mentors. All Rights Reserved.</span><br />
+        <span><script type="text/javascript">document.write(Date());</script></span>
+    </div>
+  </div>
+</body>
+<?php
+$this->addScriptPath(APPLICATION_PATH.'/views/scripts');
+echo $this->render('util/profiler.phtml');
+?>
+</html>

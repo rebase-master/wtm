@@ -1,0 +1,67 @@
+<?php
+    $this->headTitle()->set('Programs List');
+    echo $this->headTitle();
+	$create = $this->url(array('controller'=>'admin', 'action'=>'create-program'));
+?>
+
+<div class="content">
+
+    <div class="list-head">
+        <h2>Programs List</h2>
+	    <a href="<?php echo $create; ?>" class="btn btn-success pull-right">
+		    <i class="glyphicon glyphicon-plus"></i>
+		    Create Program
+	    </a>
+    </div>
+    <?php if($this->paginator): ?>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sl no</th>
+                    <th>Topic Name</th>
+                    <th>Heading</th>
+                    <th>Slug</th>
+                    <th>Question</th>
+                    <th>Solution</th>
+                    <th>Visible</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i = ($this->currentPage - 1) * $this->limit; ?>
+                <?php foreach($this->paginator as $program): ?>
+                    <tr>
+                        <td><?php echo ++$i; ?></td>
+                        <td><?php echo $program->topic; ?></td>
+                        <td><?php echo $program->heading; ?></td>
+                        <td><?php echo $program->slug; ?></td>
+                        <td><?php echo htmlentities(substr($program->question,0,100)); ?></td>
+                        <td><?php echo htmlentities(substr($program->solution,0,100)); ?></td>
+                        <td>
+	                        <?php if($program->visible):?>
+		                        <span class="label label-success">TRUE</span>
+		                    <?php else: ?>
+				                <span class="label label-danger">FALSE</span>
+		                    <?php endif; ?>
+		                </td>
+                        <?php
+	                        $delete=$this->url(array('controller'=>'admin', 'action'=>'delete-program','id'=>$program->id));
+	                        $update=$this->url(array('controller'=>'admin', 'action'=>'update-program','id'=>$program->id));
+                        ?>
+                        <td>
+                            <a class="btn btn-xs btn-danger btn-block" href="<?php echo $delete; ?>">Delete</a>
+                            <a class="btn btn-xs btn-info btn-block" href="<?php echo $update; ?>">Update</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div id="pagination" class="pagination">
+            <?php echo $this->paginationControl($this->paginator,
+                'Elastic',
+                'includes/paginationcontrol.phtml');
+            ?>
+        </div>
+    <?php endif; ?>
+
+</div>

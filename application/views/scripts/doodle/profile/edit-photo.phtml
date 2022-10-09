@@ -1,0 +1,23 @@
+<?php $this->headTitle()->set('Edit Photo');
+echo $this->headTitle();
+?>
+<div class="content">
+	<div id=topicList">
+<h2>Change Display Picture</h2>
+<div id="my_photo">
+	<?php
+	if($this->success==1){
+		?>
+		<img src="<?php echo $this->name; ?>" />
+	<?php
+	}else{
+	?>
+</div>
+<div id="uploadform">
+<?php
+	}
+	echo $this->form;
+	?>
+</div>
+</div>
+</div>

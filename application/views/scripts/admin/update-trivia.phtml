@@ -1,0 +1,35 @@
+<?php
+    $this->headTitle()->set('Update Fun Fact');
+    echo $this->headTitle();
+?>
+<div class="content">
+	<div class="list-head">
+		<h2>Update Quote</h2>
+	</div>
+	<div class="form_short">
+	    <?php if(empty($this->record)): ?>
+	        <div class="alert alert-danger">
+	            <p>Record not found!</p>
+	        </div>
+	    <?php else: ?>
+	        <div class="alert alert-danger hide">
+	            <p>Something went wrong. Please try again later.</p>
+	        </div>
+	        <div class="alert alert-success hide">
+	            <p>Record updated successfully.</p>
+	        </div>
+	        <form role="form" action="#" id="update-trivia">
+	            <div class="form-group">
+	                <label for="fun-fact">Trivia</label>
+	                <textarea rows="10" class="form-control" id="trivia" placeholder="What's the fact?"><?php echo $this->record->fact; ?></textarea>
+	            </div>
+	            <input type="hidden" name="id" value="<?php echo $this->record->id; ?>" />
+	            <button class="btn btn-primary">Update</button>
+	            <span class="loading hide">Please wait ...
+	                <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+	            </span>
+
+	        </form>
+	    <?php endif; ?>
+	</div>
+</div>

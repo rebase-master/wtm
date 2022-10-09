@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+<head>
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/_common_meta.php'; ?>
+
+	<meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds since 2003.">
+    <meta itemprop="description" content="Free tutorials, study notes, quiz and solved questions for Computer, English, Mathematics, Physics, Chemistry">
+    <meta itemprop="image" content="http://www.wethementors.com/images/logo.png">
+
+    <?php
+        $this->headTitle()->set('Login to wethementors.com');
+        echo $this->headTitle();
+    ?>
+
+    <?php
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/login/index.js");
+    ?>
+    <?php
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/bootstrap.min.css');
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-login.css');
+    ?>
+    <?php
+        echo $this->headLink();
+        echo $this->headScript();
+    ?>
+</head>
+    <body>
+    <div id="fb-root"></div>
+        <div id="page" class="container-fluid">
+            <?php require_once APPLICATION_PATH.'/../layouts/templates/_login_nav.php'; ?>
+            <div id="contentWrapper1" class="container">
+                <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+                <div id="main1">
+                    <?php echo $this->layout()->content; ?>&nbsp;
+                </div>
+
+            </div>
+        </div>
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    </body>
+</html>

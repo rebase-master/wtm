@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+    <head>
+        <meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+        <meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years' solved papers, quiz, riddles, doodle, forum, profile option and much more.">
+        <meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+
+        <meta property="og:title" content="Mentors - Providing education assistance to inquisitive minds.">
+        <meta property="og:description" content="Find Sample/Guess papers, Java Tutorials, Solved Papers, Quiz, Riddles and more.">
+        <meta property="og:url" content="http://www.wethementors.com/home">
+        <meta property="og:image" content="http://www.wethementors.com/images/heading.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="150">
+        <meta property="og:image:height" content="50">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Mentors programming Q&amp;A provide solutions to all kinds of programming questions." />
+        <meta name="keywords" content="programming questions, java programs, solved java programs, java qa,
+         java string questions Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+        <?php echo $this->headTitle(); ?>
+        <?php
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap-tagsinput.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap3-typeahead.min.js');
+            $this->headScript()->appendFile($this->baseUrl()."/scripts/qa.js");
+        ?>
+        <?php
+            $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/style.css');
+            $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+        ?>
+        <?php
+            echo $this->headLink();
+            echo $this->headScript();
+        ?>
+    </head>
+<body>
+
+    <div id="fb-root"></div>
+
+    <div id="page" class="container-fluid">
+<!--        --><?php //require_once APPLICATION_PATH.'/../layouts/templates/userInfo.php'; ?>
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/new_header.php'; ?>
+         <div id="contentWrapper" class="row-fluid">
+             <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+             <?php echo $this->layout()->content; ?>&nbsp;
+         </div>
+    </div>
+
+    <!--FOOTER-->
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+    <!--END FOOTER-->
+
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+window.___gcfg = {
+lang: 'en-GB',
+parsetags: 'onload'
+};
+</script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

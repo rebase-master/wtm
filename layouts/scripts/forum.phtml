@@ -1,0 +1,244 @@
+<?php echo $this->doctype();?>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+<meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years' solved papers, quiz, riddles, doodle, forum, profile option and much more.">
+<meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+<meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important, 
+PCM,computer applications,english,literature,10,12,computer coaching,
+java coaching,programs,board questions,sample papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+<link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+    <?php
+    echo $this->headTitle();
+//	$this->headScript()->appendFile('//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js');
+	$this->headScript()->appendFile($this->baseUrl()."/scripts/jquery.min.js");
+	$this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/blues/css/bootstrap.min.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/greens/css/fo-bizarre-min.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/greens/css/forum.css');
+?>
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<?php
+    echo $this->headLink();
+	echo $this->headScript();
+    $mdlUser=new Model_User();
+    $totalUsers=$mdlUser->getUserCount();
+    $friends=array();
+	$param=Zend_Controller_Front::getInstance()->getRequest()->getParam('user');
+  $totalFriends=0;
+	if (Zend_Auth::getInstance()->hasIdentity()) {
+		  $identity = Zend_Auth::getInstance()->getIdentity();
+		  $username=$identity->username;
+		  $currentUser=$mdlUser->getUserByEmail($identity->email);
+		  $mdlInvitations=new Model_Invitations();
+		  $result=$mdlInvitations->getInvitationsById($currentUser->id);
+		  $requests=count($result);
+		  $mdlFriends=new Model_Friends();
+		  $mdlUserData=new Model_UserData();
+		  if(isset($param) && $param!=$identity->username){
+		    $userP=$mdlUser->getUserByUsername($param);
+		  }
+		  else{
+			$userP=$mdlUser->getUserByUsername($identity->username);
+		  }
+		if($userP!=null){
+		$userId=$userP->id;
+        $results=$mdlFriends->getFriends($userP->username);
+        $totalFriends=$mdlFriends->getFriendCount($userP->username);
+        $i=0;
+		foreach($results as $result){
+            if($result->my_id==$userP->id)
+                $find=$result->friends_id;
+            if($result->friends_id==$userP->id)
+                $find=$result->my_id;
+			$user=$mdlUser->getUserById($find);
+            $friends[$i][1]=$user->username;
+			$user_data=$mdlUserData->findUserById($find);
+                foreach($user_data as $data){
+                    if($data->option_id==11)
+                       $friends[$i][0]=$this->baseUrl().'/users/thumbs/'.$user->username;
+				  if($data->option_id==1)
+				  $friends[$i][2]=$data->data;
+				  if($data->option_id==2)
+				  $friends[$i][3]=$data->data;
+                }
+				if(!isset($friends[$i][0])){
+				  if($user->gender=='m')
+				  $friends[$i][0]=$this->baseUrl().'/images/mt.png';
+				  else
+				  $friends[$i][0]=$this->baseUrl().'/images/ft.png';
+				}
+		$i++;
+		}
+		}
+		$toId=$mdlUser->getIdByEmail($identity->email);
+		$mdlMessages=new Model_Messages();
+		$messages=$mdlMessages->countUnreadMessages($toId);
+	}else{
+		  $username = "";
+		  $identity="";
+		  }
+    ?>
+</head>
+<body>
+<div id="One2ka4"></div>
+<div id="page">
+<div id="header">
+	<div id="topbar">
+        <div id="links" class="clearfix">
+            <?php
+            $home=$this->url(array('module'=>'','controller'=>'home', 'action'=>'index'), null,true);
+            $contact=$this->url(array('controller'=>'home', 'action'=>'contact'), null,true);
+            $login=$this->url(array('controller'=>'user', 'action'=>'login'), null,true);
+            $logout=$this->url(array('controller'=>'user', 'action'=>'logout'), null,true);
+            $register=$this->url(array('controller'=>'user', 'action'=>'register'), null,true);
+            $profile=$this->url(array('controller'=>'profile', 'action'=>'index', 'user'=>$username), null,true);
+            $inbox=$this->url(array('controller'=>'profile', 'action'=>'messages'), null,true);
+            ?>
+            <div class="pull-left">
+                <span><a href='<?php echo $home;?>'>Home </a>| </span>
+                <span><a href='<?php echo $contact;?>'>Contact </a> </span>
+            </div>
+            <?php if (!$identity) { ?>
+            <div class="pull-right"><a href="<?php echo $register;?>">Register</a> | <a href="<?php echo $login; ?>">Login</a></div>
+            <?php } else { ?>
+            <div class="pull-right">
+                <a href="<?php echo $profile; ?>"><?php echo $username; ?></a>  |
+<!--                <a href="--><?php //echo $inbox; ?><!--">Messages<span class="prominent">--><?php //echo isset($messages)?$messages:""?><!--</span></a> |-->
+                <a href="<?php echo $logout; ?>">Logout</a>
+            </div>
+            <?php } ?>
+        </div>
+	</div>
+</div>
+	<div id="logobar">
+	  <div id="banner-ad">
+			<script type="text/javascript"><!--
+				  google_ad_client = "ca-pub-1662490668144398";
+				  /* doodle-fb */
+				  google_ad_slot = "7616414125";
+				  google_ad_width = 728;
+				  google_ad_height = 90;
+				  //-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+	  </div>
+		<div id="logo"><a href="<?php echo $home;?>"><img src="<?php echo $this->baseUrl();?>/images/heading.png" alt="Mentors - We Change The Way You Think" /></a></div>
+	</div>
+	<div id="menu_holder">
+	  <div id="menu">
+<?php
+	  $sitemap=$this->url(array('controller'=>'Home', 'action'=>'sitemap'),null,true);
+	  
+	  $tutorials=$this->url(array('controller'=>'resources', 'action'=>'tutorials'),null,true);
+	  $poi=$this->url(array('controller'=>'resources','action'=>'people'),null,true);
+	  $ant=$this->url(array('controller'=>'resources','action'=>'installing-ant'),null,true);
+
+	  $x_sample_papers=$this->url(array('controller'=>'icse', 'action'=>'sample-papers'),null,true);
+	  $x_syllabus=$this->url(array('controller'=>'icse', 'action'=>'syllabus'),null,true);
+	  $x_previous_year=$this->url(array('controller'=>'icse', 'action'=>'previous-years'),null,true);
+	  
+	  $xii_sample_papers=$this->url(array('controller'=>'isc', 'action'=>'sample-papers'),null,true);
+	  $xii_syllabus=$this->url(array('controller'=>'isc', 'action'=>'syllabus'),null,true);
+	  $xii_previous_year=$this->url(array('controller'=>'isc', 'action'=>'previous-years'),null,true);
+	  $practical=$this->url(array('controller'=>'isc', 'action'=>'isc-computer-practical'),null,true);
+	  $viva=$this->url(array('controller'=>'isc', 'action'=>'viva-voce'),null,true);
+	  $comp_project=$this->url(array('controller'=>'isc', 'action'=>'computer-project'),null,true);
+	  
+	  $javaQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true);
+	  $quiz=$this->url(array('controller'=>'fun'),null,true);
+	  $brainteasers=$this->url(array('controller'=>'fun','action'=>'brainteasers'),null,true);
+	  $doodle=$this->url(array('controller'=>'doodle'),null,true);
+	  
+	  $forum=$this->url(array('controller'=>'forum'),null,true);
+	  $videos=$this->url(array('controller'=>'videos'),null,true);
+	  //$gallery=$this->url(array('controller'=>'gallery', 'action'=>'index'),null,true);
+	  $gallery = "http://www.wethementors.com/gallery/index";
+?>
+<ul>
+  <li>Home
+    <ul>
+		<li><a href="<?php echo $contact; ?>">Contact us</a></li>
+		<li><a href="<?php echo $sitemap; ?>">Sitemap</a></li>
+	</ul>
+  </li>
+  <li>Resources
+	<ul>
+	<li><a href="<?php echo $tutorials; ?>">Tutorials</a></li>
+	<li><a href="<?php echo $poi; ?>">Persons of Eminence</a></li>
+	<li><a href="<?php echo $ant; ?>">Installing Ant on Windows</a></li>
+	</ul>
+  </li>
+  <li>Class X
+	<ul>
+	<li><a href='<?php echo $x_sample_papers; ?>'>Sample Papers</a></li>
+	<li><a href='<?php echo $x_syllabus; ?>'>Syllabus</a></li>
+	<li><a href='<?php echo $x_previous_year; ?>'>Previous Years</a></li>
+	</ul>
+  </li>
+  <li>Class XII
+  	<ul>
+	<li><a href='<?php echo $xii_sample_papers; ?>'>Sample Papers</a></li>
+	<li><a href='<?php echo $xii_syllabus; ?>'>Syllabus</a></li>
+	<li><a href='<?php echo $xii_previous_year; ?>'>Previous Years</a></li>
+	<li><a href='<?php echo $practical; ?>'>ISC Computer Practical</a></li>
+	<li><a href='<?php echo $viva; ?>'>Viva</a></li>
+	<li><a href='<?php echo $comp_project ?>'>Computer Project</a></li>
+	</ul>
+  </li>
+  <li><a href="<?php echo $videos; ?>">Videos</a></li>
+  <li><a href="<?php echo $gallery; ?>">Gallery</a></li>
+  <li><a href="<?php echo $forum; ?>">Forum</a></li>
+  <li>Fun
+	<ul>
+	  <li><a href='<?php echo $javaQuiz; ?>'>Java Quiz</a></li>
+	  <li><a href='<?php echo $quiz; ?>'>Quiz</a></li>
+	  <li><a href='<?php echo $brainteasers; ?>'>Brainteasers</a></li>
+	  <li><a href='<?php echo $doodle; ?>'>Doodle</a></li>
+	</ul>
+  </li>
+</ul>
+<br style="clear:left" />
+	  </div>
+	</div>
+<div id="contentWrapper">
+	  <?php echo $this->layout()->content; ?>&nbsp;
+</div>
+</div>
+<div id="Two4ka1">
+	  <div id="copyright">
+	  <span><?php
+	  $pp=$this->url(array('controller'=>'home', 'action'=>'privacy-policy'),null,true);
+	  $tou=$this->url(array('controller'=>'home', 'action'=>'terms-of-use'),null,true);?>
+	  &copy;<?php echo strftime("%Y", time()); ?> Mentors. All Rights Reserved.
+	  <a href="<?php echo $pp;?>">Privacy Policy</a> and <a href="<?php echo $tou;?>">Terms of Use</a>
+	  </span><br />
+	  <span><script type="text/javascript">document.write(Date());</script>
+	  </span>
+	  </div>
+	  
+</div>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+window.___gcfg = {
+lang: 'en-GB',
+parsetags: 'onload'
+};
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".sol_snippet").hide();
+  $("button").click(function(){$(this).next().slideToggle(5);$(this).next().css("visibility","visible")});
+	$("#guidelines").hide();$(".slide").click(function(){$("#guidelines").css("visibility","visible");
+  $("#guidelines").slideToggle(500,function(){if($(this).is(":hidden")){$(".slide").html("&#x25BE; ")}else{$(".slide").html("&#x25B4; ")}})});
+  $(".years li div").hide();
+  $(".years h4").click(function(){$(this).next().slideToggle(500);$(this).next().css("visibility","visible")})
+  });
+</script>
+<div id="fb-root"></div>
+</body>
+</html>

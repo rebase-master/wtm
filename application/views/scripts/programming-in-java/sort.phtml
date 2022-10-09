@@ -1,0 +1,36 @@
+<?php $this->headTitle()->set('Different types of sorting techniques');
+echo $this->headTitle();
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Programming Questions on <?php echo ucwords($this->name); ?></h1><hr />
+    <div class="content">
+
+        <?php if($this->programs!=null){ ?>
+<!--        <p class="alert alert-info text-center">* Some of the questions have been left usolved for practice. </p>-->
+
+        <div class="questions-list">
+            <ol>
+                <?php $count = 0; ?>
+                <?php foreach($this->programs as $program): $count++; ?>
+                <li><?php echo $program['question']; ?>
+                    <?php if($program['solution']): ?>
+                        <br/> <button class="btn btn-primary btn-xs">View/Hide Solution</button>
+                        <pre class="solution hide"><?php echo $program['solution']; ?>
+                                </pre>
+                        <?php endif; ?>
+                </li>
+                <?php endforeach ;?>
+                <?php  if($count == 9): ?>
+                <?php endif; ?>
+            </ol>
+        </div>
+
+        <?php }else { ?>
+
+        <div class="alert alert-info">
+            <p>No question has been added to this topic yet. Please check back soon!</p>
+        </div>
+
+        <?php } ?>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<?php $this->headTitle()->set('ICSE - Syllabus, Sample Papers, Previous Years Papers');
+echo $this->headTitle();
+?>
+<?php
+$syllabus=$this->url(array('controller'=>'icse', 'action'=>'syllabus'),null,true);
+$sample=$this->url(array('controller'=>'icse', 'action'=>'sample-papers'),null,true);
+$previous=$this->url(array('controller'=>'icse', 'action'=>'previous-years'),null,true);
+?>
+
+<div class="resources">
+
+    <h1>ICSE</h1><hr />
+   <div class="papers">
+        <ul>
+            <li><a href="<?php echo $sample; ?>">Sample Papers</a></li>
+            <li><a href="<?php echo $previous; ?>">Previous Years' Papers</a></li>
+        </ul>
+   </div>
+    <div class="google-ad">
+        <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+    </div>
+</div>

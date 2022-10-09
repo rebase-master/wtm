@@ -1,0 +1,46 @@
+<?php
+    $this->headTitle()->set('Computer Project');
+    echo $this->headTitle();
+    $loginUrl = $this->url(array('controller'=>'user','action'=>'login'),null,true).'?next='. urlencode(BASE_URL.'isc/computer-project');
+    $iscpy = $this->url(array('controller'=>'isc','action'=>'previous-years'), null ,true);
+    $isccp = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'), null ,true);
+    $iscvv = $this->url(array('controller'=>'isc','action'=>'viva-voce'), null ,true);
+    $iscsp = $this->url(array('controller'=>'isc','action'=>'sample-papers'), null ,true);
+?>
+<div class="resources">
+    <h1>Computer Project</h1><hr />
+    <div class="paperList">
+        <p>The computer project consists of 20 solved programs with algorithms and solutions.
+            The questions are chosen in such a way that it covers almost all the
+            topics in ISC Computer Science syllabus.
+        </p>
+        <p>Download the project, read the questions, algorithms and their solutions. Give some
+            time to understand the logic behind the solution. If you need more programs or different programs you
+            can visit the coaching.
+        </p>
+        <h3>ISC Computer Project</h3>
+        <?php if($this->loggedIn){?>
+            <a class="afds" href="<?php echo $this->baseUrl();?>/docs/ISC_Computer_Project.doc" title = "ISC Computer Project">
+                Click here to download
+            </a>
+        <?php }else{ ?>
+            <p>You need to <a href="<?php echo $loginUrl; ?>">Login</a> to download this file</p>
+        <?php } ?>
+        <hr />
+        <div>
+            <h3>Other Resources:</h3>
+            <div class="papers">
+                <ul>
+                    <li><a href="<?php echo $iscsp; ?>">ISC Sample Papers</a></li>
+                    <li><a href="<?php echo $iscpy; ?>">ISC Previous Years Papers</a></li>
+                    <li><a href="<?php echo $isccp; ?>">ISC Computer Practical</a></li>
+                    <li><a href="<?php echo $iscvv; ?>">ISC Viva-Voce</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="google-ad">
+        <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-rectangle.php'; ?>
+    </div>
+
+</div>

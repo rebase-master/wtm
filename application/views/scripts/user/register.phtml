@@ -1,0 +1,53 @@
+<?php
+    $login  = $this->baseUrl('/login');
+    $home   = $this->baseUrl('/');
+?>
+
+<div class="content">
+	<div id="register_form" class="login sessions">
+        <?php
+            if($this->submitted==1){
+                if(count($this->errorsMail)>0){
+        ?>
+                <div class="alert alert-danger">
+                    <?php echo $this->errorsMail; ?>
+                </div>
+        <?php  }else{ ?>
+            <div class="alert alert-success">
+                  <?php echo $this->success; ?>
+            </div>
+        <?php  }
+            }else{
+        ?>
+                <h1 class="text-center">Create an account</h1>
+                    <p class="note text-warning">
+                        Please note that on successful completion of the form, an activation link
+                        will be sent on the email provided by you. Make sure you have access to the email
+                        you choose to register on <a href="<?php echo $home; ?>">wethementors.com</a>.
+                    </p>
+
+                <?php if(count($this->errors)>0): ?>
+                    <div class="alert alert-danger">
+                      <ul>
+                          <?php foreach($this->errors as $error): ?>
+                              <li class="errors"> <?php echo $error; ?></li>
+                          <?php endforeach; ?>
+                      </ul>
+                    </div>
+                <?php endif; ?>
+
+                <?php echo $this->form; ?>
+                <div class="ahc">
+                    <p>Already have an account? <a href="<?php echo $login; ?>">Sign in</a></p>
+                </div>
+
+        <?php } ?>
+    </div>
+</div>
+
+<script>
+	var APP_ID = '<?php echo $this->APP_ID; ?>';
+	var GOOGLE_CLIENT_ID = '<?php echo $this->GOOGLE_CLIENT_ID; ?>';
+	var GOOGLE_API_KEY = '<?php echo $this->GOOGLE_API_KEY; ?>';
+	var baseUrl = '<?php echo BASE_URL; ?>';
+</script>

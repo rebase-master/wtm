@@ -1,0 +1,81 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl()?>/skins/blues/css/form.css" />
+<div class="content">
+	<div id="users">
+	<h2>Registered Users</h2>
+<?php	static $i=1;
+	if($this->result==1){?>
+        <div class="container-fluid" id="sorter">
+            <span>Sort: </span>
+            <button class="btn-xs btn btn-primary active" id="all-sort-btn">All</button>
+            <button class="btn-xs btn btn-primary" id="year-sort-btn">Year</button>
+            <select class="select-year">
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+            </select>
+        </div>
+            <table id="year-sort-table" class="table table-bordered hide">
+                <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Month</th>
+                        <th>Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+<table id="user-info-table" class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Sno</th>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Type</th>
+			<th>Verified</th>
+			<th>Created</th>
+			<th>Last Login</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+	if($this->paginator){
+		foreach($this->paginator as $user){?>
+		<tr>
+			<td><?php echo $i++;?></td>
+			<td><?php echo $user->username?></td>
+			<td><?php echo $user->first_name." ".$user->last_name?></td>
+			<td><?php echo $user->email?></td>
+			<td><?php echo $user->type?></td>
+			<td><?php echo $user->confirmed?'yes':'No'?></td>
+			<?php
+					$created=strtotime($user->created_at);
+					$lastLogin=strtotime($user->last_login);
+					$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+					$frmUser=new Form_User();
+					$t1=$frmUser->makeTime($current,$created);
+					$t2=$frmUser->makeTime($current,$lastLogin);
+			?>
+			<td><?php echo $t1?></td>
+			<td><?php echo $t2?></td>
+		</tr>	
+<?php }?>
+	</tbody>
+</table>
+<div id="pagination" class="pagination">
+<?php echo $this->paginationControl($this->paginator,
+				'Jumping',
+				'includes/paginationcontrol.phtml');
+}?>
+</div>
+
+
+<?php }else{?>
+<h3>No registered user</h3>
+<?php }?>
+</div>
+</div>
+<script src="<?php echo $this->baseUrl()?>/scripts/admin.js"></script>

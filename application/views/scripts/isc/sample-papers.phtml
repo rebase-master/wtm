@@ -1,0 +1,53 @@
+<?php $this->headTitle()->set('ISC Sample Papers');
+echo $this->headTitle();
+$iscpy = $this->baseUrl('/isc/previous-years');
+$isccp = $this->baseUrl('/isc/isc-computer-practical');
+$iscvv = $this->baseUrl('/isc/viva-voce');
+$iscpro = $this->baseUrl('/isc/computer-project');
+
+?>
+<div class="resources">
+    <h1>ISC Sample Papers, ISC Guess Papers</h1><hr />
+    <div class="paperList">
+        <h3>Computer Science</h3>
+        <div class="papers">
+            <ul>
+                <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Computer_Sample_Paper_1.doc'); ?>" title="Computer Science Sample Paper - 1">Sample Paper - 1</a></li>
+                <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Computer_Sample_Paper_2.doc'); ?>" title="Computer Science Sample Paper - 2">Sample Paper - 2</a></li>
+                <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Computer_Sample_Paper_3.doc'); ?>" title="Computer Science Sample Paper - 3">Sample Paper - 3</a></li>
+            </ul>
+        </div>
+        <h3>Mathematics</h3>
+        <div class="papers">
+            <ul>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Mathematics_Sample_Paper_1.doc'); ?>" title="Mathematics Sample Paper - 1">Sample Paper - 1</a></li>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Mathematics_Sample_Paper_2.doc'); ?>" title="Mathematics Sample Paper - 2">Sample Paper - 2</a></li>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Mathematics_Sample_Paper_3.doc'); ?>" title="Mathematics Sample Paper - 3">Sample Paper - 3</a></li>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Mathematics_Sample_Paper_4.doc'); ?>" title="Mathematics Sample Paper - 4">Sample Paper - 4</a></li>
+             </ul>
+        </div>
+        <h3>Economics</h3>
+        <div class="papers">
+            <ul>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Economics_Sample_Paper_1.doc'); ?>" title="Economics Sample Paper - 1">Sample Paper - 1</a></li>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Economics_Sample_Paper_2.doc'); ?>" title="Economics Sample Paper - 2">Sample Paper - 2</a></li>
+                 <li><a class="afds" href="<?php echo $this->baseUrl('/docs/isc/Economics_Sample_Paper_3.doc'); ?>" title="Economics Sample Paper - 3">Sample Paper - 3</a></li>
+            </ul>
+        </div>
+        <hr />
+        <div>
+            <h3>Other Resources:</h3>
+            <div class="papers">
+                <ul>
+                    <li><a href="<?php echo $iscpy; ?>">ISC Previous Years Papers</a></li>
+                    <li><a href="<?php echo $isccp; ?>">ISC Computer Practical</a></li>
+                    <li><a href="<?php echo $iscvv; ?>">ISC Viva-Voce</a></li>
+                    <li><a href="<?php echo $iscpro; ?>">ISC Computer Project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="google-ad">
+        <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+    </div>
+</div>

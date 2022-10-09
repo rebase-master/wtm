@@ -1,0 +1,81 @@
+<?php
+	$this->headTitle()->set('Notes List');
+	echo $this->headTitle();
+	$create = $this->url(array('controller' => 'admin', 'action' => 'create-note'));
+?>
+
+<div class="content">
+
+	<div class="list-head clearfix">
+		<h2>Notes List - <small><?php echo $this->pageRange; ?> Records</small></h2>
+		<div class="sort">
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Sort By
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<?php foreach($this->categories as $category): ?>
+						<li>
+							<a href="<?php echo $this->baseUrl('/admin/read-notes?category='.urlencode($category['category'])); ?>">
+								<?php echo $category['category']; ?>
+							</a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<a href="<?php echo $create; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-plus"></i>
+				Create Note
+		</a>
+	</div>
+	<?php if($this->paginator): ?>
+		<table class="table table-bordered table-striped notes">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Category</th>
+					<th>Sub Category</th>
+					<th>slug</th>
+					<th>Deleted?</th>
+					<th>Created</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+				<?php foreach($this->paginator as $note): ?>
+					<tr>
+						<td><?php echo ++$i; ?></td>
+						<td><?php echo $note->category; ?></td>
+						<td><?php echo $note->sub_category; ?></td>
+						<td><?php echo $note->slug; ?></td>
+						<td>
+							<?php if($note->deleted == true):?>
+								<span class="label label-success">TRUE</span>
+							<?php else: ?>
+								<span class="label label-danger">FALSE</span>
+							<?php endif; ?>
+						</td>
+						<td><?php echo $note->created; ?></td>
+						<?php
+							$update=$this->url(array('controller'=>'admin', 'action'=>'update-note','id'=>$note->id));
+						?>
+						<td>
+							<input type="hidden" value="<?php echo $note->id; ?>" />
+							<a class="btn btn-xs btn-danger btn-block delete-note" href="javascript:void(0);">Delete</a>
+							<a class="btn btn-xs btn-info btn-block" href="<?php echo $update; ?>">Update</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<div id="pagination" class="pagination">
+			<?php echo $this->paginationControl($this->paginator,
+				'Elastic',
+				'includes/paginationcontrol.phtml');
+			?>
+		</div>
+	<?php endif; ?>
+
+</div>

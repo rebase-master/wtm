@@ -1,0 +1,22 @@
+<div class="content quiz">
+	<div id="quiz_results">
+<h1>Result</h1>
+<div id="leaderboard">
+	<h1>Leaderboard</h1>
+	<table>
+		<tr>
+			<td>1.</td><td>King Mansoor</td><td>20 Points</td>
+		</tr>
+		<tr>
+			<td>2.</td><td>John McLane</td><td>10 Points</td>
+		</tr>
+	</table>
+	
+</div>
+<p><?php echo $this->result; ?></p>
+<p><?php echo $this->message; ?></p>
+<p id="quiz_score"><?php echo $this->score; ?></p>
+<?php $retake=$this->url(array('controller'=>'fun', 'action'=>'acronyms'), null, true); ?>
+<p>Try Again? Click <a href="<?php echo $retake;?>">here</a></p>
+</div>
+</div>

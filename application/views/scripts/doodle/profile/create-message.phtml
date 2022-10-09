@@ -1,0 +1,26 @@
+<?php $this->headTitle()->set('Create Message');
+echo $this->headTitle();
+?>
+<div class="content">
+<div id="cmessageContainer">
+	<h2>Create Message</h2>
+<?php if(isset($this->msg)){?>
+<p class="error"><?php echo $this->msg;?></p>
+	<div class="buttons btn btn-primary">
+        <?php $back=$this->url(array('controller'=>'profile', 'action'=>'messages'),null,true);?>
+	    <a href="<?php echo $back?>">Back To Messages</a>
+	</div>
+
+<?php }else{
+	if(isset($this->error)){?>
+<p class="error"><?php echo $this->error;?></p>
+<?php }
+	echo $this->form;
+}	?>
+    <div class="replyLink buttons btn btn-primary">
+        <?php $back=$this->url(array('controller'=>'profile', 'action'=>'messages'),null,true);?>
+        <a href="<?php echo $back?>">Back To Messages</a>
+    </div>
+
+</div>
+</div>

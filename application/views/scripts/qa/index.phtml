@@ -1,0 +1,106 @@
+<?php require_once APPLICATION_PATH.'/Misc/Util.php'; ?>
+<?php
+    $this->headTitle()->set("Question/Answers");
+    echo $this->headTitle();
+    $askQuestion = $this->url(array('controller'=>'qa','action'=>'ask-question'),null,true);
+    $allQuestions = $this->url(array('controller'=>'qa','action'=>'questions'),null,true);
+    $recent = $this->url(array('controller'=>'qa','action'=>'index', 'sort' => 'recent'),null,true);
+    $popular = $this->url(array('controller'=>'qa','action'=>'index', 'sort' => 'popular'),null,true);
+    $unanswered = $this->url(array('controller'=>'qa','action'=>'index', 'sort' => 'unanswered'),null,true);
+    if($this->sorter != 'recent')
+        $qaLink = $this->url(array('controller'=>'qa','action'=>'index', 'sort' => $this->sorter, 'page' => ''),null,true);
+    else
+        $qaLink = $this->url(array('controller'=>'qa','action'=>'index', 'page' => ''),null,true);
+?>
+<div id="main" class="_qna col-sm-12 col-md-8 col-lg-8">
+    <div class="clearfix">
+        <h2 class="pull-left"><?php echo ucwords($this->sorter); ?> Questions</h2>
+
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="<?php echo $recent; ?>" class="<?php echo $this->sorter == 'recent'? 'disabled': ''; ?>">Recent</a></li>
+                <li><a href="<?php echo $popular; ?>" class="<?php echo $this->sorter == 'popular'? 'disabled': ''; ?>">Popular</a></li>
+                <li><a href="<?php echo $unanswered; ?>" class="<?php echo $this->sorter == 'unanswered'? 'disabled': ''; ?>">Unanswered</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr />
+    <?php if(isset($this->paginator)){ ?>
+    <?php $c=0; foreach($this->paginator as $question){$c++;?>
+        <?php
+            $created = strtotime($question['created']);
+            $t = Util::makeTime($created);
+            $quesLink = $this->url(array('controller'=>'qa','action'=>'questions','id'=>$question['id']),null,true);
+            $userLink = $this->url(array('controller'=>'profile', 'action'=>'index','user'=>$question['username']),null,true);
+            $tagLink = $this->url(array('controller' => 'qa', 'action' => 'questions'),null,true);
+            $title = strlen($question['question']) >= 50? substr($question['question'],0,50)."...":$question['question'];
+            $description = strlen($question['description']) >= 200? substr($question['description'],0,200)."...":$question['description'];
+            $noa = isset($question['answer_count']) && !empty($question['answer_count'])?$question['answer_count']:0;
+            $nov = isset($question['vote_count']) && !empty($question['vote_count'])?$question['vote_count']:0;
+        ?>
+        <div class="ques_each clearfix">
+            <div class="metrics col-sm-3">
+                <div class="vote-counts vacounters">
+                    <span><?php echo $nov ;?></span>
+                    <div class="vote-count">votes</div>
+                </div>
+                <div class="ans-counts vacounters<?php echo $noa > 0?' border':''; ?>">
+                    <span><?php echo $noa ;?></span>
+                    <div class="ans-count">answers</div>
+                </div>
+            </div><!-- .metrics.col-md-5 -->
+
+            <div class="col-sm-9 question">
+                <?php if($this->uid==$question['uid']):?>
+                    <span class="post_rc pull-right hide" onclick="rtc(this);"><img src="<?php echo $this->baseUrl();?>/images/del.png" title="Delete this question" alt="Delete this question" /></span>
+                <?php endif; ?>
+                <div class="title">
+                    <h3>
+                        <a href="<?php echo $quesLink;?>"><?php echo htmlentities($title);?></a>
+                    </h3>
+                </div>
+                <input type="hidden" value="<?php echo $question['id'];?>" />
+                <div class="tagged col-xs-6">
+                    <?php
+                    $tags = $question['tags'];
+                    if(!empty($tags)): ?>
+                    <?php foreach(explode(",",$tags) as $tag): ?>
+                        <a href="<?php echo $tagLink."/tagged/".trim($tag);?>" title="<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="asker col-xs-6">
+                    <span class="date_asked">asked <?php echo $t;?></span> by
+                    <a class="username" href="<?php echo $userLink;?>"><?php echo $question['username'];?></a>
+                </div>
+            </div><!-- .question.col-md-7 -->
+        </div><!-- .ques_each.clearfix -->
+
+        <?php }	?>
+    <br />
+
+    <div id="pagination" class="pagination">
+        <div class="controls text-center">
+            <?php
+                echo $this->paginationControl($this->paginator,
+                'Sliding',
+                'includes/paginationcontrolQ.phtml',
+                array('link' => $qaLink)
+                );
+            ?>
+        </div>
+    </div>
+
+    <?php  }elseif(isset($this->msg)){?>
+        <h3>No question has been asked so far.
+	        Be the first to <a href="<?php echo $askQuestion; ?>">ask a question</a>.
+        </h3>
+    <?php } ?>
+</div>
+
+<div id="sidebar_right" class="col-sm-12 col-md-4">
+    <?php include_once APPLICATION_PATH.'/../layouts/templates/_qna_sidebar-right.php'; ?>
+</div><!--sidebar_right-->

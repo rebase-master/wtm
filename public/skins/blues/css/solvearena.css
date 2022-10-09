@@ -1,0 +1,364 @@
+.qa-cont{
+    font: 16px 'Source Sans Pro', "Trebuchet MS", Tahoma, Arial, Geneva, Helvetica, "Lucida Sans", Trebuchet, Verdana, sans-serif;
+}
+.q_head{
+    margin: 10px auto;
+    width: 80%;
+}
+.q_head_links {
+    /*line-height: 2.5em;*/
+}
+.q_head_static h1{
+    font-size: 1.5em;
+    margin: 0;
+}
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-top: 15px solid #999;
+    margin: 0 auto;
+}
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-bottom: 15px solid #999;
+    margin: 0 auto;
+}
+.metrics .vote-error {
+    font-size: 14px;
+    line-height: 1.3em;
+    left: -100px;
+    position: absolute;
+    top: -10px;
+    width: 100px;
+    z-index: 1000;
+}
+
+.metrics .vu.arrow-up {
+    border-bottom: 15px solid #0b486b;
+}
+.metrics .vd.arrow-down {
+    border-top: 15px solid #0b486b;
+}
+.vote-i{
+    cursor: pointer;
+}
+.qv-count {
+    color: #555;
+    /*font-family: verdana,sans-serif;*/
+    font-size: 24px;
+    margin: 10px 0;
+}
+.qa-single {
+    margin: 0 auto;
+    width: 80%;
+}
+.qa-single .noc {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+.aqc{
+	/*border: 1px solid #eee;*/
+    margin-bottom: 50px;
+}
+.aqc h1 {
+    font-size: 20px;
+    line-height: 1.3em;
+}
+.aqc-vc{
+    /*border: 1px solid #f00;;*/
+    padding-right: 0;
+}
+.aqc-qc{
+    padding-left: 0;
+}
+.res_c{
+}
+.res_c h1{
+}
+.comment_post {
+    margin-bottom: 20px;
+    /*width: 80%;*/
+}
+.comment_post textarea {
+    border: 1px solid #ccc;
+    display: block;
+    /*font-family: "Arial Black", sans-serif;*/
+    font-size: 14px;
+    height: 150px;
+    padding: 10px;
+    width: 100%;
+}
+.qna legend{
+    background-color: #fff;
+    color: #000;
+    font-size: inherit;
+    padding: 10px 7px 5px;
+}
+.home_right.vert400.google-ad{
+    max-height: 400px;
+}
+.comment_post button {
+}
+.con_res{
+}
+.response{
+}
+.response a{
+}
+.response img {
+}
+.com-img{
+}
+#user_sols{
+    /*border: 1px solid #f00;*/
+}
+#user_sols .google-ad {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.dp_reply img{
+}
+.reply{
+}
+.v_unu{
+}
+.v_unu img{
+}
+.v_unu img:hover{
+}
+.v_unu p{
+}
+.v_unu p:hover{
+}
+.dt{
+	color:#888;
+	font-style:italic;
+	font-size:0.85em;
+	margin-left:20px;
+}
+.ru{
+	float:left;
+}
+.reply_text{
+}
+.reply_text img{
+}
+.q_ech{
+    /*font-family: arial, sans-serif;*/
+    margin: 10px auto;
+    width: 80%;
+}
+.response_q img{
+	border:1px solid #eee;
+	min-width: 50px;
+    max-width: 100px;
+    width: 100%;
+}
+.reply_q h3{
+	font-size:1em;
+    margin: 0;
+}
+.reply_q h3 a{
+	/*text-decoration:none;*/
+	color:#00376f;
+}
+.reply_q h3 a:hover{
+	/*opacity:0.6;*/
+}
+.reply_q span, .aqc-qc span{
+	font-size:0.8em;
+	color:#777;
+}
+.reply_q .tags > a, .aqc-qc .tags > a, .other-options .tags > a, .bootstrap-tagsinput.tags > a {
+    background-color: #e0eaf1;
+    border: 1px solid #ddd;
+    border-radius: 1ex;
+    color: #4481a4;
+    font-size: 12px;
+    display: inline-block;
+    margin: 2px;
+    padding: 3px 5px;
+}
+.q_ech .asker, .aqc-qc .asker {
+    display: flex;
+    flex-direction: row;
+}
+.asker .asker_username {
+    line-height: 14px;
+    margin-left: 10px;
+}
+.asker .asker_username a {
+    color: #003c77;
+    display: block;
+    font-size: 12px;
+}
+.asker .asker_username a:hover{
+    color:#003c77;
+}
+.reply_q .date_asked, .aqc-qc .date_asked {
+    font-size: 12px;
+}
+.response_q .metrics, .aqc-vc .metrics {
+    background-color: #ffffdd;
+    border: 1px solid #eee;
+    /*max-width: 120px;*/
+    /*min-width: 75px;*/
+}
+.qa-single .metrics{
+    background-color: transparent;
+    border: none;
+    position: relative;
+    width: 40px !important;
+}
+.qa-single .other-options {
+    font-size: 20px;
+    line-height: 1.5em;
+    margin-bottom: 30px;
+    padding: 10px 30px;
+}
+.other-options .tags a{
+    font-size: 14px;
+    line-height: 20px;
+}
+.response_q .metrics .vote-counts, .aqc-vc .metrics .vote-counts {
+    color: #555;
+}
+.metrics .vote-counts span, .metrics .ans-counts span {
+    font-size: 1.5em;
+}
+.metrics .vote-counts, .metrics .ans-counts {
+    padding: 3px 0;
+}
+.response_q .metrics .ans-counts, .aqc-vc .metrics .ans-counts {
+    color: #9a4444;
+}
+.reply_q .asker img, .aqc-qc .asker img{
+    border: 1px solid #eee;
+    height: 30px;
+    width: 30px;
+}
+.feedback {
+    /*color: #555;*/
+    /*font-family: arial, sans-serif;*/
+    font-size: 90%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.feedback span{
+	font-style:normal;
+	font-weight:bold;
+    margin: 0 0 20px;
+}
+.feedback .s1{
+	color:#005ebb;
+}
+.feedback .s2{
+}
+.feedback .s3{
+	color:#ae0000;
+}
+.post_rc{
+    cursor: pointer;
+}
+.vote-img{
+	background: url("../images/loading-s.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin-left: 15px;
+	height: 10px;
+	display: none;
+}
+.question_area textarea{
+    resize: vertical;
+    min-height: 150px;
+}
+.question_area .form-container{
+    width:  60%;
+    margin: 0 auto;
+}
+
+.question_area .ask-program {
+    color: #333;
+    /*font-family: Arial, sans-serif;*/
+    font-size: 14px;
+    font-weight: normal;
+}
+#tag-suggest {
+    border: 1px solid #f00;
+    height: 50px;
+}
+.related-ques ul {
+    margin-left: 10px;
+    text-align: left;
+}
+.home_right.text-center.related-ques li {
+    /*border-bottom: 1px solid #eee;*/
+    clear: both;
+    display: table;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+*:before, *:after {
+    box-sizing: border-box;
+}
+*:before, *:after {
+    box-sizing: border-box;
+}
+.related-ques p {
+    background: none repeat scroll 0 0 #eee;
+    color: #333;
+    float: left;
+    /*font-family: tahoma;*/
+    font-size: 12px;
+    line-height: 1em;
+    margin-right: 5%;
+    margin-top: 3px;
+    padding: 5px;
+    text-align: center;
+    width: 10%;
+}
+.related-ques .link-cont {
+    float: left;
+    /*font-family: arial,sans-serif;*/
+    font-size: 0.9em;
+    line-height: 1.3em;
+    width: 85%;
+}
+/************* MEDIA QUERIES ***************/
+@media( max-width: 400px){
+    .reply_q {
+        margin: 0;
+        /*padding: 0;*/
+        width: 100%;
+    }
+    .response_q{
+        display: none;
+    }
+}
+@media( max-width: 600px){
+    .metrics .vote-error {
+        font-size: 14px;
+        line-height: 1.3em;
+        left: -20px;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: -35px;
+        width: 300px;
+        z-index: 1000;
+    }
+}
+@media( max-width: 768px){
+    .q_ech{
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,17 @@
+<?php $this->headTitle()->set('Confirm Add Friend');
+echo $this->headTitle();
+?>
+<div class="content">
+<?php
+if($this->message){?>
+<div id="error">
+<?php	echo "<p>". htmlspecialchars($this->message)."</p>";
+	$profile=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$this->currentUser),null,true);
+	?>
+	<a href="<?php echo $profile;?>">Go back to your profile</a>
+</div>
+<?php }else{?>
+	<br /><br /><h4>Are you sure you want to add <?php echo htmlspecialchars($this->friend); ?>  as a friend?</h4><br />
+	<?php echo $this->form;?>
+<?php } ?>	
+</div>

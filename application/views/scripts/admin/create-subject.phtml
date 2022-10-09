@@ -1,0 +1,46 @@
+<?php
+$this->headTitle()->set('Create Note Category');
+echo $this->headTitle();
+?>
+<div class="content">
+	<div class="list-head">
+		<h2>Create Note Category</h2>
+	</div>
+	<div class="form_short">
+		<?php if(isset($this->msg)): ?>
+			<div class="alert alert-info">
+				<p><?php  echo $this->msg; ?></p>
+			</div>
+		<?php endif; ?>
+
+		<form class="form-horizontal" role="form" method="post" action="<?php echo $this->baseUrl().'/admin/create-subject'; ?>">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="Subject Name" name="name" id="name" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="url_name" class="col-sm-2 control-label">URL Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="URL Name" name="url_name" id="url_name" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-1">
+					<label for="visible" class="control-label">
+						Visible
+						<input type="checkbox" name="visible" id="visible" aria-label="...">
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-2">
+					<input type="submit" name="submit" class="btn btn-primary" value="Submit" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

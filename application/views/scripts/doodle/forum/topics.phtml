@@ -1,0 +1,186 @@
+<?php require_once APPLICATION_PATH.'/Misc/Util.php'; ?>
+<div class="forumCont topics">
+<div id="content">
+<?php  $mdlUserData=new Model_UserData(); ?>
+<?php if($this->topic){
+	$creator=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$this->topic->created_by), null, true);
+?>
+<div id="topic_heading">
+<aside>
+<!--<a href="--><?php //echo $creator;?><!--"><img src="--><?php //echo $this->baseUrl()."/". $this->dp;?><!--" height="50" width="50" alt="--><?php //echo $this->topic->created_by;?><!--" title="--><?php //echo $this->topic->created_by;?><!--" /></a>-->
+<a href="<?php echo $creator;?>"><img src="<?php echo $this->dp;?>" height="50" width="50" alt="<?php echo $this->topic->created_by;?>" title="<?php echo $this->topic->created_by;?>" /></a>
+</aside>
+	<?php if(strcmp($this->topic->created_by, $this->username)==0){
+		$deleteReply=$this->url(array('controller'=>'forum','action'=>'delete-topic',
+		'cat'=>$this->catId, 'id'=>$this->id, 'topic'=>$this->topic->topic_id), null, true);
+		?>
+<!--	<a class="delete" href="--><?php //echo $deleteReply;?><!--"><img src="--><?php //echo $this->baseUrl();?><!--/images/del.png" /></a>-->
+	<a class="delete" href="<?php echo $deleteReply;?>"><img src="<?php echo $this->baseUrl();?>/images/del.png" /></a>
+	<?php } ?>
+<?php $this->headTitle()->set(substr($this->topic->topic_name,0,100));
+echo $this->headTitle();
+?>
+
+<div class="reply">
+<h2><?php echo $this->topic->topic_name;?></h2>
+<?php
+	$created=strtotime($this->topic->created_at);
+	$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+	$frmUser=new Form_User();
+	$t=$frmUser->makeTime($current,$created);
+?>
+<span class="name_span">posted by <a href="<?php echo $creator;?>">
+<?php echo htmlentities($this->topic->created_by);?></a></span>
+<span class="last_login">&nbsp;<?php echo $t;?></span><br />
+
+<p><?php echo htmlentities(Util::convert_smart_quotes($this->topic->topic_description));?></p>
+</div>
+</div>
+<?php 	if($this->paginator){
+		foreach($this->paginator as $item){?>
+		<div class="replies">
+		<aside>
+		<?php  $dp=$mdlUserData->findPhotoByUsername($item->reply_by);
+		if($dp==null){
+			$mdlUser=new Model_User();
+			$replyBy=$mdlUser->getUserByUsername($item->reply_by);
+		  if($replyBy->gender=='m')
+			$dp='/images/mt.png';
+		  else
+			$dp='/images/ft.png';
+		}
+
+		$user=$this->url(array('controller'=>'profile','action'=>'index', 'user'=>$item->reply_by), null, true);
+		?>
+		<a href="<?php echo $user;?>">
+<!--		<img src="--><?php //echo $this->baseUrl()."/".$dp; ?><!--" height="50" width="50" alt="--><?php //echo $item->reply_by;?><!--" title="--><?php //echo $item->reply_by;?><!--" />-->
+		<img src="<?php echo $dp; ?>" height="50" width="50" alt="<?php echo $item->reply_by;?>" title="<?php echo $item->reply_by;?>" />
+		</a>
+		</aside>
+		<?php if(strcmp($item->reply_by, $this->username)==0){
+			$deleteReply=$this->url(array('controller'=>'forum','action'=>'delete-reply',
+			'cat'=>$this->catId, 'id'=>$this->id, 'topic'=>$this->topic->topic_id, 'reply'=>$item->reply_id, 'page'=> $this->currentPage), null, true);
+			?>
+		<a class="delete" href="<?php echo $deleteReply;?>"><img src="<?php echo $this->baseUrl();?>/images/del.png" /></a>
+		<?php } ?>
+		<div class="reply">
+		<?php
+			$created=strtotime($item->reply_at);
+			$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+			$frmUser=new Form_User();
+			$t=$frmUser->makeTime($current,$created);
+		?>
+		<span class="name"><a href="<?php echo $user;?>"><?php echo $item->reply_by;?></a></span>
+		<span class="last_login">&nbsp;<?php echo $t;?></span>
+		<br />
+		<p><?php echo strip_tags(nl2br($item->reply),'<br>');?></p>
+		</div>
+		</div>
+
+<?php }?><br />
+<div id="pagination">
+<?php echo $this->paginationControl($this->paginator,
+				'Sliding',
+				'includes/paginationcontrol.phtml');
+?>
+</div>
+<?php 
+	  $lastPage=ceil($this->paginator->getTotalItemCount()/10);
+}?>
+<?php
+$reply=$this->url(array('controller'=>'forum', 'action'=>'reply', 'cat'=>$this->catId, 'id'=>$this->id, 'topic'=>$this->topic->topic_id), null, true);
+$back=$this->url(array('controller'=>'forum', 'action'=>'category', 'cat'=>$this->catId, 'id'=>$this->id), null, true);?>
+<div class="buttons">
+<div class="btn btn-primary">
+<a href="<?php echo $back;?>">View All Topics</a>
+</div>
+<div class="replyLink btn btn-success">
+<a href="<?php echo $reply; if(isset($lastPage))echo '?page='.$lastPage;?>">Reply</a>
+</div>
+</div>
+<?php }else{
+$back=$this->url(array('controller'=>'forum', 'action'=>''), null, true);
+?>
+<div id="error">
+	<h3>Oops! Page not found.</h3>
+</div>
+<div class="buttons">
+<a href="<?php echo $back;?>">Back To Forum</a>
+</div>
+
+<?php }?>
+
+</div>
+</div>
+
+<div id="sidebar_right">
+    <?php
+    $askQuestion = $this->url(array('controller'=>'programs','action'=>'ask-question'),null,true);
+    $allQuestions = $this->url(array('controller'=>'programs','action'=>'questions'),null,true);
+    $guess = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'),null,true).'?v=guess-questions';
+    ?>
+    <br />
+    <div class="link_ques">
+        <a href="<?php echo $guess;?>">Guess Questions</a>
+    </div>
+    <br />
+    <div class="link_ques">
+        <a href="<?php echo $askQuestion;?>">Ask a Question</a>
+    </div>
+    <br />
+    <div class="link_ques">
+        <a href="<?php echo $allQuestions;?>">View All Questions</a>
+    </div>
+    <br />
+    <div id="ad">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-1662490668144398";
+        /* Sidebar */
+        google_ad_slot = "2811909247";
+        google_ad_width = 250;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+    <br />
+    <fieldset class="home_right">
+        <legend>Do you know?</legend>
+        <div class="divsContent">
+            <?php	  $mdlFunFacts=new Model_FunFacts(); $result=$mdlFunFacts->randomFact();  ?>
+            <p><?php echo $result->fact;?></p>
+            <?php $trial=$this->url(array('controller'=>'home', 'action'=>'trial-class'),null, true); ?>
+        </div>
+    </fieldset>
+    <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+    <fieldset class="home_right">
+        <legend>Quote Of The Day</legend>
+        <div class="divsContent">
+            <?php $mdlQuote=new Model_Quotes();
+            $quote=$mdlQuote->randomQuote();
+            if($quote!=false){
+                $escapedQuote=Util::convert_smart_quotes($quote->quote);
+                ?>
+                <p><?php echo $escapedQuote;?> - <i><?php echo $quote->quote_by;?></i></p>
+                <?php }?>
+            <?php $allQuotes=$this->url(array('controller'=>'quotes', 'action'=>''),null, true); ?>
+            <a href='<?php echo $allQuotes;?>'>View all quotes</a>
+        </div>
+    </fieldset>
+    <fieldset class="home_right" style="border:none;">
+        <div class="g-plus" data-width="275" data-href="//plus.google.com/112434687978129571118?rel=publisher"></div>
+    </fieldset>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+    <div id="divsFb">
+        <div class="fb-like-box" data-href="http://www.facebook.com/pages/Mentors/179112368809235" data-width="240" data-show-faces="true" data-stream="false" data-header="true"></div>
+    </div>
+
+</div>

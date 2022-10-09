@@ -1,0 +1,13 @@
+<div class="content">
+	<div class="contact replyCont">
+	    <h2>Get in touch</h2>
+        <?php if($this->message==1){?>
+            <div class="error text-center"><p>Your details have been submitted. We will contact you shortly.</p></div>
+        <?php }elseif($this->message==2){ ?>
+            <div class="error text-center"><p>Your details could not be submitted at the moment. Please try again in sometime.</p></div>
+        <?php }else{?>
+            <p> Get in touch. Please fill out the form below, and our representative will contact you as soon as possible.</p>
+        <?php echo $this->form;
+        }?>
+    </div>
+</div>

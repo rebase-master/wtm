@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+	<head>
+		<?php require_once APPLICATION_PATH.'/../layouts/templates/_common_meta.php'; ?>
+		<?php echo $this->headTitle(); ?>
+        <?php
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+            $this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+        ?>
+        <?php
+            $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/bootstrap.min.css');
+            $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+        ?>
+        <?php
+            echo $this->headLink();
+        ?>
+    </head>
+	<body>
+
+	    <div id="page" class="container-fluid">
+	        <?php require_once APPLICATION_PATH.'/../layouts/templates/_head_nav.php'; ?>
+	         <div id="contentWrapper" class="container">
+	             <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+	                <?php echo $this->layout()->content; ?>
+
+	         </div>
+	    </div>
+
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+	    <?php echo $this->headScript(); ?>
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/fb_sdk.php'; ?>
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/twitter_sdk.php'; ?>
+	    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' media="all" />
+
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<div class="content">
+
+<h1>Registration Complete</h1>
+<?php
+if(count($this->errors)>0){?>
+<br /><br />
+
+<div class="error">
+	<p>Errors were encountered while creating your account:</p>
+	<?php
+	echo "<p>".$this->errors."</p>";
+	?>
+</div>
+<?php
+}
+?>
+
+<?php
+if($this->success==1){
+	$url=$this->url(array('controller'=>'user', 'action'=>'login'));
+	?>
+<p style="font-size:1.2em; margin-top:10px; padding:10px;">
+	Congratulations! Your e-mail addess has been verified.
+	You can now <a href="<?php echo $url; ?>">login</a> to your account.
+</p>
+<?php }?>
+</div>

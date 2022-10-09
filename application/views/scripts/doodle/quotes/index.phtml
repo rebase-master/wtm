@@ -1,0 +1,112 @@
+<?php $this->headTitle()->set('Quotes');
+echo $this->headTitle();
+?>
+<?php if(isset($this->quote)): ?>
+<div id="main" class="col-sm-8 col-lg-9">
+    <div class="content">
+        <div class="quotes-cont">
+            <div class="quotes-single text-center radial-position">
+                <p class="quote"> <?php echo $this->quote->quote;?></p>
+                <p class="author">- <?php echo $this->quote->quote_by;?></p>
+                <input type="hidden" name="qid" value="<?php echo $this->quote->id; ?>" />
+                <p class="source">wethementors.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4 col-lg-3" id="sidebar_right">
+    <fieldset class="home_right text-center google-ad">
+        <?php include APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/dyk.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center">
+        <!--            --><?php //require_once APPLICATION_PATH.'/../layouts/templates/gplus.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center">
+        <!--            --><?php //require_once APPLICATION_PATH.'/../layouts/templates/fb.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center">
+        <?php include_once APPLICATION_PATH.'/../layouts/templates/quick-links.php'; ?>
+    </fieldset>
+</div>
+<?php else: ?>
+<div id="main" class="col-sm-12 col-lg-12">
+    <div class="content">
+        <h1 class="text-center">Quotes</h1><hr />
+        <?php if($this->paginator):?>
+            <div class="facts-cont quotes-cont">
+                <div class="clearfix">
+                    <?php $ctr = 1; $alpha = 0; $beta = 1; $gamma = 2; ?>
+                    <div class="col-sm-12 col-md-6 col-lg-4 alpha">
+                        <?php $funFact = $this->paginator;?>
+                        <?php $c=0; foreach($funFact as $key => $record):?>
+                        <?php if($c == $alpha):?>
+                            <?php $d = mt_rand(11,14);?>
+                            <div class="facts gd<?php echo $ctr;?> transform<?php echo $d;?>">
+                                <p class="quote"> <?php echo $record->quote;?></p>
+                                <p class="author">- <?php echo $record->quote_by;?></p>
+                                <input type="hidden" name="qid" value="<?php echo $record->id; ?>" />
+                                <div class="social">
+                                    <div class="fb-share-quote btn btn-primary btn-sm">Share</div>
+                                </div>
+                            </div>
+                        <?php $alpha = $alpha + 3; $ctr ++; $ctr = $ctr > 10?1:$ctr; endif; ?>
+                        <?php if($c == 3): ?>
+                            <div class="facts">
+<!--                                --><?php //include APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php $c++; endforeach; ?>
+                    </div>
+                    <div class="col-sm-12  col-md-6 col-lg-4 beta">
+                        <?php $c=0; $funFact = $this->paginator;?>
+                        <?php foreach($funFact as $key => $record):?>
+                        <?php if($c == $beta):?>
+                            <?php $d = mt_rand(11,14);?>
+                            <div class="facts gd<?php echo $ctr;?> transform<?php echo $d;?>">
+                                <p class="quote"> <?php echo $record->quote;?></p>
+                                <p class="author">- <?php echo $record->quote_by;?></p>
+                                <div class="social">
+                                    <div class="fb-share-quote btn btn-primary btn-sm">Share</div>
+                                </div>
+                            </div>
+                            <?php $beta = $beta + 3;  $ctr ++; $ctr = $ctr > 10?1:$ctr; endif; ?>
+                        <?php $c++; endforeach; ?>
+                    </div>
+                    <div class="col-sm-12  col-md-12 col-lg-4 gamma">
+                        <?php $c=0; foreach($funFact as $key => $record):?>
+                            <?php if($c == $gamma):?>
+                                <?php $d = mt_rand(11,14);?>
+                                <div class="facts gd<?php echo $ctr;?> transform<?php echo $d;?>">
+                                    <p class="quote"> <?php echo $record->quote;?></p>
+                                    <p class="author">- <?php echo $record->quote_by;?></p>
+                                    <div class="social">
+                                        <div class="fb-share-quote btn btn-primary btn-sm">Share</div>
+                                    </div>
+                                </div>
+                            <?php $gamma = $gamma + 3;  $ctr ++; $ctr = $ctr > 10?1:$ctr; endif; ?>
+                            <?php if($c == 24): ?>
+                                <div class="facts">
+<!--                                    --><?php //include APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php $c++; endforeach; ?>
+                    </div>
+                </div>
+                <hr />
+                <div id="pagination" class="pagination">
+                    <div class="controls">
+                        <?php
+                            echo $this->paginationControl($this->paginator,
+                                        'Sliding',
+                                        'includes/paginationcontrol2.phtml');
+                        ?>
+                    </div>
+                </div>
+        <?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

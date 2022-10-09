@@ -1,0 +1,11 @@
+<?php $this->headTitle()->set('Add English Notes');
+echo $this->headTitle();
+?>
+<div class="content">
+<h2>Add questions, explanations and other resources of English Literature and Language</h2><br />
+<?php if($this->msg){
+	echo "<p>".$this->msg."</p>";
+	}
+	?>
+	<?php echo $this->form;?>
+</div>

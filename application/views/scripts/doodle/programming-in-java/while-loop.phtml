@@ -1,0 +1,78 @@
+<?php
+
+    $this->headTitle()->set('while loop in Java');
+    echo $this->headTitle();
+    $ton=$this->url(array('controller'=>'programming-in-java', 'action'=>'types-of-numbers'));
+    ?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">While-Loop in Java</h1><hr />
+    <div class="content">
+            <blockquote>
+                  The <i>while</i> loop in Java runs as long as the given condition is true.
+                <i>while</i> loop is an <i>entry-controlled</i> loop. That means decision whether the loop
+                will run or not is taken at the beginning of the loop.
+            </blockquote>
+            <blockquote>
+                A <i>while</i> loop has three parts:
+                <ul>
+                <li>Initialization Expession</li>
+                <li>Test/Conditional Expression </li>
+                <li>Update Expression</li>
+                </ul>
+            </blockquote>
+            <div class="diagram">
+                <img src="<?php echo $this->baseUrl(); ?>/images/while-loop-parts.png" title="Three parts of while-loop" height="300" />
+            </div>
+                <p>
+                    The variable used in the initialization parts of a <i>while</i> loop is known
+                    as a loop variable. In the following example, <em><i>n</i></em> is the loop variable.
+                </p>
+               <pre>
+     int n=123,a;
+
+              while(n>0){
+
+              a=n%10;
+
+              System.out.print(a+" ");
+
+              n=n/10;
+            }
+       </pre>
+        <p>
+            The <i>while</i> loop is used synonymously with for loop except in situations where a
+            <i>while</i> loop is most apt for use. Basically in situations where we are not sure
+            how many times the loop should run, that is, there is no fixed limit. As you grow in stature in
+            the programming world, the difference between the two loops will come quite
+            naturally to you.
+            Following is a simple program to print the sum of digits of a number.
+        </p>
+            <pre>
+    class DigitsOfNumber{
+
+           public static void main(String args[]){
+
+               int a, n=123, s=0;
+
+                   while(n>0){
+
+                   a=n/10;
+
+                   s=s+a;
+
+                   n=n/10;
+
+                }//end of loop
+
+            System.out.print("Sum = "+s);
+
+                 }//end of main
+
+           }//end of class
+            </pre>
+        <div class="questions text-center">
+            <h2>Questions</h2>
+            <a href="<?php echo $ton;?>">Types of Numbers</a>
+        </div>
+    </div>
+</div>

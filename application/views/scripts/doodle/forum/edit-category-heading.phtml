@@ -1,0 +1,10 @@
+<div class="content">
+	<?php if($this->error==1){?>
+	<p>You must be logged in to view this page.</p>
+	<?php 
+	}else{?>
+<h2>Edit Category Heading</h2>
+<?php 	echo "<br /><p>".$this->result."</p>";
+echo $this->form;
+}?>
+</div>

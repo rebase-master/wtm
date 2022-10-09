@@ -1,0 +1,23 @@
+<?php
+    $this->headTitle()->set('#Category Questions');
+    echo $this->headTitle();
+?>
+
+<div class="content">
+    <div class="list-head">
+        <h2>No of Questions by Category</h2>
+    </div>
+    <?php if($this->catQues):?>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Category</th><th>No Of Questions</th>
+            </tr>
+            <?php foreach($this->catQues as $category => $question):?>
+                <tr>
+                    <td><?php echo $question[0];?></td><td><?php echo $question[1];?></td>
+                </tr>
+            <?php endforeach;?>
+        </table>
+    <?php endif;?>
+
+</div>

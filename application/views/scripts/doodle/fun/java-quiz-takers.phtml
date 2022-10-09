@@ -1,0 +1,47 @@
+<style type="text/css">
+table.spreadsheet {
+	margin: 10px 0;
+	border: #999 1px solid;
+}
+
+table.spreadsheet th {
+	background: #ccc;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 5px 2px;
+}
+
+table.spreadsheet td {
+	border-top: #999 1px solid;
+	padding: 5px 2px;
+	border-left:#999 1px solid;
+	text-align:center
+}
+
+</style>
+<div class="content quiz">
+<link  href="<?php echo $this->baseUrl();?>/skins/reds/css/quiz.css" media="screen" rel="stylesheet" type="text/css" >
+<div id="quiz_container">
+<h1>Java Quiz Attempts</h1>
+<?php if($this->quizTakers):?>
+<table class="spreadsheet" cellpadding="0" cellspacing="0">
+	<tr><th>Sno</th><th>Username</th><th>Category</th><th>Score</th><th>Attempts</th><th>Date</th>
+	</tr>
+	<?php
+	$i=1;
+	foreach($this->quizTakers as $user):
+	?>
+	<tr>
+		<td><?php echo $i++;?></td>
+		<td><?php echo $user->username;?></td>
+		<td><?php echo $user->category;?></td>
+		<td><?php echo $user->score;?></td>
+		<td><?php echo $user->attempts;?></td>
+		<td><?php echo $user->last_taken_on;?></td>
+	</tr>
+<?php endforeach;?>
+</table>
+<?php endif; ?>
+		
+</div>
+</div>

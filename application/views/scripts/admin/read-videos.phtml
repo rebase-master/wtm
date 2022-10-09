@@ -1,0 +1,52 @@
+<?php
+$this->headTitle()->set('Videos List');
+echo $this->headTitle();
+?>
+
+<div class="content">
+
+	<div class="list-head">
+		<h2>Videos List</h2>
+	</div>
+	<?php if($this->paginator): ?>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Sl no</th>
+					<th>Heading</th>
+					<th>Description</th>
+					<th>Source</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+			<?php foreach($this->paginator as $video): ?>
+				<tr>
+					<td><?php echo ++$i; ?></td>
+					<td><?php echo htmlentities($video->heading); ?></td>
+					<td><?php echo htmlentities($video->description); ?></td>
+					<td>
+						<a href="<?php echo htmlspecialchars($video->link); ?>"><?php echo htmlspecialchars($video->link); ?></a>
+					</td>
+					<td>
+						<?php echo $video->created; ?>
+					</td>
+					<?php
+						$delete=$this->url(array('controller'=>'admin', 'action'=>'delete-video','id'=>$video->id));
+						$update=$this->url(array('controller'=>'admin', 'action'=>'update-video','id'=>$video->id));
+					?>
+					<td><a class="btn btn-xs btn-danger" href="<?php echo $delete; ?>">Delete</a></td>
+					<td><a class="btn btn-xs btn-info" href="<?php echo $update; ?>">Update</a></td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+		<div id="pagination" class="pagination">
+			<?php echo $this->paginationControl($this->paginator,
+				'Elastic',
+				'includes/paginationcontrol.phtml');
+			?>
+		</div>
+	<?php endif; ?>
+</div>

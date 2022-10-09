@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/skins/reds/css/form.css" />
+<div class="content">
+<h1>No of Questions by Category</h1>
+<?php if($this->catQues):?>
+<table cellpadding="0" cellspacing="0" class="spreadsheet">
+<tr>
+	<th>Category</th><th>No Of Questions</th>
+</tr>
+<?php foreach($this->catQues as $category => $question):?>
+<tr>
+	<td><?php echo $question[0];?></td><td><?php echo $question[1];?></td>
+</tr>
+<?php endforeach;?>
+<?php endif;?>
+</table>
+</div>

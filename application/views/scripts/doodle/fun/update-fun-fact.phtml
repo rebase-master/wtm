@@ -1,0 +1,40 @@
+<?php
+    $this->headTitle()->set('Update - Fun Facts');
+    echo $this->headTitle();
+    $list=$this->url(array('controller'=>'fun','action'=>'list-fun-facts'),null,true);
+?>
+<div class="content">
+    <div class="fcgq">
+        <div class="clearfix">
+            <h1 class="pull-left">Update Fun Fact</h1>
+            <a href="<?php echo $list; ?>" class="btn btn-sm btn-primary pull-right">List Facts</a>
+        </div>
+        <hr />
+	    <div class="admin-form-center">
+            <?php if($this->record == -1): ?>
+                <div class="alert alert-danger">
+                    <p>Record not found!</p>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-danger hide">
+                    <p>Something went wrong. Please try again later.</p>
+                </div>
+                <div class="alert alert-success hide">
+                    <p>Record updated successfully.</p>
+                </div>
+                <form role="form" action="#" id="update-fact">
+                    <div class="form-group">
+                        <label for="fun-fact">Fact</label>
+                        <textarea rows="10" class="form-control" id="fun-fact" placeholder="What's the fact?"><?php echo $this->record->fact; ?></textarea>
+                    </div>
+                    <input type="hidden" name="id" value="<?php echo $this->record->id; ?>" />
+                    <button class="btn btn-primary">Update</button>
+                    <span class="loading hide">Please wait ...
+                        <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+                    </span>
+
+                </form>
+            <?php endif; ?>
+	    </div>
+    </div>
+</div>

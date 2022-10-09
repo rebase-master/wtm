@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+    <meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important,
+        PCM,computer applications,english,literature,10,12,computer coaching,
+        java coaching,programs,board questions,sample papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?php echo $this->baseUrl('/images/logo.ico');?>" type="image/icon" />
+
+    <?php echo $this->headTitle(); ?>
+    <?php
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/admin/wmd/showdown.js');
+//        $this->headScript()->appendFile($this->baseUrl().'/scripts/admin/wmd/wmd.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/admin/wmd/chipersoftwmd.js');
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/admin/admin.js");
+    ?>
+    <?php
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/bootstrap.min.css');
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/admin/css/style.css');
+//        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/admin/css/wmd/wmd.css');
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/admin/css/wmd/chipersoftwmd.css');
+    ?>
+    <?php
+        echo $this->headLink();
+    ?>
+    <?php echo $this->headScript(); ?>
+
+</head>
+<body>
+
+<div id="page" class="container-fluid">
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/admin/_admin_head_nav.php'; ?>
+
+    <div id="adminWrapper">
+        <div id="bottombar" class="clearfix">
+            <div id="sidebar" class="col-sm-3 col-lg-2">
+                <?php require_once APPLICATION_PATH.'/../layouts/templates/admin/_sidebar.php'; ?>
+            </div>
+            <div id="content-admin" class="col-sm-9 col-lg-10">
+                <?php echo $this->layout()->content; ?>&nbsp;
+            </div>
+        </div>
+    </div><!--main-->
+
+</div><!-- page -->
+
+
+</body>
+</html>

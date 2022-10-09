@@ -1,0 +1,598 @@
+<?php
+    $this->headTitle()->set('ISC Computer Theory Sample Questions');
+    echo $this->headTitle();
+    $loginUrl = $this->url(array('controller'=>'user','action'=>'login'),null,true).'?next='. urlencode(BASE_URL.'isc/computer-project');
+    $iscpy = $this->url(array('controller'=>'isc','action'=>'previous-years'), null ,true);
+    $isccp = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'), null ,true);
+    $iscvv = $this->url(array('controller'=>'isc','action'=>'viva-voce'), null ,true);
+    $iscsp = $this->url(array('controller'=>'isc','action'=>'sample-papers'), null ,true);
+    $isctq = $this->url(array('controller'=>'isc','action'=>'isc-comp-theory-sample-ques'), null ,true);
+?>
+<div class="resources output-ques">
+    <h1>ISC Output Type Questions</h1><hr />
+    <div>
+        <div class="isc-theory-cont">
+            <div class="isc-theory-ques">
+                <h2>Find the missing parts.</h2>
+                <p>For each of the question in the following list,  There are five places in the code marked by
+                    ?1?, ?2?, ?3?, ?4?, ?5? that must be replaced by expressions or statements so that the program works correctly.
+                </p>
+            <ol>
+                <li>
+                <div class="ques">
+                    <p>
+                        The public function find has been written to do a binary search for the integer m in the sorted integer array data. The array is sorted in ascending order. If m is present in the data then it returns 1 else 0.
+                    </p>
+<pre class="code">
+    int find (int m, int data [], int size)
+    {
+    //data is a sorted array of integers arranged in ascending order
+    //size gives the number of elements in the array
+    //m is the integer which we are trying to search in the array data
+
+    int found;
+    int j=0, k=?1?;
+
+    if(?2?)
+    {
+        while(?3?)
+        {
+            int i=(j+k)/2;
+            if(m==data[i])
+            {
+                ?4?
+                break;
+            }
+            else
+            {
+                if(?5?)
+                    j=i+1;
+                else
+                    k=i-1;
+            }
+        }
+    }
+    return(found);
+    }
+</pre>
+                </div>
+                </li>
+
+                <li>
+                <div class="ques">
+                    <p>
+                        The following function is a part of the class arrange which stores n integers in an array arr[]. The member/function bubble sort()arranges the array in ascending order.
+                    </p>
+<pre class="code">
+    void bubblesort()
+    {
+    int swapped;
+    into upto=n-1;
+
+        do{
+            swapped=0;
+            for(int i=0;i< ?1?;i++)
+            {
+                if(?2?>arr[i+1])
+                {
+                    int val=arr[i];
+                    arr[i]=?3?;
+                    a[i+1]=val;
+                    swapped=1;
+                }
+            }
+            upto=?4?;
+        } while (swapped==?5?);
+    }
+</pre>
+                </div>
+            </li>
+
+                <li>
+                    <div class="ques">
+                    <p>
+                        The following function is a function of some class. It computes X raised to the power n. here X is the base value and n is the power.
+                    </p>
+<pre class="code">
+    double integral power(double x, int n)
+    {
+    int inverse =0;
+    double result = 1.0;
+    if(n==0)
+        return ?1?;
+    else
+        if(n<0){
+            inverse=1;
+            n=?2?;
+        }
+
+    for(int i=1;?3?;i++)
+        result ?4?x;
+
+    if(inverse==1)
+        result=?5?;
+
+    return result;
+    }
+</pre>
+                </div>
+            </li>
+
+            <li>
+                <div class="ques">
+                    <p>
+                        The following function is a function of some class. It computes the quotient and remainder of a division.
+                    </p>
+<pre class="code">
+    void quotientrem()
+    {
+    int dividend = 13, divisor = 2, quo = ?1?;
+    int rem;
+        while(dividend>=?2?)
+        {
+            dividend =?3?;
+            rem=?4?;
+            quo=?5?;
+        }
+    rem=dividend +divisor;
+    }
+</pre>
+                </div>
+            </li>
+            <li>
+                <div class="ques">
+                    <p>The following is a function of some class. It returns 1 if the number is a perfect number otherwise it returns 0.
+                    A perfect number is a number which is equal to the sum of its factors other than the number itself.</p>
+<pre class="code">
+    int perfectNo(int n)
+    {
+        int ?1?
+
+        for(int j=1;?2?;j++)
+        {
+            if(?3?)
+            sum?4?;
+        }
+    if(?5?)
+        return1;
+    else
+        return 0;
+    }
+</pre>
+                </div>
+
+            </li>
+                </ol>
+            </div>
+            <hr />
+
+            <div class="google-ad">
+                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+            </div>
+            <div class="isc-theory-ques output-ques">
+                <h2>Find the output</h2>
+                <ol>
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following function show( ) and calling( ) are a part of some class. Assume that the parameter n is greater than 1 when the function is invoked. It returns the value 1 when true otherwise it returns 0. Show the dry
+                                run/working:
+                            </p>
+<pre class="code">
+    void calling()
+    {
+        int f=2;
+        show(n , f);
+    }
+
+    int show(int n, int f)
+    {
+        if(n == f )
+            return 1;
+
+        if(n % f == 0 || n == 1)
+            return 0;
+        else
+            return show(n, f+1);
+    }
+</pre>
+                <p>
+                    (i) What will the function show() return when the value of n is 11?<br />
+                    (ii) What will the funct ion show() return when the value of n is 27?<br />
+                    (iii) In one line state what the function show(…) is doing.<br />
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                In the following function strange is a part of some class. Assume that arguments x and y are greater than 0 when the function is invoked. Show the dry run/working.
+                            </p>
+<pre class="code">
+    int strange(int x, int y)
+    { //Assuming x>=0 and y>0
+        if(x>=y)
+        {
+            x=x-y;
+            return strange(x, y);
+        }
+        else return x;
+    }
+</pre>
+                <p>
+                    (i) What will the function strange(20, 6) return?<br />
+                    (ii ) What will the function strange(15, 6) return?<br />
+                    (iii) In one line state what the function strange( . . .) is doing.
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following function trial( ) and perform( ) are a part of some class. Answer the
+                                following parts given below. Show the dry run/working.
+                            </p>
+<pre class="code">
+    int trial(int n)
+    {
+        if(n==1)
+            return 2;
+        else if(n==2)
+            return 3;
+        else
+            return trial(n-2) + trial(n-1);
+        }
+
+        void perform(int p)
+        {
+        int x;
+        for(int i=1;i<=p;i++)
+        {
+            x=trial(i);
+            System.out.println(x+” “);
+        }
+    }
+</pre>
+                <p>
+                    (i ) What will the function trial ( ) return when the value of n is 4?<br />
+                    (ii) What will be the output of the function perform( ) when the value of p is 5?<br />
+                    (iii) In one line state what the function trial ( ) is doing, apart from recursion?
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following function find( ) and perform( ) are a part of some class. Show the dry run/working.
+                            </p>
+<pre class="code">
+    int find(int n, int p)
+    {
+        if(n == 0)
+            return p;
+        else
+            return find(p%n,n);
+    }
+
+    void perform(int m)
+    {
+        int q = 14;;
+        int x = find(q++, ++m);
+        System.out.println(x);
+    }
+</pre>
+                <p>
+                    (i) What will the function find(12,8) return?<br />
+                    (ii) What will be the output of the function perform( ) when the value of m is 20?<br />
+                    (iii) In one line state what the function find( ) is doing, apart from recursion.
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                In the following, function someFn( ) is a part of some class. Assume that arguments a and b are greater than 0 when the function is invoked. Show the dry run/ working
+                            </p>
+<pre class="code">
+    int someFn(int a, int b)
+    {
+        // assume that a>0 and b>0
+    int ans, sm, la;
+    if(a<b) {
+        sm = a;
+        la = b;
+    }else {
+        sm = b;
+        la = a;
+    }
+    ans = la;
+    while(ans % sm != 0)
+        ans += la;
+
+    return ans;
+    }
+</pre>
+                <p>
+                    (i ) What will the function someFn(7,5) return?<br />
+                    (ii) What will the function someFn(6,8) return?<br />
+                    (iii) In one line say what the function someFn() is doing.
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following function is part of some class. Assume that a and b are
+                                positive integers.
+                            </p>
+<pre class="code">
+    int somefn(int a, int b)
+    {
+        while(a!=b)
+        {
+            if(a>b)
+                a = a – b;
+            else
+                b = b – a;
+        }
+        return(a);
+    }
+</pre>
+                <p>
+                    (i) What value will be returned by the expression somefn(12,30)?<br />
+                    (ii ) What value will be returned by the expression somefn(8,15)?<br />
+                    (iii ) In one line say what is being computed by the function somefn( ).
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following public function is a part of some class. Assume n is always
+                                positive. Answer the given questions. Give the dry run/ working
+                            </p>
+<pre class="code">
+    int unknown(int n)
+    {
+        int i, k;
+        if(n%2==0) {
+            i = n/2;
+            k = 1; }
+            else {
+            k = n;
+            n--;
+            i = n/2;
+        }
+        while(i > 0)
+        {
+            k = k * i * n;
+            i--;
+            n--;
+        }
+    return(k);
+    }
+</pre>
+                <p>
+                    (i) What value will be returned by the expression unknown(7)?<br />
+                    (ii) What value will be returned by the expression unknown(6)?<br />
+                    (iii) In one line say what is being computed by the function unknown(int n).
+                </p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                The following function comb( ) and combi( ) are a part of some class. Give the output when
+                                the function combi( ) is called. Show the dry run/working.
+                            </p>
+<pre class="code">
+    void combi()
+    {
+        for(int i=0;i<5;i++)
+        {
+            for(int j=0;j<i+1;j++)
+                System.out.print(“ “ + comb(i,j));
+        System.out.println( );
+        }
+    }
+    long comb(int n, int k)
+    {
+        long c=1;
+        for(int i=1;i<=k;i++, n--)
+            c=c*n/i;
+        return c;
+    }
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                State the value of ‘r’ in the following program segment for each value of ‘i’ :
+                            </p>
+<pre class="code">
+    Class Rec{
+        int recs(int num)
+        {
+            if(num == 0)
+                return 0;
+            else
+                return num + recs(num-1);
+        }
+
+        void main( String arg[])
+        {
+                int r;
+            for( int i=0; i<5; i++)
+            {
+                r= recs(i);
+            }
+        }
+    }
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                State the value of ‘d’ at the end of the following program segment:
+                            </p>
+<pre class="code">
+    int r;
+    char d= ‘1’;
+    for(int n=0; n<= 9 ; n++)
+    {
+        r = n++;
+        for(int a=0; a<=r; a++)
+            d++;
+    }
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                State the final value of q at the end of the following program segment:
+                            </p>
+<pre class="code">
+    int m, n, p, q=0;
+    for(m=2; m<= 3 ; ++m)
+    {
+        for(n=1; n<=m; ++n)
+        {
+            p=m+n-1;
+            if(p%3 ==0)
+                q += p;
+            else
+                q += p + 4;
+        }
+    }
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                What will be the values stored in array ar[ ] after the following program is executed.
+                            </p>
+<pre class="code">
+    void array( )
+    {
+        int i, j=1;
+        int dividend = 2;
+        int N = 30;
+        int ar[] = { 2,0,0,0,0,0,0,0,0,0 };
+        while( dividend < = N )
+        {
+            for( int i = 2; i < dividend; i++)
+            {
+                if( dividend % i = = 0 ) break;
+                if( i = = dividend – 1)
+                ar[ j++ ] = dividend;
+            }
+        dividend++;
+        }
+    }
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                Give the output of the following program segment:
+                            </p>
+<pre class="code">
+    int x=0;
+    do
+    {
+        if(x<3)
+        {
+            x+=2;
+            System.out.println(x);
+            continue;
+        }
+        else
+        {
+            System.out.println(++x);
+            break;
+        }
+    } while(x<10);
+</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="ques">
+                            <p>
+                                Give the output of the following program segment.
+                            </p>
+<pre class="code">
+    class Stack
+    {
+        final int SIZE=50;
+        private:
+        int stak[SIZE];
+        int top;
+        public:
+        Stack()
+        {
+            top=0;
+        }
+        void push(int x)
+        {
+            stak[++top] = x;
+        }
+        int pop()
+        {
+            return stak[top--];
+        }
+        void main()
+        {
+            Stack s1=new Stack();
+            s1.push(51);
+            s1.push(27);
+            s1.push(5);
+            System.out.println(s1.pop());
+            System.out.println(s1.pop());
+            s1.push(18);
+            s1.push(72);
+            s1.push(517);
+            System.out.println(s1.pop());
+        }
+    }
+</pre>
+                        </div>
+                    </li>
+
+            </div>
+            <div class="google-ad">
+                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+            </div>
+        </div>
+        <div>
+            <h3>Other Resources:</h3>
+            <div class="papers">
+                <ul>
+                    <li><a href="<?php echo $iscsp; ?>">ISC Sample Papers</a></li>
+                    <li><a href="<?php echo $iscpy; ?>">ISC Previous Years Papers</a></li>
+                    <li><a href="<?php echo $isccp; ?>">ISC Computer Practical</a></li>
+                    <li><a href="<?php echo $iscvv; ?>">ISC Viva-Voce</a></li>
+                    <li><a href="<?php echo $isctq; ?>">ISC Theory Questions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

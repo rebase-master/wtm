@@ -1,0 +1,89 @@
+<?php
+    $this->headTitle()->set('2-D Array in Java');
+    echo $this->headTitle();
+    $array2d=$this->url(array('controller'=>'programming-in-java','action'=>'array2d-questions'));
+?>
+
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Double Dimension(2-D) Arrays in Java</h1><hr />
+    <div class="content">
+        <p>
+            A 2-D array or double dimension array is a continuous
+            location in memory where elements of the same type(datatype) are stored.
+            A 2-D array consists of rows and columns where an element is stored at the cross-section of
+            row and column known as a location.
+            A location is accessed with the help of indeces of rows and columns as shown in the figure below.
+        </p>
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl(); ?>/images/array2.png" title="array structure" />
+        </div>
+        <p>
+            To use an array in a program, you must declare an array first, then assign values to it, and then access
+            it within a loop.
+        </p>
+            <p> Array Declaration</p>
+            <p>
+                To declare an integer array:</p>
+            <pre>
+
+                int a[][]=new int[4][4];
+            </pre>
+            <p>
+                To declare a String array:</p>
+            <pre>
+
+                String a[][]=new String[5][45];
+            </pre>
+            <p>And so on.</p>
+           <p>To assign values to an array:</p>
+            <pre>
+
+         System.out.println("Enter "+(4*4)+" integer values");
+
+            try{
+
+                for(i=0;i< 4;i++){
+
+                 for(j=0;j< 4;j++){
+
+                   a[i][j]=Integer.parseInt(br.readLine());
+                  }
+                }
+
+                }catch(Exception e){}
+            </pre>
+            <p>Accessing array elements</p>
+            <pre>
+
+                for(i=0;i< 4;i++){
+
+                for(j=0;j< 4;j++){
+
+                    System.out.println(a[i][j]);
+                }
+             }
+            </pre>
+        <h2>Initializing arrays</h2>
+            <p>Integer array:</p>
+            <pre>
+
+                int a[][]={ {1,2,3},
+                            {4,5,6},
+                            {7,8,9}
+                         }
+            </pre>
+            <p>String array:</p>
+            <pre>
+
+                 String str[][]={ {"Java", "is", "Robust and Secure."},
+                                 {"Java", "is", "platform-independent."},
+                                 {"Java", "is", "an", "Object-Oriented."}
+                               };
+            </pre>
+
+        <div class="questions text-center">
+            <h2>Questions</h2>
+            <a href="<?php echo $array2d; ?>">2-D array</a>
+        </div>
+    </div>
+</div>

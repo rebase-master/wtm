@@ -1,0 +1,49 @@
+<div class="content">
+<h1>Video list</h1>
+<?php
+if($this->videos!=null){
+	$i=0;
+?>
+<table class="table table-striped table-hover">
+	<tr>
+		<th>#</th>
+		<th>Video</th>
+		<th colspan="2">Links</th>
+	</tr>
+<?php
+	foreach($this->videos as $video){
+		$i++;
+		?>
+
+		<tr>
+			<td><?php echo $i; ?></td>
+			<td><h4><?php echo $video->heading; ?></h4><br /><br />
+			<?php echo $video->link; ?><br /><br />
+			Source:<a href="<?php echo htmlspecialchars($video->link); ?>"><?php echo htmlspecialchars($video->link); ?></a><br /><br />
+			Date Added:<?php echo $video->date_added; ?>
+			</td>
+			<?php
+			$delete=$this->url(array('controller'=>'videos', 'action'=>'delete','id'=>$video->id));
+			$update=$this->url(array('controller'=>'videos', 'action'=>'update','id'=>$video->id));
+			?>
+			<td><a class="btn btn-danger btn-sm" href="<?php echo $delete; ?>">Delete</a></td>
+			<td><a class="btn btn-info btn-sm" href="<?php echo $update; ?>">Update</a></td>
+		</tr>
+<?php
+	}
+?>
+</table>
+<?php
+		$add=$this->url(array('controller'=>'videos', 'action'=>'add'));
+		?>
+		<p> <a class="btn btn-primary" href="<?php echo $add; ?>">Add more videos</a></p>
+	<?php
+	}else{
+		$add=$this->url(array('controller'=>'videos', 'action'=>'add'));
+		
+		?>
+	<p>You do not have any programs yet. <a href="<?php echo $add; ?>">Add one now</a></p>
+	<?php
+	}
+	?>
+</div>

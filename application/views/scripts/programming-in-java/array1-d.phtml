@@ -1,0 +1,87 @@
+<?php
+    $this->headTitle()->set('1-D Array in Java');
+    echo $this->headTitle();
+    $general=$this->url(array('controller'=>'programming-in-java', 'action'=>'general'));
+    $search=$this->url(array('controller'=>'programming-in-java', 'action'=>'search'));
+    $sort=$this->url(array('controller'=>'programming-in-java', 'action'=>'sort'));
+?>
+
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Single Dimension(1-D) Arrays in Java</h1><hr />
+    <div class="content">
+        <p>
+        An array is a continuous location in memory where elements of the same type(datatype) are stored.
+        An array consists of several locations, as defined, and are referenced by a common name.
+        The different locations in an array is accessed with the help of indeces as shown in the figure below.
+        </p>
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl(); ?>/images/array.png" title="array structure" />
+        </div>
+        <p>
+            To use an array in a program, you must declare an array first, then assign values to it, and then access
+            it within a loop.
+        </p>
+        <ol>
+            <li> Array Declaration</li>
+            <p>        To declare an integer array:</p>
+                <pre>
+        
+                int a[]=new int[10];
+            </pre>
+            <p>
+                To declare a String array:</p>
+                <pre>
+        
+                String a[]=new String[10];
+            </pre>
+            <p>And so on.</p>
+            <li>To assign values to an array:</li>
+            
+            <pre>
+            System.out.println("Enter 10 integer values");
+            try{
+                  for(i=0;i<10;i++){
+                   a[i]=Integer.parseInt(br.readLine());
+                }
+               
+            }catch(Exception e){}
+            </pre>
+           
+            <li>Accessing array elements</li>
+            <pre>
+                for(i=0;i<10;i++){
+                
+                    System.out.println(a[i]);
+                }
+            </pre>
+        </ol>
+        <h2>Initializing arrays</h2>
+            <p>Integer array:</p>
+            <pre>
+        
+                int a[]={31,28,31,30,31,30,31,31,30,31,30,31};
+            </pre>
+            <p>String array:</p>
+            <pre>
+        
+                String str[]={"Programming", "is", "fun"};
+            </pre>
+            <p>Float array:</p>
+            <pre>
+        
+                float a[]={25.4f, 24.1f, 26.3f, 29.0f};
+            </pre>
+            <p>Character array:</p>
+            <pre>
+        
+                char ca[]={'a', 'e', 'i', 'o', 'u'};
+            </pre>
+        <div class="questions text-center">
+            <h2>Questions</h2>
+            <a href="<?php echo $general; ?>">General Traversal |</a>
+            <a href="<?php echo $search; ?>">Searching |</a>
+            <a href="<?php echo $sort; ?>">Sorting</a>
+        </div>
+    </div>
+</div>
+

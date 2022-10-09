@@ -1,0 +1,77 @@
+<?php
+
+    $this->headTitle()->set('do-while loop in Java');
+    echo $this->headTitle();
+    $ton=$this->url(array('controller'=>'programming-in-java', 'action'=>'types-of-numbers'));
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">do-while Loop in Java</h1><hr />
+    <div class="content">
+        <blockquote>
+            The <i>do-while</i> loop in Java also runs as long as the given condition is true. However,
+            <i>do-while</i> loop is an <i>exit-controlled</i> loop. That means the loop runs atleast
+            once irrespective of the condition.
+        </blockquote>
+
+        <p> A <i>do-while</i> loop has three parts:</p>
+
+        <ul>
+            <li>Initialization Expession</li>
+            <li>Test/Conditional Expression </li>
+            <li>Update Expression</li>
+        </ul>
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl(); ?>/images/do-while-loop-parts.png" title="Three parts of do-while loop" height="300" />
+        </div>
+        <p>
+            The variable used in the initialization parts of a <i>do-while</i> loop is known
+            as a loop variable. In the examples that follow, <em><i>n</i></em> is the loop variable.
+        </p>
+       <pre> int n=123,a;
+          
+        do{
+          
+          a=n%10;
+          
+          System.out.print(a+" ");
+         
+          n=n/10;
+        
+        }while(n>0);
+        </pre>
+        <p>
+            The <i>do-while</i> loop is used synonymously with <i>while</i> loop except
+            when we want the loop to run atleast once we use <i>do-while</i> loop.
+            Following is a simple program to print the sum of digits of a number.
+        </p>
+
+        <pre>class DigitsOfNumber{
+    
+       public static void main(String args[]){
+    
+           int a, n=123, s=0;
+    
+             do{
+               
+               a=n/10;
+               
+               s=s+a;
+               
+               n=n/10;
+               
+            }  while(n>0);
+            
+    
+        System.out.print("Sum = "+s);
+    
+             }//end of main
+    
+       }//end of class
+        </pre>
+
+        <div class="questions text-center">
+            <h2>Questions</h2>
+            <a href="<?php echo $ton; ?>">Types of Numbers</a>
+        </div>
+    </div>
+</div>

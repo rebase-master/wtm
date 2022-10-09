@@ -1,0 +1,165 @@
+<?php
+	$this->headTitle()->set('Update Annual Exam Question');
+	echo $this->headTitle();
+	$list = $this->baseUrl('/admin/read-yearly-questions');
+?>
+<div class="content">
+	<div class="list-head clearfix">
+		<h2>Update Annual Exam Question</h2>
+		<a href="<?php echo $list; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-list"></i>
+			List Annual Exam Questions
+		</a>
+	</div>
+	<div class="form_short stretch">
+		<div class="alert alert-danger hide">
+			<p>Something went wrong. Please try again later.</p>
+		</div>
+		<div class="alert alert-success hide">
+			<p>Record updated successfully.</p>
+		</div>
+
+		<form class="form-horizontal" id="yqForm" role="form" method="post" action="<?php echo $this->baseUrl('/admin/update-yearly-question'); ?>">
+
+			<div class="form-group">
+				<label for="subject" class="col-sm-2 control-label">Subject</label>
+				<div class="col-sm-10">
+					<select name="subject" id="subject" class="form-control">
+						<?php foreach ($this->subjects as $subject): ?>
+							<option value="<?php echo $subject->id; ?>" <?php echo $subject->id == $this->record['subject'] ?" selected":"" ?>><?php echo $subject->name; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="year" class="col-sm-2 control-label">Year</label>
+				<div class="col-sm-10">
+					<select name="year" id="year" class="form-control">
+						<?php for($i=2000; $i<=date('Y'); $i++): ?>
+							<option value="<?php echo $i; ?>" <?php echo $i == $this->record['year'] ?"selected":"" ?> >
+								<?php echo $i; ?>
+							</option>
+						<?php endfor; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="position" class="col-sm-2 control-label">Position</label>
+				<div class="col-sm-10">
+					<select name="position" id="position" class="form-control">
+						<?php for($i=1; $i<=10; $i++): ?>
+							<option value="<?php echo $i; ?>" <?php echo $i == $this->record['position'] ?" selected":"" ?> >
+								<?php echo $i; ?>
+							</option>
+						<?php endfor; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="type" class="col-sm-2 control-label">Type</label>
+				<div class="col-sm-10">
+					<select name="type" id="type" class="form-control">
+						<option value="theory" <?php echo "theory" == $this->record['type'] ?" selected":"" ?>>Theory</option>
+						<option value="practical" <?php echo "practical" == $this->record['type'] ?" selected":"" ?>>Practical</option>
+						<option value="guess" <?php echo "guess" == $this->record['type'] ?" selected":"" ?>>Guess</option>
+						<option value="specimen" <?php echo "specimen" == $this->record['type'] ?" selected":"" ?>>Specimen</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="heading" class="col-sm-2 control-label">Heading</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="Add Heading" name="heading" id="heading" value="<?php echo $this->record['heading'];?>" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="slug" class="col-sm-2 control-label">Slug</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" placeholder="Add Slug" name="slug" id="slug" value="<?php echo $this->record['slug'];?>" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="question" class="col-sm-2 control-label">Question</label>
+				<div class="col-sm-10">
+					<div id="question-button-bar" class="wmd-button-row"></div>
+					<textarea id="question_html" class="form-control"><?php echo ($this->record['question']); ?></textarea><br />
+			        <div id="question-preview"></div>
+					<!--			        <div id="question_html"></div>-->
+					<strong>Output</strong>
+					<textarea name="question" id="question" class="form-control"><?php echo $this->record['question'];?></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="wmd-input" class="col-sm-2 control-label">Solution</label>
+				<div class="col-sm-10">
+					<div id="solution-button-bar" class="wmd-button-row"></div>
+					<textarea id="solution_html" class="form-control"><?php echo ($this->record['solution']); ?></textarea><br />
+					<!--			        <div id="solution-preview"></div>-->
+					<!--			        <div id="solution_html"></div>-->
+					<strong>Output</strong>
+					<textarea name="solution" id="solution" class="form-control"><?php echo $this->record['solution'];?></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="topics">Tags</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="topics" name="topics[]" multiple>
+						<?php
+							$topicIds = array();
+							foreach ($this->record['topics'] as $quesTopic){
+								array_push($topicIds, $quesTopic['topic_id']);
+							}
+						?>
+						<?php foreach ($this->topics as $topic): ?>
+							<option label="<?php echo $topic->topic; ?>" value="<?php echo $topic->id; ?>" <?php echo in_array($topic->id, $topicIds)?'selected':''; ?>>
+								<?php echo $topic->topic; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-1">
+					<label for="visible" class="control-label">
+						Visible
+						<input type="checkbox" name="visible" id="visible" <?php echo $this->record['visible'] == 1? " checked":""; ?>>
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-8 col-lg-9 sol-md-offset-4 col-lg-offset-2">
+					<input type="submit" class="btn btn-primary" name="submit" value="SUBMIT" />
+				</div>
+			</div>
+
+			<input type="hidden" name="id" value="<?php echo $this->record['id']; ?>" />
+
+		</form>
+
+		<script type="text/javascript">
+			setup_wmd({
+				input: "question_html",
+				button_bar: "question-button-bar",
+				preview: "question-preview",
+				output: "question"
+			});
+			setup_wmd({
+				input: "solution_html",
+				button_bar: "solution-button-bar",
+				preview: "solution-preview",
+				output: "solution"
+			});
+		</script>
+
+	</div>
+</div>

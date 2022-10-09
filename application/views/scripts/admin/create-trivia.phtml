@@ -1,0 +1,31 @@
+<?php
+    $this->headTitle()->set('Add - Trivia');
+    echo $this->headTitle();
+
+    $list = $this->url(array('controller'=>'fun','action'=>'list-trivia'),null,true);
+?>
+
+<div class="content">
+    <div class="list-head">
+        <h2>Add Trivia</h2>
+    </div>
+    <div class="form_short">
+        <div class="alert alert-danger hide">
+            <p>Something went wrong. Please try again later.</p>
+        </div>
+        <div class="alert alert-success hide">
+            <p>Record added successfully.</p>
+        </div>
+        <form role="form" action="#" id="add-trivia">
+            <div class="form-group">
+                <label for="trivia">Trivia</label>
+                <textarea rows="10" class="form-control" id="trivia" placeholder="What's the trivia?"></textarea>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+            <span class="loading hide">Please wait ...
+                <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+            </span>
+
+        </form>
+    </div>
+</div>

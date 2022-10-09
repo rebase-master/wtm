@@ -1,0 +1,208 @@
+<?php
+	$this->headTitle()->set('ISC Computers Important Viva-Voce Questions');
+	echo $this->headTitle();
+?>
+
+<div class="resources viva">
+  
+    <h1>Viva-Voce Questions - ISC Computer Science</h1>
+    <hr />
+    <ol>
+        <li>Why do we write <b>throws IOException</b> after main()<br />
+        <p class="qdesc"><b>throws</b> keyword followed by the exception name i.e. <b>IOException</b> in this case, is used to handle anomalous situations
+	in a program. Throwing exceptions over a function body helps in preventing/correcting possible errors in java programs.
+	</p>
+        </li>
+        <li>What is an Object Oriented Programming (OOP) Language?<br />
+        <p class="qdesc">An OOP language is one which follows OOP paradigm. An OOP language like C++, Java, PHP etc
+        consists of classes which have data members and member functions. These languages use the OOP concepts of <b>Abstraction,
+        Encapsulation, Polymorphism and Inheritance</b>.</p>
+        </li>
+        <li>What is data abstraction?<br />
+        <p class="qdesc">
+            Data Abstraction refers to the act of representing essential features without showing background
+            details or explanations. It can be achieved by making use of private/protected methods in a class.
+        </p></li>
+        <li>What is encapsulation?<br />
+        <p class="qdesc">
+            Encapsulation is the wrapping up of data(data members) and functions(methods) into a single unit/block.
+            A class is the example of using the concept of encapsulation. 
+        </p>
+        </li>
+        <li>What is Inheritance? State different forms of Inheritance.<br />
+        <p class="qdesc">
+            The ability of a class to acquire certain characteristics(data members) or behaviour(methods)
+            of another class is known as <b>Inheritance</b>. The class which derives data from another class
+            is known as the derived or sub class and the class from which it derives is known as
+            base or super class.
+            The Different forms of inheritance are: <b>Single, Multiple, Multilevel, Hybrid and Hierarchical</b>.
+        </p></li>
+        <li>What is Polymorphism? How is it implemented?<br /><p>
+            The ability of the data to be perceived in more than one form is known as polymorphism.
+            It is implemented using function(constructor) overloading and operator overloading.
+        </p></li>
+        <li>Difference between for-loop and while-loop.<br />
+        <p class="qdesc">
+            For loop runs for a fixed number of times whereas while loop runs as long as the given
+            condition is true.
+        </p></li>
+        <li>Difference between while-loop and do-while loop.<br />
+        <p class="qdesc">
+            Unlike while loop, a do-while loop runs as long as the given condition is true.
+        </p></li>
+        <li>Difference between iteration and recursion.<br />
+        <p class="qdesc">
+            In iteration, memory space once allocated is used repeatedly for computation whereas in recursion
+            new memory space is allocated for each function call. This makes <b>recursion</b> slower than <b>iteration</b>.
+        </p></li>
+        <li>Difference between class and interface.<br />
+        <p class="qdesc">
+            A <b>class</b> consists of data members and functions which are defined using these data members. Whereas, an
+            <b>interface</b> consists of only function prototypes with no definition. The class which implements interface agrees to provide
+            definition for all of its methods. An interface cannot be instantiated like classes. By default, the members of
+            an interface are <b>abstract</b> and <b>public</b>.
+        </p></li>
+        <li>Difference between interface and abstract class.<br />
+        <p class="qdesc">
+        <b>Abstract Class</b><br />
+        Abstract classes are used to declare common characteristics of subclasses. An abstract class cannot be
+        instantiated. It can only be used as a super class for other classes that extend the abstract class.
+        Abstract classes are declared with the keyword <b>abstract</b>.<br /><br />
+        <b>Interface</b><br />
+        An Interface is used to define a generic template. Interfaces just specify the method declaration
+        (implicitly public and abstract) and can only contain fields (which are implicitly public static final).
+        Interface definition begins with a keyword interface. An interface may never contain method definitions.
+        An interface cannot be instantiated.
+        Multiple Inheritance is facilitated through interfaces in Java. 
+        A class that implements an interface must implement all of the methods described in the interface,
+        or be an abstract class.
+        </p></li>
+        <li>Difference between throw and throws keywords.<br />
+        <div class="qdesc">
+            <ol>
+                <li><b>Throws</b> clause in used to declare an exception and <b>throw</b> keyword is used to throw an exception explicitly.</li>
+                <li>If we see syntax wise than <b>throw</b> is followed by an instance variable and <b>throws</b> is followed by exception class names.</li>
+                <li>The keyword <b>throw</b> is used inside method body to invoke an exception and <b>throws</b> clause is used in method declaration (signature).</li>
+                <li>The keyword <b>throw</b> is used inside method body to invoke an exception and <b>throws</b> clause is used in method declaration (signature).
+
+                    For example:<br /><br />
+
+                    <pre>
+    Throw:
+
+    ....
+    static{
+    try {
+    throw new Exception("Something went wrong!!");
+    } catch (Exception exp) {
+    System.out.println("Error: "+exp.getMessage());
+    }
+    }
+
+    ....
+    Throws:
+
+    public void sample() throws ArithmeticException{
+    //Statements
+
+    .....
+
+    //if (Condition : There is an error)
+    ArithmeticException exp = new ArithmeticException();
+    throw exp;
+    ...
+    }
+                    </pre>
+                </li>
+                <li>
+                    By using <b>Throw</b> keyword in java you cannot throw more than one exception but using <b>throws</b> you can declare multiple exceptions.
+
+                    For example:<br /><br />
+
+                    <pre>
+    Throw:
+
+    throw new ArithmeticException("An integer should not be divided by zero!!")
+    throw new IOException("Connection failed!!")
+
+    Throws:
+
+    throws IOException, ArithmeticException, NullPointerException,
+    ArrayIndexOutOfBoundsException
+                    </pre>
+                </li>
+            </ol>
+        </div>
+        </li>
+        <li>What does import java.io.* mean?<br />
+        <p class="qdesc">
+            <b>import</b> keyword is used to include a package in a program.<br />
+            <b>java.io</b> is a pre-defined package in java that
+            contains classes required in input/output (I/O) operations.
+            <b>*</b>(asterisk) here acts as the wildcard i.e. all classes within
+            the java.io package are imported.
+        </p></li>
+        <li>Explain the line public static void main(String args[]).<br />
+        <p class="qdesc">
+        <b>public</b> meqdesc the function main can be accessed from anywhere i.e. its access is not limited.<br />
+        <b>static</b> meqdesc the function can be called using its class name and there is no need to create an
+        object of its class to call it.<br />
+        <b>void</b> meqdesc null/empty. It meqdesc that the function is not returning any value.<br />
+        <b>main()</b> is the function present in every java program. Every java program starts and ends within the main.
+        </p></li>
+        <li>What is constructor overloading?<br />
+        <p class="qdesc">
+            Constructors are functions with the same name as that of its class. When several constructors with
+            different signature are defined it is known as <b>constructor overloading</b>.
+        </p></li>
+        <li>What is a copy constructor?<br /> 
+        <p class="qdesc">A constructor which receives an object is known as a copy constructor.</p>
+        </li>
+        <li>What is the use of this keyword?<br />
+        <p class="qdesc">
+            <b>this</b> keyword is used to access the data members of a class.
+        </p></li>
+        <li>What is the difference between overloading and overriding?<br />
+        <p class="qdesc">
+           <b>Overloading</b> uses the concept of polymorphism where multiple functions with same name
+           are allowed provided their signatures are different.<br />
+            A method in a subclass hides or overshadows a method inherited from the super class
+            if both methods have the same name and signature. This property is known as
+            <b>overriding</b> the inherited method. 
+        </p></li>
+        <li>Explain super keyword.<br />
+        <p class="qdesc">
+            <b>super</b> keyword is used to access the members of base class from a derived class in inheritance.
+        </p></li>
+        <br />
+            <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/google-ad.php'; ?>
+        <br />
+        <li>Explain recursive case and base case.<br />
+        <p class="qdesc">
+            recursive case consists of the problem that is to be solved. It contains the logic to solve
+            a problem along with the function call.
+            base case is the part of the problem whose solution is known to us.<br />
+            For ex:- To calculate factorial of a number<br />
+                    we know that<br />
+                    0!=1<br />
+                    1!=1<br />
+                    
+                this is the <b>base case</b>.<br />
+                Also, the factorial of a number 'n' is calculated as<br />
+                n!= n x (n-1)!<br />
+                this part is known as the <b>recursive case</b>.
+        </p></li>
+        <li>What is fall-through condition in switch-case?<br />
+        <p class="qdesc">
+        When break statement is missing in a switch statement, the control falls to the
+        cases following the matched case. This is known as fall-through condition.
+        </p></li>
+        <li>What are wrapper classes?<br />
+        <p class="qdesc">
+            The classes corresponding to the primitive data types are known as wrapper classes.
+            For ex:- For primitive data type int we have Integer class.
+            Wrapper classes contain functions which are used in data manipulation.
+        </p></li>
+    </ol>
+
+</div>

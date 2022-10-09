@@ -1,0 +1,25 @@
+<?php
+$htmlbody=<<< email
+<html>
+<body>
+  <h2>Registration on wethementors.com</h2>
+  <blockquote>
+	<h3>Dear {$userData['first_name']},</h3>
+	<p>Welcome to wethementors.com! To confirm your email address click	
+	  on the following link:</p>
+  </blockquote>
+  <blockquote>
+<p>{$verifyUrl}</p>
+  </blockquote>
+  <p>If you are having problems clicking on the link, copy-paste it in your browser
+  to verify your account.</p>
+<p> Questions? Comments? Contact us at <a>contact@wethementors.com</a></p>
+<br />
+<h3>Thanks and Regards,</h3>
+<h4>Admin<br />
+<a href='http://www.wethementors.com'>www.wethementors.com</a>
+</h4>
+</body>
+</html>
+email;
+?>

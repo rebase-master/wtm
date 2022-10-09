@@ -1,0 +1,32 @@
+<?php $this->headTitle()->set('English Literature - Macbeth Themes');
+echo $this->headTitle();
+?>
+<div class="content english">
+	<h1>English Literature</h1>
+        <h2>Major Themes of Macbeth</h2>
+
+    <?php if($this->paginator):
+        $c=0;
+        foreach($this->paginator as $topic): 	$c++;?>
+        <div>
+            <h3><?php echo $topic->heading; ?></h3>
+            <blockquote>
+                <?php echo $topic->description;?>
+            </blockquote>
+        </div>
+        <?php if($c==1):?>
+            <div class="google-ad">
+                <?php require_once APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <div id="pagination">
+        <?php		echo $this->paginationControl($this->paginator,
+                        'Sliding',
+                        'includes/paginationcontrol2.phtml');
+        ?>
+	</div>
+    <?php endif; ?>
+
+</div>

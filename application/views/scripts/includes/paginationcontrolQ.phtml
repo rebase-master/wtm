@@ -1,0 +1,34 @@
+<?php if($this->pageCount){ ?>
+<?php if($this->first!=$this->current){  ?>
+    <a href="<?php echo $this->link.$this->first;?>">first</a>
+    <?php } ?>
+<!-- ADD PREVIOUS BUTTON -->
+<?php if(isset($this->previous)){  ?>
+    <a href="<?php echo $this->link.$this->previous; ?>">previous </a>
+    <?php } ?>
+<!-- SHOW THE AVAILABLE PAGES -->
+<?php
+    if($this->pageCount > 3){
+        foreach($this->pagesInRange as $page){
+            if($page!=$this->current){ ?>
+            <a href="<?php echo $this->link.$page; ?>"><?php echo $page;?></a>
+            <?php }else{?>
+            <?php echo "<span>".$this->current."</span>";?>
+            <?php }
+        }
+    }?>
+<!-- ADD NEXT BUTTON -->
+<?php
+    if(isset($this->next)){
+        ?>
+    <a href="<?php echo $this->link.$this->next;?>"> next</a>
+    <?php }?>
+<?php if($this->last!=$this->current && $this->next!=$this->last){  ?>
+    <a href="<?php echo $this->link.$this->last;?>">last</a>
+    <?php } ?>
+
+
+
+<?php
+}
+?>

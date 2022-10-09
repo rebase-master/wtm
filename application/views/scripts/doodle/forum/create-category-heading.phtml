@@ -1,0 +1,26 @@
+<?php $this->headTitle()->set('Forum - Create Category Heading');
+echo $this->headTitle();
+?>
+<div class="content">
+	<?php if($this->error==1){?>
+	    <p>You must be logged in to view this page.</p>
+	<?php }else if(isset($this->success)){?>
+	    <p class="error"><?php echo $this->success;?></p>
+	<?php }else{?>
+        <div class="replyCont">
+            <h2>Create Category Heading</h2>
+            <?php if(isset($this->result)){?>
+                <br /><p class="error"><?php echo $this->result?></p><br />
+            <?php
+                }
+                ?>
+            <?php echo $this->form; ?>
+        </div>
+    <?php } ?>
+<?php $forum=$this->url(array('controller'=>'forum'), null, true);?>
+<div class="buttons">
+	<a class="btn btn-primary" href="<?php echo $forum;?>">Back To Forum</a>
+</div>
+
+</div>
+

@@ -1,0 +1,82 @@
+<?php
+    $this->headTitle()->set('Friends');
+    echo $this->headTitle();
+?>
+<div id="main" class="col-sm-8 col-md-8 col-lg-9">
+<div class="content friends">
+ <h2 class="text-center"><?php echo ucfirst($this->profile->username); ?> - Friends (<?php echo $this->friendCount; ?>)</h2>
+<?php foreach($this->friends as $friend): ?>
+    <?php
+        $dp = $friend['dp'];
+        $gender = $friend['gender'];
+
+        if(empty($dp)){
+
+            if($gender == 'f'){
+                $src = 'images/ft.png';
+            }else{
+                $src = 'images/mt.png';
+            }
+            $imgPath = BASE_URL.$src;
+        }else{
+            if(stripos($dp, 'http') !== false)
+                $imgPath = $dp;
+            else
+                $imgPath = BASE_URL.$dp;
+        }
+
+        $name = ucfirst($friend['first_name'])." ".ucfirst($friend['last_name']);
+        $school = ucfirst($friend['school']);
+        $city = ucfirst($friend['city']);
+        $country = ucfirst($friend['country']);
+        $username = $friend['username'];
+        $profileURL = $this->url(array('controller'=>'profile', 'action'=>'index', 'user'=> $username), null, true);
+        if(!empty($city)){
+            if(!empty($country))
+                $place = $city.",".$country;
+            else
+                $place = $city;
+        }else{
+            if(!empty($country))
+                $place = $country;
+            else
+                $place = '&nbsp;';
+        }
+    ?>
+        <div class="friend_requests clearfix">
+			<div class="request_photo">
+                <?php  ?>
+			    <a href="<?php echo $profileURL; ?>">
+                    <img src="<?php echo $imgPath; ?>" />
+                    <h4><?php echo $name; ?></h4>
+                </a>
+			</div>
+			<div class="info_user">
+                <p class="ellipsis">
+                    <span><?php echo $school;?></span><br />
+                    <span><?php echo $place; ?></span>
+                </p>
+            </div>
+            <?php if($this->self): ?>
+                <div class="friends_response">
+                    <input type="hidden" value="<?php echo $friend['id']; ?>" />
+                    <button class="btn btn-primary btn-sm unfriend">Unfriend</button>
+                </div>
+            <?php endif; ?>
+        </div>
+<?php endforeach; ?>
+</div>
+
+</div>
+<div class="col-sm-4 col-md-4 col-lg-3" id="sidebar_right">
+    <fieldset class="home_right text-center">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/pumk.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center google-ad">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/google-ad-rectangle.php'; ?>
+    </fieldset>
+    <fieldset class="home_right text-center">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/quick-links.php'; ?>
+    </fieldset>
+</div>
+

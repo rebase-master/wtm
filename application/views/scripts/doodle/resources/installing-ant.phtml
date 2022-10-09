@@ -1,0 +1,57 @@
+<style>
+    .install {
+        margin: 0 auto;
+        padding: 20px;
+        width: 90%;
+    }
+    .install h1{ text-align: center}
+    .install b{	color:#005500;}
+    .install ol{ margin:10px;margin-left:30px;}
+    .install ol li{
+        list-style-type: decimal
+    }
+
+</style>
+<div class="install">
+    <h1> Installing apache Ant on Windows</h1><hr />
+    <p>Apache Ant is a Java library and command line tool that help in building softwares.</p>
+    <p>First of all download the zip file from
+    <a href="http://ant.apache.org/bindownload.cgi" target="_blank">ant.apache.org</a> and extract it to a feasible
+    location say <b>c:\ant</b>.</p>
+    <p>Now you need to tell windows about your Ant installation. You can do this by
+    creating system variables. To do this, you need to go to the <b>Environment variables</b> of your
+    operating system. If you're using Windows XP or earlier, you need to:</p>
+   <ol>
+    <li> Right-click My Computer, and then click Properties.</li>
+    <li>Click the Advanced tab.</li>
+    </ol>
+   <p>If you're using Windows Vista or 7, you need to:</p>
+   <ol>
+   <li> Right-click My Computer, and then click Properties.</li>
+   <li> In the left navigation panel find <b>Advanced System settings</b>. Click on it.</li>
+    </ol>
+   <p>Click <b>Environment variables</b>.</p>
+   <p>Now go to the system variables section and click on <b>New</b> to add
+   a new variable.</p>
+   <ol>
+   <li>Write <b>ANT_HOME</b> in the variable name field.</li>
+   <li>Write <b>c:\ant</b> in the variable value field</li>
+   <li>Click OK</li>
+   </ol>
+   <p>Again click on new variable.</p>
+   <ol>
+   <li>In the variable name field, write <b>JAVA_HOME</b>.</li>
+   <li>In the variable value field, you need to provide the path to the Java installation
+   on your machine. Generally, it is in <b>c:\Program Files\Java\<i> Java version on your system</i>
+    \bin</b>. The easy way to do this is to go to <b>c:\ -> Program Files -> Java -> JDK version ->
+    bin</b>. Now copy the path from the address bar above and paste it in the value field.
+    Say, if you're using JDK version is 1.7.0, in the variable value field you can write,
+    <b>C:\Program Files\Java\jdk1.7.0\bin</b>.
+   </li>
+   </ol>
+   <p>Finally, click on the <b>Path</b> variable in the system variables section and click <b>Edit</b>.</p>
+   <p>In the variable value field, go to the end of the line and add a semi-colon (;). Now write
+  <b> %ANT_HOME%\bin</b>. That's it, you're done.</p>
+   <p>To check your installation, go to start -> Run and type <b>%ANT_HOME%\bin</b>. If you've done
+   everything correctly, it'll take you to the <b>c:\ant\bin</b>  folder.</p>
+</div>

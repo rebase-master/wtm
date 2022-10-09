@@ -1,0 +1,12 @@
+<div class="content replyCont">
+	<?php if($this->error==1){?>
+	<p>You must be logged in to view this page.</p>
+	<?php 
+	}else if($this->error == 2){?>
+    <div class="error bg-danger text-center"><p>Category not found!</p></div>
+	<?php }else{?>
+<h2>Edit Category</h2>
+<?php 	echo "<br /><p>".$this->result."</p>";
+echo $this->form;
+}?>
+</div>

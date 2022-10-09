@@ -1,0 +1,297 @@
+<?php
+    $this->headTitle()->set('ISC Computer Theory Sample Questions');
+    echo $this->headTitle();
+    $loginUrl = $this->url(array('controller'=>'user','action'=>'login'),null,true).'?next='. urlencode(BASE_URL.'isc/computer-project');
+    $iscpy = $this->url(array('controller'=>'isc','action'=>'previous-years'), null ,true);
+    $isccp = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'), null ,true);
+    $iscvv = $this->url(array('controller'=>'isc','action'=>'viva-voce'), null ,true);
+    $iscsp = $this->url(array('controller'=>'isc','action'=>'sample-papers'), null ,true);
+    $iscotq = $this->url(array('controller'=>'isc','action'=>'isc-comp-find-output-type-ques'), null ,true);
+?>
+<div class="resources">
+    <h1>ISC Theory Sample Questions</h1><hr />
+    <div class="">
+        <div class="isc-theory-cont">
+            <div class="isc-theory-ques">
+                <h3>Q1.</h3>
+                <ol>
+                    <li>Use the truth table to show that: (A.B+C)+(A.B)’=1</li>
+                    <li>State the two absorption laws. Verify one of them using truth table</li>
+                    <li>Convert the given function to its equivalent POS form
+                        F(A,B,C)=∑(0,3,5,7)</li>
+                    <li>Convert the following function as a sum of minterms:
+                    F(X,Y,Z)=X.Y+Y’.Z</li>
+                    <li>Simplify using laws of Boolean- (P+Q).(P’+Q’).(P’+Q)+P</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q2.</h3>
+                <ol>
+                    <li>Differentiate between a tautology and a contradiction.</li>
+                    <li>What are adders? Give its utility.</li>
+                    <li>Explain 3 input XNOR gate with the truth table.</li>
+                    <li>Give an application of a multiplexer.</li>
+                    <li>Draw the truth table to prove the propositional logic expression:
+                    a<=>b=(a =>b).(b =>a)</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q3.</h3>
+                <ol>
+                    <li>Simplify using Boolean algebra. At each step state clearly the law used: X.Y. (X.Y+Y.Z)</li>
+                    <li>State the De Morgan’s laws. Verify any one of them using truth table.</li>
+                    <li>Find the complement of F(a,b,c,d)=[a+{(b+c).(b’+d’)}]</li>
+                    <li>Draw the logic gate diagram and truth table for XOR gate.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q4.</h3>
+                <ol>
+                    <li>What is the difference between syllogism and premises?</li>
+                    <li>What do you understand by a contrapositive statement? Explain giving example.</li>
+                    <li>Differentiate between universal and fundamental gates.</li>
+                    <li>Give any four examples of non-primitive data types.</li>
+                    <li>What do you understand by Grey Code? How is it different from Binary Code?</li>
+                </ol>
+            </div>
+            <div class="google-ad">
+                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-rectangle.php'; ?>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q5.</h3>
+                <ol>
+                    <li>Draw the simplified diagram using NAND gates F(A,B,C)=∑(0,1,2,5)</li>
+                    <li>In an array of real numbers ARR[-25….10,-10…..20], Base address is 1234.
+                        Find the address of ARR[6][8] when array is stored row major wise.
+                        Assume each real number requires 4 bytes.</li>
+                    <li>What do you mean by idempotence law? Explain giving example.</li>
+                    <li>Differentiate between runtime error and syntax error.</li>
+                    <li>Which escape sequence represents     (i) audible bell(alert)  (ii) Question mark</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q6.</h3>
+                <ol>
+                    <li>State De Morgan’s Law</li>
+                    <li>Find the complement of F(a,b,c,d)=[m’+{(n’.p)+(n+m’)}]</li>
+                    <li>Draw the logic gate diagram and truth table for XOR gate.</li>
+                    <li>What are universal gates and why are they called so?</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q7.</h3>
+                <ol>
+                    <li>Draw the logic gate and truth table for XNOR gate.</li>
+                    <li>Give the minterm designation of- i)p+q’+r  ii)m’.n.o.p</li>
+                    <li>State the difference between SOP and canonical SOP expressions.</li>
+                    <li>How are minterms and maxterms related to each other.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q8.</h3>
+                <ol>
+                    <li>Define Absorption Law. Prove it with help of truth table.</li>
+                    <li>Use De Morgan’s Law to find the complement of the following. Can it be represented by a single gate? If yes name it. A’B’+AB</li>
+                    <li>State De morgan’s Law of Boolean Algebra and verify one of the laws using truth tables.</li>
+                    <li>Explain XOR Gate with help of truth table of three inputs.</li>
+                    <li>Obtain the simplified form for a Boolean Expression.
+                        F(a,b,c,d)=∑(1,2,3,11,12,14,15) using Karnaugh Maps.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q9.</h3>
+                <ol>
+                    <li>Draw the logic circuit of a decimal to binary encoder.</li>
+                    <li>State any two application of multiplexer.</li>
+                    <li>Compare Selection srt and Bubble Sort.</li>
+                    <li>Define Inheritence with its advantages.</li>
+                    <li>An array m[-2….-5,-1….4] is stored using row major implementation
+                        the the address of m[0][0] is 176 and the address of m[4][5] is 230. Find tne address of [3][2].</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q10.</h3>
+                <ol>
+                    <li>Use the truth table to show that : (A.B+C)+(A.B)’=1</li>
+                    <li>State the two absorption laws. Verify one of them using the truth table.</li>
+                    <li>Convert the given function to its equivalent POS form      F(A,B,C)=(2,6,7)</li>
+                    <li>Convert the given following function as a sum of minterms:   F(X,Y,Z)=X.Y+Y’.Z</li>
+                    <li>Simplify using laws of Boolean – (P+Q).(P’+Q’).(P’+Q)+P</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q11.</h3>
+                <ol>
+                    <li>Define function overloading with an example.</li>
+                    <li>What are adders? Give its utility.</li>
+                    <li>Explain 3 input Xnor gate with the truth table.</li>
+                    <li>Give the application of stack.</li>
+                    <li>An array A[-10…5,2…8] is stored in the memory with each element requiring 4 bytes of storage.
+                        If the address is 5000, determine the location of A[1][5] when the array is stored row major wise.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q12.</h3>
+                <ol>
+                    <li>Simplify the following Boolean expression using laws of Boolean Algebra.
+                        At each step state clearly the law used for simplification.     X.Y.(X.Y+Y.Z)</li>
+                    <li>STATE THE De Morgan’s Laws. Verify any one of them using the truth table.</li>
+                    <li>Convert the following SOP into its corresponding POS:    F(O,V,W,)=O’.V’.W’+O’.VV’.W+O’.V.W+O.V’.W</li>
+                    <li>Find the complement of F(a,b,c,d)=[a+{(b+c).(b’+d’)}]</li>
+                    <li>Draw the logic gate diagram and truth table for XOR gate.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q13.</h3>
+                <ol>
+                    <li>Convert the following infix expression to its postfix form.      (A+(B*C))/(C-(D*B))</li>
+                    <li>Each element of an array X[-15…10,15…40] requires one byte of storage. If the array is stored in column major order
+                        with the beginning location 1500, determine the location of X[5,20].</li>
+                    <li>Explain any two standarad ways of traversing a Binary tree.</li>
+                    <li>What is meant by visibility mode in the definition of derived class inheritance?
+                        Explain any two visibility modes available.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q14.</h3>
+                <ol>
+                    <li>State the two Absorption laws of Boolean Algebra. Verify any one of them using the truth table.</li>
+                    <li>Find the complement of F(m,n,o)=m’.n.o’+m’.n’.o</li>
+                    <li>Write the product of sum form for the Boolean function F(A,B,C) whose output is 0 only when:
+                        A=1,B=0,C=0
+                        A=0,B=1,C=0
+                        A=0,B=0,C=1
+                        A=1,B=1,C=1</li>
+                    <li>Simplify a.b+a’.c+b.c using the laws of Boolean Algebra.</li>
+                    <li>Why is the NOR gate regarded as a Universal gate?
+                        Draw the logic gate symbol and make the truth table for the two input NOR gate.</li>
+                </ol>
+            </div>
+            <div class="google-ad">
+                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-rectangle1.php'; ?>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q15.</h3>
+                <ol>
+                    <li>Convert the following infix expression to its postfix form.
+                        A+[(B+C)+D+E)*F]/G</li>
+                    <li>In an array of real numbers ARR[25[25],ARR[1][1] is stored in location 1000.
+                        Find the address of ARR[12][12] when the array is stored row major wise. Assume each real number requires 4 bytes.</li>
+                    <li>Reduce the following three input function into its simplest form:
+                        F(X,Y,Z)=(0,1,3,5)</li>
+                    <li>Define a queue. How is a deque different from a queue?</li>
+                    <li>Define Encapsulation and Polymorphism.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q16.</h3>
+                <ol>
+                    <li>State the distributive law? Verify it using the truth table.</li>
+                    <li>What is the canonical form of Boolean Expression? State the two types of canonical form.</li>
+                    <li>Using NOR gates only, draw AND,OR and NOT gate.</li>
+                    <li>What is the application of Boolean Algebra in Computer Science.</li>
+                    <li>Reduce the following to its simplest form using laws of Boolean Algebra. At each step clearly state the law used for simplification.
+                        AB’+A’BC’+(AC)’+BC</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q17.</h3>
+                <ol>
+                    <li>What is data structure? What are the different types of data structure?</li>
+                    <li>With a suitable example state the difference between runtime and syntax error.</li>
+                    <li>State the different application of stack?</li>
+                    <li>Convert the following into its postfix: (A+B/C)+B-C*D+C</li>
+                    <li>An array ARR[10][5] is stored in memory with each element requiring 2 bytes of storage. If the element ARR[0][0] is stored at the location 1250,
+                        Calculate the location of ARR[5][6] when the array is stored row major wise.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q18.</h3>
+                <ol>
+                    <li>Using Boolean Algebra show that the dual of exclusive OR is equivalent to the complement of exclusive OR.</li>
+                    <li>Show that A+A.B=A+B using the truth table.</li>
+                    <li>Define maxterm and minterm of a Boolean expression. What is the relation between them
+                        (show it by example)</li>
+                    <li>What types of multivibrators are used for clock generators in digital computer system? Why are clocks needed in a digital computer system?</li>
+                    <li>Reduce the following into its simplest form using laws of Boooean Algebra. At each step state clearly the law used for simplications.
+                        C.D+A+A+C.D+A.B</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q19.</h3>
+                <ol>
+                    <li>Show how a NAND gate can be used to simulate the function of NOT, AND & OR gates.</li>
+                    <li>State the principle of duality. Give an example.</li>
+                    <li>Convert the following infix expressin to its postfix form.
+                        (P-Q)/(R*(S-T)+U)</li>
+                    <li>What do you understand by status flag? Name any two status flags.</li>
+                    <li>An array A[5][4] is stored in the memory with each element requiring 4 bytes of storage.
+                        If the base address of A[0][0] is 3000. Determine the location of A[3][2] when the array is stored row major wise.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q20.</h3>
+                <ol>
+                    <li>State the utility of logic gates. Name any two universal gates.</li>
+                    <li>State De morgan’s Laws. Verify any one of them using truth table.</li>
+                    <li>Simplify the given expression using laws of Boolean algebra.  A.(B.C)’+(A.B.C)’</li>
+                    <li>Find the complement of:
+                        F(a,b,c,d)=[A+(A’+A.B.C)]</li>
+                    <li>Draw the logic gate diagram and truth table for XNOR gate.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q21. </h3>
+                <ol>
+                    <li>If K=A+B.C, then prove that K.K’=0 and K+K’=1</li>
+                    <li>Draw the logic gate diagram for the following functionusing NOR gate only.
+                        F(a,b,c)=A.(A’+B’). You may use gate with more than 2 inputs. Write the output at every stage.</li>
+                    <li>Write the canonical POS for the Boolean function denoted by the expression
+                        F(A,B,C)=∑(1,2,3,6,7)</li>
+                    <li>Represent the Boolean functions F(a,b)=a.b. using only NOT and OR gates.</li>
+                    <li>An array arrr[5][4] is stored in the memory with each element requiring 4 bytes of storage.
+                        If the base address of arr[0][0] is 4000, determine the location of arr[2][4] when each element is stored row major wise.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q22. </h3>
+                <ol>
+                    <li>Show that A+A’.B=A+B using truth table.</li>
+                    <li>State the De morgan’s Laws. Verify any one of them using truth table.</li>
+                    <li>Simplify the following 3 input function into its simplest form.
+                        F(x,y,z)=∑(1,2,4,5,6)</li>
+                    <li>Find the complement of:
+                        F(a,b,c,d)=[a’+{(b+c).(b’+d’)}]</li>
+                    <li>Draw the logic gate diagram and truth table for XNOR gate.</li>
+                </ol>
+            </div>
+            <div class="isc-theory-ques">
+                <h3>Q23. </h3>
+                <ol>
+                    <li>If P=A+B.C, then prove that P.P’=0 and P+P’=1</li>
+                    <li>Draw the logic gate diagram and truth table for XNOR gate only.
+                        F(a,b,c)=ab+a.b’+c. you may use gate with more than 2 inputs. Write the output at every stage.</li>
+                    <li>What is DECODER? State any one of its applications.</li>
+                    <li>Represent the Boolean Functions F(a,b)=a+b. using only NOT and OR gates.</li>
+                    <li>What is a UNIVERSAL gates? Name them.</li>
+                </ol>
+            </div>
+            <div class="google-ad">
+                <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+            </div>
+        </div>
+        <div>
+            <h3>Other Resources:</h3>
+            <div class="papers">
+                <ul>
+                    <li><a href="<?php echo $iscsp; ?>">ISC Sample Papers</a></li>
+                    <li><a href="<?php echo $iscpy; ?>">ISC Previous Years Papers</a></li>
+                    <li><a href="<?php echo $isccp; ?>">ISC Computer Practical</a></li>
+                    <li><a href="<?php echo $iscvv; ?>">ISC Viva-Voce</a></li>
+                    <li><a href="<?php echo $iscotq; ?>">ISC Output Type Questions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

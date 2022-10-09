@@ -1,0 +1,48 @@
+<?php $this->headTitle()->set('Functions in Java');
+echo $this->headTitle();
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Functions in Java</h1><hr />
+    <div class="content">
+        <p> A function is named unit of program codes that can be called from anywhere in the class.
+        The primary purpose of using functions is to save ourselves from duplicating our code. Some of the
+        needs for using the functions are listed below:
+        </p>
+        <ul>
+            <li><b>Code Reusability</b>
+            <p>Using functions saves a lot of time. In situations where we have a few lines of code
+            that we want to use again and again then instead of writing the same code at several places
+            we can put it inside a function. Now this function can be called everytime we need to perform
+            the same steps.</p>
+            </li>
+            <li><b>Avoiding ambiguity</b>
+            <p>There comes a time when you find yourself writing hundreds of lines of code only to end up
+            frustated when you need to debug your code. Putting chunks of code in functions helps in organizing
+            your code in a better way and thus avoiding ambiguity.</p>
+            </li>
+            <li><b>Compulsory in OOP</b>
+            <p>In OOP oriented languages such as Java, you need to declare at least one function i.e. <em><i>main</i></em>.
+            Apart from that, as you start writing your own classes you&rsquo;ll find it very useful to use methods(functions declared
+            inside class is known as a method) that assigns<i>(Setter method)</i> or returns<i>(Getter method)</i> values.</p>
+            </li>
+        </ul>
+        <p>The figure below explains the anatomy of a function</p>
+        <div class="diagram">
+            <img src="<?php echo $this->baseUrl(); ?>/images/function.png" alt="Anatomy of a Function" title="Anatomy of a Function" />
+        </div>
+        <div class="text-group">
+            <p><b>public</b> is the <i>access specifier</i> i.e. the scope of availablity of this function.</p>
+            <p>The <i>modifier</i> <b>static</b> is optional and its presence in function declaration means that the function
+                can be called without making an object of its class.</p>
+            <p><b>void</b> is the <i>return-type</i> and it means that the function does not return any value. If a function is to return a value then
+                void should be replaced with the data type of the returned value.</p>
+            <p> <b>function-name</b> is the name by which the function is identified. It can be any valid identifier in java.
+                If you follow the convention, which you must, then you should begin the name of the function with a lowercase
+                letter.</p>
+            <p><b>parameter-list</b> also known as <b> function signature</b> is the number and type of parameters received by
+                a function.</p>
+            <p>The first line of function declaration is known as <b>function prototype</b>.</p>
+            <p><b>function body</b> is the place where the program code is placed.</p>
+        </div>
+    </div>
+</div>

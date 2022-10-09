@@ -1,0 +1,63 @@
+<?php $peopleList = $this->url(array('controller'=>'resources','action'=>'people'),null,true);?>
+<div class="content poi-container" id="top">
+    <?php if(isset($this->person) && !empty($this->person)): ?>
+    <?php $this->headTitle()->set($this->person->heading);
+        echo $this->headTitle();
+    ?>
+        <div id="p_cont_desc">
+	        <ol class="breadcrumb">
+		        <li><a href="<?php echo $peopleList;?>">Persons Of Eminence</a></li>
+		        <li><?php echo $this->person->heading ?></li>
+	        </ol>
+	        <div class="page-header">
+		        <h1><?php echo $this->person->heading;?>
+			        <small>
+				        <?php if(isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'] == true): ?>
+<!--					        <a class="btn btn-info btn-xs" href="--><?php //echo $this->baseUrl('/admin/update-notes-content/id/'.$this->person->ncid); ?><!--">Edit</a>-->
+				        <?php endif; ?>
+			        </small>
+	            </h1>
+	        </div>
+
+	        <div class="pcontent">
+	            <?php echo $this->person->content;?>
+	        </div>
+
+            <div class="source"><b>Source:</b>
+	            <p><?php echo urldecode($this->person->source); ?></p>
+            </div>
+
+            <hr />
+            <div class="clearfix poi-links">
+                <a class="pull-left" href="<?php echo $peopleList;?>" title="Go Back">
+	                <span class="glyphicon glyphicon-arrow-left"></span> Go Back
+                </a>
+                <a class="pull-right" href="#top" title="Go to Top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+            </div>
+        </div>
+    <?php elseif($this->people):?>
+        <?php $this->headTitle()->set('Persons Of Eminence');
+        echo $this->headTitle();
+        ?>
+        <div class="clearfix">
+            <h1 class="text-center">Persons of Eminence</h1><hr />
+            <?php foreach($this->people as $people):
+                $person = $this->baseUrl('/people/'.$people->slug); ?>
+                <a class="p_square" href="<?php echo  ($person);?>">
+                    <?php if($people->cover_image!=null):?>
+                            <img src="<?php echo $this->baseUrl('images/content/uploads/'.$people->cover_image);?>" alt="<?php echo $people->heading;?>" title="<?php echo $people->heading;?>" />
+                    <?php endif; ?>
+                    <p class="ellipsis"><?php echo $people->heading; ?></p>
+                </a>
+            <?php endforeach;?>
+        </div>
+    <?php else:?>
+        <div class="alert alert-danger text-center">
+            <p>Record not found!</p>
+        </div>
+        <a class="" href="<?php echo $peopleList;?>">Back to list</a>
+    <?php endif;?>
+
+</div>
+<!--<script type="text/javascript" src="--><?php //echo $this->baseUrl();?><!--/scripts/photo.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8">  $(document).ready(function(){    $("a[rel^='photo']").prettyPhoto({animationSpeed: 'normal', opacity: 0.80,showTitle: true});});</script>-->

@@ -1,0 +1,39 @@
+<div class="content">
+	<?php if($this->error==1){?>
+	<p>You must be logged in to view this page.</p>
+	<?php }?>
+<h2><?php echo $this->categoryHeading.": " ;?> Categories</h2><br />
+<?php if($this->categories==false){?>
+<p>No category exists.</p>
+<?php
+}else{?>
+<table class='forum' cellpadding='0' cellspacing='0'>
+<tr>
+	<th>Sno</th>
+	<th>Category</th>
+	<th>Created By</th>
+	<th>Created at</th>
+	<th>Links</th>
+</tr>
+<?php $i=1;
+foreach($this->categories as $category){?>
+<tr>
+	<td><?php echo $i++;?></td>
+	<td><?php echo $category->category_name;?></td>
+	<td><?php echo $category->created_by;?></td>
+	<td><?php echo $category->created_at;?></td>
+	<td class='links'>
+		<?php
+		$edit=$this->url(array('controller'=>'forum','action'=>'edit-category', 'id'=>$category->id),null,true);
+		$delete=$this->url(array('controller'=>'forum','action'=>'delete-category', 'id'=>$category->id),null,true);
+		?>
+		<a href='<?php echo $edit; ?>'> Edit</a> |
+		<a href='<?php echo $delete; ?>'>Delete</a>
+	</td>
+</tr>
+<?php }?>	
+</table>
+<?php }?>
+<?php $forum=$this->url(array('controller'=>'forum', 'action'=>''),null,true);?>
+<p><a href='<?php echo $forum;?>'>Back To Forum</a></p>
+</div>

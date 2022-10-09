@@ -1,0 +1,57 @@
+<?php
+$htmlbody=<<< email
+<html>
+<body>
+<div style="border:1px solid #ddd; font-size:14px;margin:10px;background-color:#ffffdf;width:45em;">
+    <h2 style="background-color:#0B486B;color:#ffe6a3;font-size:2em;margin:0;padding:5px 0;text-align:center;">Mentors</h2>
+    <blockquote>
+        <h3 style="color:#0061c1;font-size:1.2em;">Hi {$firstName} {$lastName},</h3>
+        <p>We have prepared a list of important/guess questions that you may find useful for the upcoming ISC Computer Practical Examination.</p>
+    </blockquote>
+    <br />
+    <div>
+        <blockquote>
+            All the questions have been designed keeping in mind the pattern of questions that had been asked in previous ISC
+            Computer Practicals.
+            The questions are complete with solutions and documentations. You are advised to read the question carefully
+            before peeking into the solution. Though we have made all efforts to ensure that all the solutions are correct yet if
+            something doesn't work as expected you are welcome to post your problems <a style="color:#0061c1;" href="http://www.wethementors.com/qa/ask-question">here</a>.
+        </blockquote>
+        <blockquote>
+            You can access the list of computer practical questions through the following link:
+            <h2><a style="color:#0061c1;" href="http://www.wethementors.com/isc/isc-computer-practical?v=guess-questions">
+                Important/Guess Questions for ISC Computer Practical {$year}</a></h2>
+        </blockquote>
+    </div>
+    <br />
+    <div>
+        <h3 style="margin-left: 30px">Other useful links: </h3>
+        <ul style="list-style-type:none; line-height: 24px;">
+            <li><a style="color:#0061c1;" href="http://www.wethementors.com/isc/isc-computer-practical">Solved ISC Computer Questions</a></li>
+            <li><a style="color:#0061c1;" href="http://www.wethementors.com/isc/previous-years">ISC Previous Years Theory Papers</a></li>
+            <li><a style="color:#0061c1;" href="http://www.wethementors.com/isc/isc-comp-theory-sample-ques">ISC Computer Theory Questions</a></li>
+            <li><a style="color:#0061c1;" href="http://www.wethementors.com/isc/viva-voce">ISC VIVA-VOCE</a> </li>
+            <li><a style="color:#0061c1;" href="http://www.wethementors.com/isc/computer-project">ISC Computer Project</a></li>
+        </ul>
+    </div>
+    <br style="clear:left" />
+
+    <div style="margin-left:10px">
+        <p> Questions? Comments? Contact us at <a style="color:#0061c1;" href="mailTo:admin@wethementors.com">admin@wethementors.com</a></p>
+        <br />
+        <h3 style="color:#0061c1;font-size:1.2em;">Thanks and Regards,</h3>
+        <h4>Admin<br />
+            <a style="color:#0061c1;" href="http://www.wethementors.com">www.wethementors.com</a>
+        </h4>
+    </div>
+</div>
+<div style="background-color:#ffffdf;border:1px solid #ddd;font-size:10px;padding:10px;margin:10px 20px;text-align:center;width:50em;">
+    <p>  This message was sent to <a style="color:#0061c1;" href="mailto:{$emailUser}">{$emailUser}</a>.
+        If you don't want to receive such emails from wethementors.com in the future, please send an email
+        to <a style="color:#0061c1;" href="mailto:admin@wethementors.com">admin@wethementors.com</a>.
+    </p>
+</div>
+</body>
+</html>
+email;
+?>

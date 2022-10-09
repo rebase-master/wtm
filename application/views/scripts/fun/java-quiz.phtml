@@ -1,0 +1,105 @@
+<?php $this->headTitle()->set('Java Quiz');
+    echo $this->headTitle();
+
+    $begQuiz=$this->url(array('controller'=>'fun','action'=>'java', 'quiz'=>'beginner'),null,true);
+    $interQuiz=$this->url(array('controller'=>'fun','action'=>'java', 'quiz'=>'intermediate'),null,true);
+    $adQuiz=$this->url(array('controller'=>'fun','action'=>'java', 'quiz'=>'advanced'),null,true);
+    $prepare=$this->url(array('controller'=>'programming-in-java'),null,true);
+    $cancel=$this->url(array('controller'=>''),null,true);
+    $beg=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=beginner';
+    $inter=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=intermediate';
+    $ad=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=advanced';
+?>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/scripts/quiz.js"></script>
+<div class="content">
+    <?php if(isset($this->level)){ ?>
+
+    <div class="text-center text-read quiz-prepare">
+
+    <?php  if($this->level==0){?>
+        <h1>Beginner Java Quiz</h1><hr />
+        <p>
+          This quiz contains 10 objective type questions on Java. The questions basically covers the
+          fundamental aspects of the language and primary focus is on theoretical knowledge.
+        <br /><br />You will be given 10 minutes to complete the quiz. If you do not complete the quiz
+        within the time, the quiz will automatically submit the attempted answers.
+        If you do not want to attempt a question, just skip it. Your score will be calculated
+        only with the number of questions you have attempted.
+        </p><br /><br />
+            <a class="btn btn-danger" href="<?php echo $begQuiz; ?>">Bring It On</a>
+            <a class="btn btn-success" href="<?php echo $prepare ?>">Let Me Prepare</a>
+            <a class="btn btn-warning" href="<?php echo $cancel; ?>">Some Other Time</a>
+
+        <?php
+        }elseif($this->level==1){?>
+        <h2>Intermediate Java Quiz</h2><hr />
+        <p>
+          This quiz contains 15 objective type questions on Java. The questions in this quiz
+          are designed to test the programming knowledge.<br /><br />
+          You will be given 15 minutes to complete the quiz. If you do not complete the quiz
+          within the time, the quiz will automatically submit the attempted answers.
+          If you do not want to attempt a question, just skip it. Your score will be calculated
+          only with the number of questions you have attempted.
+        </p><br /><br />
+            <a class="btn btn-danger" href="<?php echo $interQuiz; ?>">Bring It On</a>
+            <a class="btn btn-success" href="<?php echo $prepare ?>">Let Me Prepare</a>
+            <a class="btn btn-warning" href="<?php echo $cancel; ?>">Some Other Time</a>
+
+        <?php
+        }else if($this->level==2){?>
+        <h2>Advanced Java Quiz</h2><hr />
+        <p>
+          This quiz contains 20 objective type questions on Java. You will be given 20 minutes
+          to complete the quiz. If you do not complete the quiz within the time, the quiz will
+          automatically submit the attempted answers.
+          If you do not want to attempt a question, just skip it. Your score will be calculated
+          only with the number of questions you have attempted.
+        </p><br /><br />
+            <a class="btn btn-danger" href="<?php echo $adQuiz; ?>">Bring It On</a>
+            <a class="btn btn-success" href="<?php echo $prepare ?>">Let Me Prepare</a>
+            <a class="btn btn-warning" href="<?php echo $cancel; ?>">Some Other Time</a>
+    <?php
+        }else if($this->level==-1){?>
+    <h2>Error Retrieving the quiz category</h2>
+    <?php } ?>
+      </div>
+    <?php }else{ ?>
+    <h1 class="text-center">Java Quiz<span id="beta">beta</span></h1><br />
+    <div id="java-quiz-container" class="clearfix link-green1">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="modules">
+            <h2>Beginner</h2>
+            <p>
+              This quiz is designed to test the fundamental knowledge of the programming
+              language. Questions in this part of the quiz caters to the correct usage of the
+              syntax, knowledge of basic programming constructs like loops, arrays, if-else etcetera,
+              predict the output type questions et al.
+            </p>
+            <a class="btn btn-primary" href="<?php echo $beg; ?>">Start Quiz</a>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="modules">
+            <h2>Intermediate</h2>
+            <p>
+              Extending the beginner quiz, this part generally revolves around the application of
+              concepts. More output type questions should be expected in this part. Questions in this part
+              are designed to test the logical aspect of programming.
+            </p>
+            <a class="btn btn-primary" href="<?php echo $inter; ?>">Start Quiz</a>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="modules">
+            <h2>Advanced</h2>
+            <p>
+              This quiz covers the finer points of programming. Some advanced topics include
+              Abstract Class, Interface, Inheritance, Linked Lists, Trees, Computational
+              Complexity etcetera.
+            </p>
+            <a class="btn btn-primary" href="<?php echo $ad; ?>">Start Quiz</a>
+          </div>
+      </div>
+    </div>
+    <?php } ?>
+</div>

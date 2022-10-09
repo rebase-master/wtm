@@ -1,0 +1,19 @@
+<?php
+$this->headTitle()->set($this->note->heading);
+echo $this->headTitle();
+?>
+
+<div id="tutorials" class="tuts col-md-11 col-md-offset-1 col-lg-10 col-lg-offset-1">
+
+	<div class="topic-container">
+		<div class="topic">
+			<div class="heading text-center">
+				<h1><?php echo $this->note->heading; ?></h1><br />
+			</div>
+			<div class="content">
+				<?php echo $this->note->content; ?>
+			</div>
+		</div>
+	</div>
+
+</div><!--#tutorials-->

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+    <head>
+	    <?php require_once APPLICATION_PATH.'/../layouts/templates/_common_meta.php'; ?>
+	    <?php if(isset($this->meta)): ?>
+		    <meta property="og:url" content="<?php echo $this->meta['url'] ?>">
+		    <meta property="og:type" content="article" />
+		    <meta property="og:title" content="<?php echo $this->meta['title']; ?>">
+		    <meta property="og:description" content="<?php echo $this->meta['description']; ?>">
+		    <meta property="og:image" content="http://www.wethementors.com/images/content/<?php echo $this->meta['image'] ?>">
+		    <meta property="og:site_name" content="Wethementors">
+		    <meta itemprop="name" content="<?php echo $this->meta['name']; ?>">
+		    <meta itemprop="description" content="<?php echo $this->meta['description']; ?>">
+		    <meta itemprop="image" content="http://www.wethementors.com/images/content/<?php echo $this->meta['image']; ?>">
+		    <meta property="fb:app_id" content="<?php echo FACEBOOK_APP_ID ?>" />
+		    <meta name="twitter:card" content="summary_large_image" />
+		    <meta name="twitter:site" content="@wethementors" />
+		    <meta name="twitter:creator" content="@wethementors" />
+		    <meta name="twitter:title" content="Wethementors - Providing educational assistance to inquisitive minds since 2003." />
+		    <meta name="twitter:description" content="Free tutorials, java programs, study notes, quiz and solved questions for Computer, English, Mathematics, Physics, Chemistry." />
+		    <meta name="twitter:image" content="http://www.wethementors.com/images/logo_brand_med.png" />
+	    <?php elseif(isset($this->program) && isset($this->slug)): ?>
+		    <meta property="og:url" content="<?php echo BASE_URL."program/".$this->slug ?>">
+		    <meta property="og:type" content="article" />
+		    <meta property="og:title" content="<?php echo substr(strip_tags($this->program->heading), 0, 140); ?>">
+		    <meta property="og:description" content="<?php echo substr(strip_tags($this->program->question), 0, 140); ?>">
+		    <meta property="og:image" content="http://www.wethementors.com/images/logo_brand_med.png">
+		    <meta property="og:site_name" content="Wethementors">
+		    <meta itemprop="name" content="Program - <?php echo substr(strip_tags($this->program->heading), 0, 140); ?>">
+		    <meta itemprop="description" content="<?php echo substr(strip_tags($this->program->question), 0, 140); ?>">
+		    <meta itemprop="image" content="http://www.wethementors.com/images/logo_brand_med.png">
+		    <meta property="fb:app_id" content="<?php echo FACEBOOK_APP_ID ?>" />
+		    <meta name="twitter:card" content="summary_large_image" />
+		    <meta name="twitter:site" content="@wethementors" />
+		    <meta name="twitter:creator" content="@wethementors" />
+		    <meta name="twitter:title" content="Wethementors - Providing educational assistance to inquisitive minds since 2003." />
+		    <meta name="twitter:description" content="Free tutorials, java programs, study notes, quiz and solved questions for Computer, English, Mathematics, Physics, Chemistry." />
+		    <meta name="twitter:image" content="http://www.wethementors.com/images/logo_brand_med.png" />
+	    <?php else: ?>
+		    <?php require_once APPLICATION_PATH.'/../layouts/templates/_default_social_meta.php'; ?>
+	    <?php endif; ?>
+
+	    <?php echo $this->headTitle(); ?>
+        <?php
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+            $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/prism.js');
+            $this->headScript()->appendFile($this->baseUrl()."/scripts/programs.js");
+        ?>
+        <?php
+	        if(APPLICATION_ENV == 'production'){
+		        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style.min.css');
+	        }else {
+		        $this->headLink()->appendStylesheet($this->baseUrl() . '/skins/compact/css/thirdparty/bootstrap.min.css');
+		        $this->headLink()->appendStylesheet($this->baseUrl() . '/skins/compact/css/thirdparty/prism.css');
+		        $this->headLink()->appendStylesheet($this->baseUrl() . '/skins/compact/css/style-r2c.css');
+	        }
+        ?>
+        <?php
+            echo $this->headLink();
+        ?>
+    </head>
+<body>
+<?php require_once APPLICATION_PATH.'/../layouts/templates/ads/pagelevel_gad.php'; ?>
+
+    <div id="page" class="container-fluid">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/_head_nav.php'; ?>
+
+	    <?php if(isset($this->isMobile) && $this->isMobile): ?>
+		    <!-- for mobile-->
+		    <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/pagelevel_gad.php'; ?>
+	    <?php else: ?>
+		    <!-- for non mobiles-->
+		    <div class="gad-lb text-center">
+			    <?php
+				    if(intval(date('h')) % 2 == 0)
+					    require_once APPLICATION_PATH.'/../layouts/templates/ads/gad-leaderboard.php';
+				    else
+					    require_once APPLICATION_PATH.'/../layouts/templates/ads/flipkart-leaderboard.php';
+			    ?>
+		    </div>
+	    <?php endif; ?>
+
+	    <div id="contentWrapper" class="container">
+            <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+            <div id="main" class="col-sm-8 col-md-8 col-lg-8">
+                <?php echo $this->layout()->content; ?>&nbsp;
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4" id="sidebar_right">
+                <?php include_once APPLICATION_PATH.'/../layouts/templates/_sidebar-right.php'; ?>
+            </div>
+         </div>
+    </div>
+
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+	<?php echo $this->headScript(); ?>
+	<?php require_once APPLICATION_PATH.'/../layouts/templates/social/addthis.php'; ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/fb_sdk.php'; ?>
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/social/twitter_sdk.php'; ?>
+</body>
+</html>

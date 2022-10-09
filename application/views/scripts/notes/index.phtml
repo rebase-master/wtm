@@ -1,0 +1,29 @@
+<div id="tutorials" class="bg content tuts">
+	
+	<div class="category-group">
+		<?php if(!empty($this->results)): ?>
+			<?php foreach ($this->results as $key => $results): ?>
+				<div class="category">
+					<h2><?php echo ucwords($key); ?></h2>
+					<?php if(count($results) > 0): ?>
+						<div class="items-group clearfix">
+							<ul>
+								<?php foreach ($results as $result): ?>
+									<li>
+										<div class="item">
+											<?php $link = $this->baseUrl('/notes/'.urlencode($result['slug'])); ?>
+											<a href="<?php echo $link; ?>"><?php echo $result['sub_category']; ?></a>
+										</div>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div><!--items-group-->
+					<?php endif; ?>
+				</div><!--category-->
+
+			<?php endforeach; ?>
+		<?php endif; ?>
+
+	</div><!--category-group-->
+	
+</div><!--#tutorials-->

@@ -1,0 +1,31 @@
+#quiz_form{
+	/*background-color:#fef;*/
+	/*margin:50%;*/
+}
+#quiz_container{
+	margin:1% 10%;
+
+}
+#quiz_form dt{
+	margin-top:5px;
+	padding:10px 2px;
+	font-size:1.5em;
+	color:#002142;
+}
+#quiz_form dd{
+color:#0067ce;
+}
+#quiz_form input[type='submit'],input[type='reset']{
+	float:left;
+	color:#fff1cc;
+	font-size:1.2em;
+	margin-left:20px;
+	margin-top:30px;
+	padding:5px;
+	background-image:url('../images/button_back.png');
+	cursor:pointer;
+	
+}
+#quiz_results p{
+	text-align:center;
+}

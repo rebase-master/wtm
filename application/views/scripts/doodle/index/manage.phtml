@@ -1,0 +1,173 @@
+<?php $this->headTitle()->set('Management Area');
+echo $this->headTitle();
+?>
+<?php
+    $mdlUser=new Model_User();
+    $mdlUserData=new Model_UserData();
+    $mdlQuotes=new Model_Quotes();
+    $mdlVideos=new Model_Videos();
+    $mdlJQQ=new Model_JavaQuizQuestions();
+    $mdlJQS=new Model_JavaQuizScores();
+    $mdlFacts = new Model_FunFacts();
+
+    $total=$mdlUser->getUserCount();
+    $verified=$mdlUser->getUnverifiedUsersCount();
+    $female=$mdlUser->getFemaleCount();
+    $male=$mdlUser->getMaleCount();
+    $dps=$mdlUserData->getNoOfDps();
+    $noOfQuotes=$mdlQuotes->countQuotes();
+    $noOfFacts=$mdlFacts->countFacts();
+    $noOfVideos=$mdlVideos->countVideos();
+    $javaBeg=$mdlJQQ->quesInLevel('beginner');
+    $javaInter=$mdlJQQ->quesInLevel('intermediate');
+    $javaAd=$mdlJQQ->quesInLevel('advanced');
+    //$javaQuizTakers=count($mdlJQS->quizTakers());
+    $begAttempts=$mdlJQS->quizTakersByCategory('beginner');
+    $interAttempts=$mdlJQS->quizTakersByCategory('intermediate');
+    $adAttempts=$mdlJQS->quizTakersByCategory('advanced');
+?>
+<?php
+    $listUser=$this->url(array('controller'=>'home','action'=>'get-them-all'),null,true);
+    $addQuotes=$this->url(array('controller'=>'Quotes','action'=>'add'),null,true);
+    $listQuotes=$this->url(array('controller'=>'Quotes','action'=>'list'),null,true);
+    $quotes=$this->url(array('controller'=>'Quotes'),null,true);
+    $noOfQuizQuestions=$this->url(array('controller'=>'fun','action'=>'no-of-questions'),null,true);
+    $brainteasers=$this->url(array('controller'=>'fun','action'=>'brainteasers'),null,true);
+    $addBrainteasers=$this->url(array('controller'=>'fun','action'=>'add-brainteasers'),null,true);
+    $addQuiz=$this->url(array('controller'=>'fun','action'=>'add-quiz'),null,true);
+    $quizTakers=$this->url(array('controller'=>'fun','action'=>'quiz-takers'),null,true);
+    $addFunFacts=$this->url(array('controller'=>'fun','action'=>'add-fun-facts'),null,true);
+    $listFunFacts=$this->url(array('controller'=>'fun','action'=>'list-fun-facts'),null,true);
+    $addPrograms=$this->url(array('controller'=>'programs','action'=>'add'),null,true);
+    $listPrograms=$this->url(array('controller'=>'programs','action'=>'list'),null,true);
+    $addVideo=$this->url(array('controller'=>'videos','action'=>'add'),null,true);
+    $listVideos=$this->url(array('controller'=>'videos','action'=>'list'),null,true);
+    $addNotes=$this->url(array('controller'=>'resources','action'=>'add-notes'),null,true);
+    $people=$this->url(array('controller'=>'resources','action'=>'people'),null,true);
+    $listNotes=$this->url(array('controller'=>'resources','action'=>'list-notes'),null,true);
+    $addEnglishResources=$this->url(array('controller'=>'resources','action'=>'add-english-resources'),null,true);
+    $addJavaQuestions=$this->url(array('controller'=>'fun','action'=>'add-java-questions'),null,true);
+    $listJavaQues=$this->url(array('controller'=>'fun','action'=>'java-questions-list'),null,true);
+    $begQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=beginner';
+    $interQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=intermediate';
+    $adQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true).'?level=advanced';
+    $javaQuiz=$this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true);
+    $javaQuizTakers=$this->url(array('controller'=>'fun','action'=>'java-quiz-takers'),null,true);
+    $email=$this->url(array('controller'=>'user','action'=>'email-users'),null,true);
+    $addGuess =$this->url(array('controller'=>'programs','action'=>'add-guess-question'),null,true);
+    $listGuess = $this->url(array('controller'=>'programs','action'=>'list-guess-questions'),null,true);
+    $analytics =  $this->url(array('controller'=>'index','action'=>'analytics'),null,true);
+  ?>
+<div id="management-area" class="text-center">
+<h1>Management</h1><hr />
+    <div id="section" class="clearfix">
+          <div class="sections">
+            <h2>Users</h2>
+            <ul>
+            <li><a href="<?php echo $listUser; ?>">List Users</a></li>
+            <li><a href="<?php echo $email; ?>">Send Emails</a></li>
+            <li>Total users:<?php echo $total; ?></li>
+            <li>Unverified:<?php echo $verified; ?></li>
+            <li>Male:<?php echo $male; ?></li>
+            <li>Female:<?php echo $female; ?></li>
+            <li>Online:</li>
+            <li>Users with dp:<?php echo $dps; ?></li>
+            <li>Attempted quiz:</li>
+            <li>Deleted users</li>
+            <li>Blocked users</li>
+            <li>Delete user</li>
+            <li>Block user</li>
+            <li>Send a message to a user</li>
+            </ul>
+          </div>
+
+          <div class="sections">
+            <h2>Java Quiz</h2>
+            <ul>
+            <li>#Quiz Takers: <?php echo ($begAttempts+$interAttempts+$adAttempts);?>
+              <ul>
+                <li>#Beginner: <?php echo $begAttempts;?></li>
+                <li>#Intermediate: <?php echo $interAttempts;?></li>
+                <li>#Advanced: <?php echo $adAttempts;?></li>
+              </ul>
+            </li>
+            <li>No of questions:
+            <ul style="margin-left:-10px;">
+            <li>Beginner:  <?php echo $javaBeg;?></li>
+            <li>Intemediate: <?php echo $javaInter;?></li>
+            <li>Advanced: <?php echo $javaAd;?></li>
+            </ul>
+            </li>
+            <li><a href="<?php echo $javaQuizTakers;?>">Quiz Attempts List</a></li>
+            <li><a href="<?php echo $addJavaQuestions;?>">Add questions</a></li>
+            <li><a href="<?php echo $listJavaQues; ?>">List questions</a></li>
+            <li><a href="<?php echo $javaQuiz; ?>">Java Quiz</a></li>
+            <li><a href="<?php echo $begQuiz; ?>">Beginner Quiz</a></li>
+            <li><a href="<?php echo $interQuiz; ?>">Intermediate Quiz</a></li>
+            <li><a href="<?php echo $adQuiz; ?>">Advanced Quiz</a></li>
+            </ul>
+          </div>
+
+          <div class="sections">
+            <h2>Quotes</h2>
+            <ul>
+            <li><a href="<?php echo $quotes; ?>">Quotes</a></li>
+            <li>No of quotes:<?php echo $noOfQuotes; ?></li>
+            <li><a href="<?php echo $addQuotes; ?>">Add</a></li>
+            <li><a href="<?php echo $listQuotes; ?>">List</a></li>
+            </ul>
+          </div>
+
+            <div class="sections">
+                <h2>Videos</h2>
+                <ul>
+                    <li>No of videos: <?php echo $noOfVideos;?></li>
+                    <li><a href="<?php echo $addVideo; ?>">Add</a></li>
+                    <li><a href="<?php echo $listVideos; ?>">List</a></li>
+                </ul>
+            </div>
+
+          <div class="sections">
+            <h2>Quiz/Riddles</h2>
+            <ul>
+                <li><a href="<?php echo $brainteasers; ?>">Brainteasers</a></li>
+                <li><a href="<?php echo $addBrainteasers; ?>">Add Brainteasers</a></li>
+                <li><a href="<?php echo $noOfQuizQuestions; ?>">Quiz categories</a></li>
+                <li><a href="<?php echo $addQuiz; ?>">Add quiz</a></li>
+                <li><a href="<?php echo $quizTakers; ?>">Quiz attempts</a></li>
+            </ul>
+          </div>
+
+          <div class="sections">
+            <h2>Fun Facts</h2>
+            <ul>
+                <li><a href="<?php echo $listFunFacts; ?>">List</a></li>
+                <li><a href="<?php echo $addFunFacts; ?>">Add</a></li>
+                <li>#Facts:<?php echo $noOfFacts; ?></li>
+            </ul>
+          </div>
+
+          <div class="sections">
+            <h2>Programs</h2>
+            <ul>
+            <li><a href="<?php echo $addPrograms; ?>">Add</a></li>
+            <li><a href="<?php echo $listPrograms; ?>">List</a></li>
+            <li><a href="<?php echo $addGuess; ?>">Add Practical/Guess Questions</a></li>
+            <li><a href="<?php echo $listGuess; ?>">List Practical/Guess Questions</a></li>
+            </ul>
+          </div>
+
+          <div class="sections">
+            <h2>Resources</h2>
+            <ul>
+            <li><a href="<?php echo $addNotes;?>">Add notes</a></li>
+            <li><a href="<?php echo $listNotes; ?>">List notes</a></li>
+            <li><a href="<?php echo $addEnglishResources; ?>">Add English notes</a></li>
+            <li><a href="<?php echo $analytics; ?>">Analytics</a></li>
+            <li><a href="http://www.linksrank.com/" title="Click here to see who's linking to my site.">Backlinks to my website?</a></li>
+            <li><a href="http://www.linksrank.com/" title="Click here to see who's linking to my site.">Who links to my website?</a></li>
+            </ul>
+          </div>
+    </div>
+
+</div>

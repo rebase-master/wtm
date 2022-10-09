@@ -1,0 +1,31 @@
+<?php $this->headTitle()->set('Forum - Create Category');
+echo $this->headTitle();
+?>
+<div class="content" xmlns="http://www.w3.org/1999/html">
+    <div class="replyCont">
+        <?php if($this->error==1){?>
+        <div class="error bg-danger text-center">
+            <p>You must be logged in to view this page.</p>
+        </div>
+        <?php }elseif($this->error==2){?>
+          <div class="error bg-danger text-center">
+            <p>No such category heading exists.</p>
+          </div>
+        <?php }else{?>
+        <div id="create">
+            <h2 class="category_heading"><?php if(isset($this->categoryHeading)) echo ucfirst($this->categoryHeading).": ";?>Create Category </h2><br />
+        <?php if(isset($this->result)){ ?>
+            <div class="error bg-danger text-center">
+                <p><?php echo $this->result; ?></p>
+            </div>
+        <?php } echo $this->form;?>
+        </div>
+        <?php } ?>
+        <?php $forum=$this->url(array('controller'=>'forum', 'action'=>''), null, true);?>
+        <div class="buttons">
+            <div class="btn btn-primary">
+                <a href="<?php echo $forum;?>">Back To Forum</a>
+            </div>
+        </div>
+    </div>
+</div>

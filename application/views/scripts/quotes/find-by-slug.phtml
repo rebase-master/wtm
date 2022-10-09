@@ -1,0 +1,135 @@
+<div class="content _quotes">
+	<?php if(!empty($this->quote)): ?>
+		<?php
+		$quote      =   $this->quote['quote'];
+		$author     =   $this->quote['author'];
+		$slug       =   null;
+
+		if(!empty($quote)){
+			$escapedQuote = htmlspecialchars_decode($quote);
+			$author       = htmlspecialchars_decode($author);
+			$slug         = $this->quote['slug'];
+		}else{
+			$escapedQuote = "Teach you to wield the force, I shall.";
+			$author       = "Yoda";
+		}
+
+		if(empty($slug))
+			$dataUrl    = BASE_URL.'quotes';
+		else
+			$dataUrl    = BASE_URL.'quote/'.$slug;
+
+		$tweet = strlen($escapedQuote)>70?substr($escapedQuote, 0,70)."...":$escapedQuote;
+
+		?>
+	<div class="quotes squote" data-url="<?php echo $dataUrl; ?>">
+		<div class="sqc">
+			<div class="quote">
+				<blockquote class="qtext">
+					<?php echo $quote; ?>
+				</blockquote>
+			</div>
+			<div class="clearfix">
+				<div class="author pull-right">
+					- <?php echo $author; ?>
+				</div>
+
+				<div class="share-g pull-left clearfix">
+					<div class="fb-quote-publish ssi">
+						<img src="<?php echo $this->baseUrl('/images/social/fb-share.png'); ?>" alt="Facebook share icon" title="Share on Facebook" />
+					</div>
+					<div class="twitter ssi">
+						<div class="twitter-share ss">
+							<a class="twitter-share-button"
+							   href="https://twitter.com/share"
+							   data-size="small"
+							   data-url="<?php echo $dataUrl; ?>"
+							   data-via="wethementors"
+							   data-related="quotes, inspiration"
+							   data-hashtags="quote, quoteoftheday"
+							   data-text="<?php echo $tweet; ?>">
+								Tweet
+							</a>
+						</div>
+					</div>
+				</div>
+			</div><!--clearfix-->
+		</div>
+	</div><!--quotes-->
+<!--<hr />-->
+		<div class="random-quotes-container">
+			<?php if(count($this->randomQuotes) > 0): ?>
+				<h2>Random Quotes</h2>
+				<div class="qsc">
+					<?php foreach ($this->randomQuotes as $record):?>
+					<?php
+						$quote      =   $record->quote;
+						$author     =   $record->author;
+						$slug       =   null;
+
+						if(!empty($quote)){
+							$escapedQuote = htmlspecialchars_decode($quote);
+							$author       = htmlspecialchars_decode($author);
+							$slug         = $record->slug;
+						}else{
+							$escapedQuote = "Teach you to wield the force, I shall.";
+							$author       = "Yoda";
+						}
+
+						if(empty($slug))
+							$dataUrl    = BASE_URL.'quotes';
+						else
+							$dataUrl    = BASE_URL.'quote/'.$slug;
+
+						$tweet = strlen($escapedQuote)>70?substr($escapedQuote, 0,70)."...":$escapedQuote;
+
+					?>
+
+						<div class="quotes" id="quote-<?php echo $record->id; ?>" data-url="<?php echo $dataUrl; ?>">
+							<div class="qc">
+								<div class="quote">
+									<blockquote class="qtext">
+										<?php echo $quote; ?>
+									</blockquote>
+								</div>
+								<div class="clearfix">
+									<div class="author pull-right">
+										- <?php echo $author; ?>
+									</div>
+
+									<div class="share-g pull-left clearfix">
+										<div class="fb-quote-publish ssi">
+											<img src="<?php echo $this->baseUrl('/images/social/fb-share.png'); ?>" alt="Facebook share icon" title="Share on Facebook" />
+										</div>
+										<div class="twitter ssi">
+											<div class="twitter-share ss">
+												<a class="twitter-share-button"
+												   href="https://twitter.com/share"
+												   data-size="small"
+												   data-url="<?php echo $dataUrl; ?>"
+												   data-via="wethementors"
+												   data-related="quotes, inspiration"
+												   data-hashtags="quote, quoteoftheday"
+												   data-text="<?php echo $tweet; ?>">
+													Tweet
+												</a>
+											</div>
+										</div>
+									</div>
+								</div><!--clearfix-->
+
+							</div><!-- qc -->
+
+
+							<input type="hidden" class="qid" name="qid" value="<?php echo $record->id; ?>" />
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	<?php else: ?>
+		<div class="alert alert-info text-center">
+			<p>No result found!</p>
+		</div>
+	<?php endif; ?>
+</div>

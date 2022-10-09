@@ -1,0 +1,141 @@
+#beta{
+    vertical-align: top;
+    font-size: 0.6em;
+    color:#0059b3;
+}
+#java-quiz-container{
+    text-align: center;
+}
+.modules{
+	background-color:#fff;
+	border:1px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.modules p{
+	line-height:1.4em;
+	padding:10px;
+	margin-bottom:20px;
+}
+.modules a{
+	cursor:pointer;
+}
+.quiz-prepare {
+    line-height: 1.5em;
+    margin: 0 auto 20px;
+    width: 80%;
+}
+.quiz_ques{
+	margin:0 auto;
+    width: 80%;
+}
+#countdown{
+    font-family:verdana,sans-serif;
+}
+#timer{
+    color:#E72E28;
+}
+#question {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 20px auto;
+    width: 90%;
+}
+
+#options-group{
+	margin: 0 auto 20px;
+	width: 95%;
+}
+#options-group label{
+    font-weight: 500;
+}
+#options-group .option-group{
+    margin-left: 10px;
+}
+.option-group > span {
+    display: block;
+    margin-left: 30px;
+}
+.buttons{
+	margin-bottom:  10px;
+}
+.buttons button{
+    cursor:pointer;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    min-width: 100px;
+    text-decoration: none;
+}
+
+#quiz-result-sidebar h3{
+	background-color: #073C5A;
+    color: #FFFFA6;
+	padding:10px;
+    text-align: center;
+}
+#java_sno{width:1em;}
+
+#quiz-result-sidebar td span{font-size:.75em;}
+
+#java-quiz-result h1{
+	margin-bottom:20px;
+}
+
+#java-quiz-result h2{
+   color:#116a9f;
+    font-size: 24px;
+   text-align:center;
+}
+#java-quiz-result p{
+	font-weight:bold;
+	margin-left:20px;
+	margin-bottom:20px;
+}
+
+#java-quiz-result li {
+    list-style-type: inherit;
+}
+.quiz-answers {
+    margin: 10px auto;
+    width: 90%;
+}
+#java-quiz-result img{
+    width: 20px;
+    height: 20px;
+}
+#other-quizzes{
+    margin: 40px 0;
+}
+#other-quizzes a{
+	margin-left:10px;
+}
+.ua span{
+	background-color:#ffffc8;
+	color:#004080;
+	display:block;
+	/*margin:10px;*/
+	margin-left:-10px;
+	padding:20px 20px;
+	width:30em;
+}
+.ua span span{
+	margin:0;
+	padding:0;
+}
+.ua {
+	margin-top:10px;
+	width:40em;
+}
+@media (max-width: 460px){
+    .quiz_ques .buttons button{
+        display: block;
+        width: 100%
+    }
+}
+@media (max-width: 580px){
+    #other-quizzes a {
+        display: block;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+}

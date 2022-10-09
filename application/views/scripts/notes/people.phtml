@@ -1,0 +1,45 @@
+<?php $peopleList = $this->url(array('controller'=>'resources','action'=>'people'),null,true);?>
+<div class="content poi-container" id="top">
+    <?php if(isset($this->person) && !empty($this->person)): ?>
+    <?php $this->headTitle()->set($this->person->heading);
+        echo $this->headTitle();
+    ?>
+        <div id="p_cont_desc">
+            <div id="trail_poi">
+                <p><a href="<?php echo $peopleList;?>">Persons Of Eminence</a>&nbsp; > <span><?php echo $this->person->heading ?></span></p>
+            </div>
+            <h1><?php echo $this->person->heading;?></h1>
+            <?php echo $this->person->content;?>
+            <div><b>Source:</b> <?php echo $this->person->source;?></div>
+            <hr />
+            <div class="clearfix">
+                <a class="pull-left" href="<?php echo $peopleList;?>"> Go Back</a>
+                <a class="pull-right" href="#top"> Top</a>
+            </div>
+        </div>
+    <?php elseif($this->people):?>
+        <?php $this->headTitle()->set('Persons Of Eminence');
+        echo $this->headTitle();
+        ?>
+        <div class="clearfix">
+            <h1 class="text-center">Persons of Eminence</h1><hr />
+            <?php foreach($this->people as $people):
+                $person=$this->url(array('controller'=>'resources','action'=>'people','pid'=>$people->id,'poi'=>$people->heading),null,true);?>
+                <a class="p_square" href="<?php echo  ($person);?>">
+                    <?php if($people->image!=null):?>
+                            <img src="<?php echo BASE_URL.$people->image;?>" alt="<?php echo $people->heading;?>" title="<?php echo $people->heading;?>" />
+                    <?php endif; ?>
+                    <p class="ellipsis"><?php echo $people->heading; ?></p>
+                </a>
+            <?php endforeach;?>
+        </div>
+    <?php else:?>
+        <div class="alert alert-danger text-center">
+            <p>Record not found!</p>
+        </div>
+        <a class="" href="<?php echo $peopleList;?>">Back to list</a>
+    <?php endif;?>
+
+</div>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/scripts/photo.js"></script>
+<script type="text/javascript" charset="utf-8">  $(document).ready(function(){    $("a[rel^='photo']").prettyPhoto({animationSpeed: 'normal', opacity: 0.80,showTitle: true});});</script>

@@ -1,0 +1,35 @@
+<?php $this->headTitle()->set('Forum - Reply');
+echo $this->headTitle();
+?>
+<div class="forumCont">
+    <div id="content">
+        <div id="reply_form">
+            <div class="replyCont">
+                <?php if($this->error==1){
+                $forum=$this->url(array('controller'=>'forum', 'action'=>''), null, true);
+                $login=$this->url(array('controller'=>'user','action'=>'login'),null,true);
+//                    .'?redirect=/forum/reply/cat/'.$this->cat.'/id/'.$this->id.'/topic/'.$this->topic.'/page/'.$this->page;
+                ?>
+                <div class="error bg-danger text-center">
+                    <p>You must be logged in to post a reply.</p>
+                </div>
+                <div class="buttons">
+                    <div class="btn btn-primary">
+                        <a href="<?php echo $forum;?>">Back To Forum</a>
+                    </div>
+                    <div class="btn btn-success">
+                        <a href="<?php echo $login ?>">Log In</a>
+                    </div>
+                </div>
+                    <?php }elseif($this->error==2){?>
+                    <h3>Page not found!</h3>
+                    <?php }else{?>
+                    <h2><?php echo $this->topic->topic_name; ?></h2>
+                    <p><?php echo $this->topic->topic_description; ?></p>
+                    <?php
+                        echo $this->form;
+                    }?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<?php
+    $this->headTitle()->set('Add Program');
+    echo $this->headTitle();
+?>
+
+<div class="content">
+    <div class="list-head">
+        <h2>Add Program</h2>
+    </div>
+    <div class="form_short">
+        <?php if(isset($this->success)): ?>
+            <div class="text-center alert alert-info">
+                <?php echo $this->success; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php echo $this->form; ?>
+
+    </div>
+</div>

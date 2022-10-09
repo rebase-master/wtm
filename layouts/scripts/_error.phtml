@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta charset="utf-8">
+	<meta name="description" content="Free tutorials, study notes, quiz and solved questions for Computer, English, Mathematics, Physics, Chemistry" />
+	<meta name="keywords" content="mentors, wethementors, java programs, learn java, isc computer, solved programs, isc guess questions,
+         isc sample papers, icse computer, english notes Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="<?php echo $this->baseUrl('/images/favicon.ico');?>" type="image/icon" />
+
+    <?php echo $this->headTitle(); ?>
+    <?php
+    $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+    $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+    ?>
+    <?php
+    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/bootstrap.css');
+    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+    ?>
+    <?php
+    echo $this->headLink();
+    echo $this->headScript();
+    ?>
+</head>
+<body>
+<div id="page" class="container-fluid">
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/_head_nav.php'; ?>
+    <div class="container">
+        <?php include_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+        <div>
+            <?php echo $this->layout()->content; ?>&nbsp;
+        </div>
+
+    </div>
+</div>
+<?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+</body>
+</html>

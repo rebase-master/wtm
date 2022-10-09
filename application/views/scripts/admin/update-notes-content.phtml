@@ -1,0 +1,97 @@
+<?php
+	$this->headTitle()->set('Update Notes Content');
+	echo $this->headTitle();
+	$list = $this->baseUrl('/admin/read-notes-content');
+?>
+
+<div class="content">
+
+	<div class="list-head">
+		<h2>Update Notes Content</h2>
+		<a href="<?php echo $list; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-list"></i>
+			List Notes Content
+		</a>
+	</div>
+
+	<div class="form_short full-stretch">
+		<?php  if(isset($this->message)): ?>
+			<div class="alert alert-info">
+				<p><?php echo $this->message; ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php $form = $this->form; ?>
+		<form class="form-horizontal notes-form" method="<?php echo $form->getMethod() ?>" action="<?php echo $form->getAction()?>" enctype="multipart/form-data">
+			<div class="form-group">
+				<?php echo $form->notes_id->renderLabel() ?>
+				<?php echo $form->notes_id->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->heading->renderLabel() ?>
+				<?php echo $form->heading->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->slug->renderLabel() ?>
+				<?php echo $form->slug->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->cover_image->renderLabel() ?>
+				<?php echo $form->cover_image->renderFile(); ?>
+				<?php if(!empty($this->notesContent->cover_image)): ?>
+					<div class="center-block" id="preview-image" style="background-image: url('/images/content/uploads/<?php echo $this->notesContent->cover_image; ?>'); background-size: cover; height: 300px;background-position: center center; ">
+
+					</div>
+				<?php else: ?>
+					<div class="center-block" id="preview-image" style="background-size: cover; background-position: center center; ">
+
+					</div>
+				<?php endif; ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->extract->renderLabel() ?>
+				<?php echo $form->extract->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->content->renderLabel() ?>
+				<div id="content-button-bar" class="wmd-button-row"></div>
+				<textarea id="content_html" class="form-control"><?php echo htmlspecialchars_decode($this->notesContent->content); ?></textarea><br />
+				<div id="content-preview"></div>
+<!--					<div id="content_html"></div>-->
+				<strong>Output</strong>
+				<?php echo $form->content->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->source->renderLabel() ?>
+				<textarea class="form-control" id="source" name="source"><?php echo urldecode($this->notesContent->source); ?></textarea>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->deleted->renderLabel() ?>
+				<?php echo $form->deleted->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->submit->renderViewHelper() ?>
+			</div>
+
+			<?php echo $form->file_changed->renderViewHelper(); ?>
+
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	setup_wmd({
+		input: "content_html",
+		button_bar: "content-button-bar",
+		preview: "content-preview",
+		output: "content"
+	});
+</script>

@@ -1,0 +1,109 @@
+<?php include_once APPLICATION_PATH.'/Misc/Util.php';
+
+    $this->headTitle()->set('Users List');
+    echo $this->headTitle();
+?>
+
+<div class="content">
+    <div class="list-head">
+	    <h2>Unverified Users</h2>
+    </div>
+	<div id="users">
+        <?php	static $i=1; ?>
+
+        <?php if($this->paginator){ ?>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sno</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Verified</th>
+                            <th>Created</th>
+                            <th>Last Login</th>
+                            <th>Emails</th>
+                            <th>Email Notification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $mdlEmailUsers=new Model_EmailUsers();
+                            foreach($this->paginator as $user){?>
+                            <?php
+                                $sendMail=$this->url(array('controller'=>'user', 'action'=>'email-verify'),null,true).'?first_name='.$user->first_name.'&last_name='.$user->last_name.'&email='.$user->email;
+                                $freq=$mdlEmailUsers->emailFreq($user->email);
+                                $sendNotification = $this->url(array('controller' => 'user', 'action' => 'email-notification'),null,true).'?first_name='.$user->first_name.'&last_name='.$user->last_name.'&email='.$user->email;
+                            ?>
+                            <tr>
+                                <td><?php echo $i++;?></td>
+                                <td><?php echo $user->username?></td>
+                                <td><?php echo $user->first_name." ".$user->last_name?></td>
+                                <td><?php echo $user->email?></td>
+                                <td><?php echo $user->confirmed?'yes':'No'?></td>
+                                <td><?php echo Util::makeTime(strtotime($user->created)); ?></td>
+                                <td><?php echo Util::makeTime(strtotime($user->last_login)); ?></td>
+                                <td>Sent: <?php echo $freq;?> times<br /><a href="<?php echo $sendMail;?>">Send Mail</a></td>
+                                <td><a href="<?php echo $sendNotification;?>">Computer Practical</a></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <div id="pagination" class="pagination">
+                <?php echo $this->paginationControl($this->paginator,
+                    'Jumping',
+                    'includes/paginationcontrol.phtml');
+                ?>
+            </div>
+        <?php }else{?>
+
+            <h3>No unverified user</h3>
+
+        <?php }?>
+
+    </div><!--users-->
+
+<?php	 $i=1;
+	if($this->weekly!=null){?>
+	<div id="users">
+	<h2>Weekly Absentees</h2>
+
+<table class="spreadsheet" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<th>Sno</th>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Created</th>
+			<th>Last Login</th>
+			<th>Emails</th>
+			<th>Email Notification</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+	    $mdlEmailUsers=new Model_EmailUsers();
+		foreach($this->weekly as $user){?>
+		<?php
+			$sendMail=$this->url(array('controller'=>'user', 'action'=>'email-absence'),null,true).'?first_name='.$user->first_name.'&last_name='.$user->last_name.'&email='.$user->email;
+			$freq=$mdlEmailUsers->emailFreq($user->email);
+			$sendNotification = $this->url(array('controller' => 'user', 'action' => 'email-notification'),null,true).'?first_name='.$user->first_name.'&last_name='.$user->last_name.'&email='.$user->email;
+
+		?>
+		<tr>
+			<td><?php echo $i++;?></td>
+			<td><?php echo $user->username?></td>
+			<td><?php echo $user->first_name." ".$user->last_name?></td>
+			<td><?php echo $user->email?></td>
+			<td><?php echo $user->created?></td>
+			<td><?php echo $user->last_login?></td>
+			<td>Sent: <?php echo $freq;?> times<br /><a href="<?php echo $sendMail;?>">Send Mail</a></td>
+			<td><a href="<?php echo $sendNotification;?>">Computer Practical</a></td>
+		</tr>	
+<?php }//foreach?>
+	</tbody>
+</table>
+	</div>
+<?php } //weekly?>
+</div>

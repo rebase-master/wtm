@@ -1,0 +1,50 @@
+<?php //echo $this->doctype();?>
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+<meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years' solved papers, quiz, riddles, doodle, forum, profile option and much more.">
+<meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+<meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important,
+PCM,computer applications,english,literature,10,12,computer coaching,
+java coaching,programs,board questions,sample papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+    <?php
+    echo $this->headTitle();
+	$this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+	$this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+	$this->headScript()->appendFile($this->baseUrl().'/scripts/admin/admin.js');
+    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/common/css/bootstrap.min.css');
+    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/common/css/bootstrap-responsive.min.css');
+//	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/greens/css/fo-bizarre-min.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/admin/css/style.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/admin/css/form.css');
+    $this->headLink()->appendStylesheet($this->baseUrl().'/skins/greens/css/responsive-biz.css');
+?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+    echo $this->headLink();
+	echo $this->headScript();
+?>
+</head>
+    <body>
+        <div id="One2ka4"></div>
+
+        <div id="page" class="container-fluid">
+            <?php require_once APPLICATION_PATH.'/../layouts/templates/adminUserInfo.php'; ?>
+            <?php require_once APPLICATION_PATH.'/../layouts/templates/admin_header.php'; ?>
+             <div id="contentWrapper" class="row-fluid">
+                  <?php echo $this->layout()->content; ?>&nbsp;
+             </div>
+        </div>
+
+        <!--FOOTER-->
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+        <!--END FOOTER-->
+    </body>
+</html>

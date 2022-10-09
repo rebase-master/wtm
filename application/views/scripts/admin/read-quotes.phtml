@@ -1,0 +1,58 @@
+<?php
+	$this->headTitle()->set('Quotes List');
+	echo $this->headTitle();
+?>
+
+<div class="content">
+
+	<div class="list-head">
+		<h2>Quotes List</h2>
+	</div>
+	<?php if($this->paginator): ?>
+		<table class="table table-bordered table-striped quotes">
+			<thead>
+			<tr>
+				<th>Sl no</th>
+				<th>Quote</th>
+				<th>Author</th>
+				<th>Slug</th>
+				<th>Visible</th>
+				<th>Created</th>
+				<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
+				<?php $i = ($this->currentPage - 1) * $this->limit; ?>
+				<?php foreach($this->paginator as $quote): ?>
+
+					<tr>
+	                        <td><?php echo ++$i; ?></td>
+	                        <td><?php echo htmlspecialchars_decode($quote->quote); ?></td>
+							<td><?php echo htmlspecialchars_decode($quote->author); ?> </td>
+							<td><?php echo $quote->slug ?> </td>
+							<td><?php echo $quote->visible?"TRUE":"FALSE" ?> </td>
+	                        <td><?php echo $quote->created; ?></td>
+	                        <td>
+		                        <?php
+			                        $update=$this->url(array('controller'=>'admin', 'action'=>'update-quote','id'=>$quote->id));
+		                        ?>
+		                        <a class="btn btn-xs btn-danger delete-quote" href="javascript:void(0);">Delete</a>
+		                        <input type="hidden" value="<?php echo $quote->id; ?>" />
+		                        <a class="btn btn-xs btn-info update-quote" href="<?php echo $update; ?>">Update</a>
+	                        </td>
+	                    </tr>
+
+	            <?php endforeach; ?>
+			</tbody>
+        </table>
+        <div id="pagination" class="pagination">
+            <div class="controls">
+                <?php
+                    echo $this->paginationControl($this->paginator,
+                    'Sliding',
+                    'includes/paginationcontrol2.phtml');
+                ?>
+            </div>
+        </div>
+    <?php	endif;	?>
+</div>

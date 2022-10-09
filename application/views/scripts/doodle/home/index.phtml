@@ -1,0 +1,165 @@
+<?php 	
+    $askQuestion = $this->url(array('controller'=>'qa','action'=>'ask-question'),null,true);
+	$viva = $this->url(array('controller'=>'isc','action'=>'viva-voce'),null,true);
+	$guessPractical = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'),null,true).'?v=guess-questions';
+	$compPractical = $this->url(array('controller'=>'isc','action'=>'isc-computer-practical'),null,true);
+    $videos = $this->url(array('controller'=>'videos',), null, true);
+    $tutorials = $this->url(array('controller'=>'programming-in-java'),null,true);
+    $doodle = $this->url(array('controller'=>'doodle'),null,true);
+    $allQuestions = $this->url(array('controller'=>'qa','action'=>''),null,true);
+    $javaQuiz = $this->url(array('controller'=>'fun','action'=>'java-quiz'),null,true);
+    $x_sample_papers = $this->url(array('controller'=>'icse', 'action'=>'sample-papers'),null,true);
+    $x_previous_year = $this->url(array('controller'=>'icse', 'action'=>'previous-years'),null,true);
+    $xii_sample_papers = $this->url(array('controller'=>'isc', 'action'=>'sample-papers'),null,true);
+    $xii_previous_year = $this->url(array('controller'=>'isc', 'action'=>'previous-years'),null,true);
+    $practical = $this->url(array('controller'=>'isc', 'action'=>'isc-computer-practical'),null,true);
+    $comp_project = $this->url(array('controller'=>'isc', 'action'=>'computer-project'),null,true);
+
+    $mdlNotes=new Model_Notes();
+    $person = $mdlNotes->randomPerson('people');
+    $people = $this->url(array('controller'=>'resources', 'action'=>'people', 'pid'=>$person['id'], 'poi'=>$person['heading']),null, true);
+
+//    $mdlTopic=new Model_ForumTopic();
+//    $topic = $mdlTopic->latestTopic();
+
+?>
+
+
+<div class="content">
+	<div id="_f_half" class="col-md-7 col-lg-7">
+        <?php if($this->error != 1){ ?>
+            <div class="divs_f_half">
+                <?php if($this->video){?>
+                <h1><?php echo $this->video->heading;?></h1><hr />
+                <iframe src="<?php echo $this->video->link;?>"></iframe>
+                <div class="divsContent">
+                    <?php echo substr($this->video->description, 0, 150)."....";?>
+                    <a href="<?php echo $videos; ?>">watch more videos</a>
+                </div>
+                <?php } ?>
+            </div>
+        <?php } ?>
+        <div class="divs_f_half">
+            <h1>Installing BlueJ and JDK</h1><hr />
+            <iframe src="http://www.youtube-nocookie.com/embed/-wdlCgkdsbQ?rel=0" frameborder="0" allowfullscreen></iframe>
+            <div class="divsContent">
+                <p>Complete steps to downloading and installing Java Development Kit(JDK) latest version and Bluej.</p>
+            </div>
+        </div>
+	<div class="divs_f_half">
+		<h1>ISC Computer Practical 2014<br />Important Questions <br />SOLVED!</h1><hr />
+		<div class="divsContent">
+		<p>Browse through the list of important questions for ISC practical 2014. The programs accumulated in this list is based on
+		the pattern of questions that had been asked in the ISC computer practicals in the previous years. Each question is followed by
+		its solution. Keep in mind the following points before you copy the solutions:</p>
+		<div class="divsContent">
+		<ul>
+			<li>Read the question carefully. You are going to get a similarly descriptive question in the exam.</li>
+			<li>Try to understand the crux of the question. If the question is not clear to you, read it again.</li>
+			<li>As you go through the solution, try to focus on the parts of the solution. Some questions have more than one part to answer.</li>
+			<li>Copy the solution and run it on your favourite IDE i.e. BlueJ, NetBeans, Eclipse etc.</li>
+			<li>If you find any solution not working, post it <a href="<?php echo $askQuestion; ?>">here</a></li>
+		</ul>
+		</div>
+		<br />
+		<a href="<?php echo $compPractical;?>">ISC 2013 Comp Practical Solved</a>
+		<a href="<?php echo $viva;?>">Viva-Voce</a>
+		<a href="<?php echo $guessPractical;?>">Take me to the list</a>
+		</div>
+	</div>
+<!--	<div class="divs_f_half">-->
+<!--	  <h1>Sketch Your Imagination</h1><hr />-->
+<!--		<div class="divsContent">-->
+<!--		<img src="--><?php //echo $this->baseUrl();?><!--/images/doodle.png" alt="Doodle Sketch" title="Doodle Sketch" />-->
+<!--			<p id="first_word"><a href="--><?php //echo $doodle;?><!--">Doodle</a> lets you draw your imagination on canvas.-->
+<!--			Sometimes there is a strong urge to sketch things out of our mind on canvas; fragments of a dream, figments of-->
+<!--			imagination or complete nonsense. If you feel that way, let's <a href="--><?php //echo $doodle;?><!--">Doodle</a>-->
+<!--			</p>-->
+<!--		</div>-->
+<!--	</div>-->
+
+	</div><!-- _f_half -->
+	
+	<div id="_s_half" class="col-md-5 col-lg-5">
+        <div id="divsProg" class="divs_s_half">
+            <h1>Programming Tutorials</h1><hr />
+            <div class="divsImage">
+                <img src="<?php echo $this->baseUrl();?>/images/function.png" />
+                <img src="<?php echo $this->baseUrl();?>/images/array.png" />
+            </div>
+
+            <div class="divsContent">
+                <p>Finding programming hard to understand? Problem in writing programs on your own?
+                    We present you with detailed topic-wise programming tutorial with solved programs.
+                    <a href="<?php echo $tutorials; ?>">Check Out Tutorials</a></p>
+            </div>
+
+        </div>
+        <div class="divs_s_half google-ad text-center">
+<!--            --><?php //require_once APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+        </div>
+<!--        <div id="divsForum" class="divs_s_half">-->
+<!--            <h1>What's cooking in the forum?</h1><hr />-->
+<!--            <div class="divsContent">-->
+<!--                --><?php //if($topic!=false): ?>
+<!--                    <p>--><?php //if($topic->topic_description){
+//                        echo substr($topic->topic_description,0,75);
+//                        if(strlen($topic->topic_description)>75)
+//                            echo "....";?>
+<!--                        <i>--><?php //echo " - ".$topic->replies." replies";?><!--</i>-->
+<!--                        --><?php //}?>
+<!--                    <br />---><?php //echo $topic->created_by;?>
+<!--                    --><?php //endif; ?>
+<!--                <a href='./forum/topics/cat/--><?php //echo $topic->ch_id;?><!--/-->
+<!--                    id/--><?php //echo $topic->c_id;?><!--/topic/--><?php //echo $topic->topic_id;?><!--'>-->
+<!--                    Check this out!</a>-->
+<!--            </p>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="divs_s_half">
+            <h1>Programming Q&A</h1><hr />
+            <div class="divsContent">
+                <p>This newly created section allows people to seek help in any topic/question they find difficult to comprehend or
+                    solve on their own. The moderators and users actively respond to queries and provide detailed explanation
+                    related to the problem.
+                <br />
+                <a href="<?php echo $allQuestions;?>">View All Questions</a>
+                <a href="<?php echo $askQuestion;?>">Ask Question</a>
+                </p>
+            </div>
+        </div>
+        <div class="divs_s_half">
+				<h1>Java Quiz</h1><hr />
+				<div class="divsContent">
+				<p>The three different levels in this Java quiz(Beginner, Intermediate, Advanced) has been designed keeping in mind
+				the different levels of the students. The carefully devised questions in these Java quizzes will help
+				you in your exams. Pick your level and check where you land on the leaderboard.
+				
+				<a href="<?php echo $javaQuiz;?>">Take me to the quiz</a>
+				</p>
+				</div>
+        </div>
+			
+        <div id="divsExam" class="divs_s_half">
+			<h1>Exam Essentials</h1><hr />
+			<div class="divsContent">
+			<ul>
+				<li><a href="<?php echo $x_sample_papers?>">ICSE 2013 Sample Papers Download</a></li>
+				<li><a href="<?php echo $x_previous_year?>">ICSE Previous Years Papers Download</a></li>
+				<li><a href="<?php echo $xii_sample_papers?>">ISC 2013 Sample Papers Download</a></li>
+				<li><a href="<?php echo $xii_previous_year?>">ISC Previous Years Papers Download</a></li>
+				<li><a href="<?php echo $comp_project?>">Computer Project</a></li>
+			</ul>
+			</div>
+        </div>
+        <div class="divs_s_half">
+				<h1><?php echo $person['heading'];?></h1><hr />
+				<img src="<?php echo $this->baseUrl().$person['image'] ?>" alt="<?php echo $person['heading'] ?>" title="<?php echo $person['heading'] ?>" />
+				<div class="divsContent">
+				<p><?php echo substr($person['extract'],0,160)."..." ?>
+				<a style="float:right" href="<?php echo $people;?>">Read More</a>
+				</p>
+				</div>
+        </div>
+	</div>
+</div>

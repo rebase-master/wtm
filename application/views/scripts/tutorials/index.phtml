@@ -1,0 +1,29 @@
+<div id="tutorials" class="tuts col-md-11 col-md-offset-1 col-lg-10 col-lg-offset-1">
+	
+	<div class="category-group">
+		<?php if(!empty($this->results)): ?>
+			<?php foreach ($this->results as $key => $results): ?>
+				<div class="category">
+					<h2><?php echo $key; ?></h2>
+					<?php if(count($results) > 0): ?>
+						<div class="items-group clearfix">
+							<ul>
+								<?php foreach ($results as $result): ?>
+									<li>
+										<div class="item">
+											<?php $link = $this->baseUrl('/tutorials/'.urlencode($result['slug'])); ?>
+											<a href="<?php echo $link; ?>"><?php echo $result['sub_category']; ?></a>
+										</div>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div><!--items-group-->
+					<?php endif; ?>
+				</div><!--category-->
+
+			<?php endforeach; ?>
+		<?php endif; ?>
+
+	</div><!--category-group-->
+	
+</div><!--#tutorials-->

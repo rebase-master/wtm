@@ -1,0 +1,158 @@
+<?php
+	$iscpy = $this->url(array('controller'=>'isc','action'=>'previous-years'), null ,true);
+	$iscsp = $this->url(array('controller'=>'isc','action'=>'sample-papers'), null ,true);
+	$iscvv = $this->url(array('controller'=>'isc','action'=>'viva-voce'), null ,true);
+	$iscpro = $this->url(array('controller'=>'isc','action'=>'computer-project'), null ,true);
+	$iscotq = $this->url(array('controller'=>'isc','action'=>'isc-comp-find-output-type-ques'), null ,true);
+	$isctq = $this->url(array('controller'=>'isc','action'=>'isc-comp-theory-sample-ques'), null ,true);
+?>
+<div class="content">
+	<script>
+		var defLoc = '/<?php echo key($this->practicalQuestions); ?>/Q1';
+	</script>
+	<div id="icp" class="row-fluid" ng-app="iscyq" ng-controller="ISCYQController">
+
+	    <div class="col-md-9 col-md-push-3 ipq_content">
+
+	        <div id="practicals" class="view-container practical">
+		        <div ng-view autoscroll class="view-frame">
+
+		        </div>
+		        <div class="ad">
+			        <?php include_once APPLICATION_PATH.'/../layouts/templates/ads/amazon_affiliate.php'; ?>
+		        </div>
+	        </div>
+	    </div>
+		<div class="col-md-3 col-md-pull-9 menu_sidebar topic-container hide1">
+			<?php if(!empty($this->practicalQuestions)): ?>
+				<?php $ctr = 0;?>
+				<input type="hidden" value="computer science" id="subject" />
+				<input type="hidden" value="practical" id="type" />
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a href="javascript:void(0);" data-toggle="modal" data-target="#guidelines"> Guidelines</a>
+							</h4>
+						</div>
+					</div>
+					<?php $panelsToOpen = array_slice(array_keys($this->practicalQuestions),0,3); ?>
+					<?php foreach($this->practicalQuestions as $key => $question): ?>
+						<?php if($ctr++ == 3): ?>
+							<div class="ad">
+								<?php include_once APPLICATION_PATH.'/../layouts/templates/ads/gad-sidebar-left.php'; ?>
+							</div>
+						<?php endif; ?>
+
+						<div class="panel panel-warning year-group">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" target="_self" href="#collapse<?php echo $key; ?>">
+										ISC Computer Practical <?php echo $key; ?>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse<?php echo $key; ?>" class="panel-collapse collapse<?php echo in_array($key, $panelsToOpen)?' in':''?>">
+								<div class="panel-body">
+									<ul>
+										<?php foreach ($question as $index => $ques): ?>
+											<li>
+												<a ng-href="#/<?php echo $key.'/Q'.($index+1); ?>" ng-class="{active: isActive('<?php echo $key.'/Q'.($index+1); ?>')}">
+													Question <?php echo ($index+1); ?>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="guidelines" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Important guidelines for Computer practical</h3>
+			</div>
+			<div class="modal-body">
+				<div>
+					<div>
+						<p>(Candidates are allowed additional 15 minutes for only reading the paper. They must NOT start writing during this time)</p>
+						<p>The total time to be spent on the Planning session and the Examination session is Three hours.</p>
+						<p>Planning session: 90 minutes</p>
+						<p>Examination session: 90 minutes</p>
+	  				    <p>Maximum Marks: 30</p>
+						<strong>Note: Candidates are to be permitted to proceed to the Examination Session only after the
+						90 minutes of the Planning Session are over.</strong>
+						<br />
+						<p>This paper consists of three problems from which candidates are
+							required to attempt any one problem.
+						</p><br />
+						<table class="table table-bordered">
+							<tr>
+								<td>1.</td>
+								<td>	Write an algorithm for the selected problem.
+									(Algorithm should be expressed clearly using any standard scheme such as pseudo code or in steps
+									which are simple enough to be obviously computable)
+								</td>
+								<td>[3]</td>
+							</tr>
+							<tr>
+								<td>2.</td>
+								<td>Write a program in JAVA language. The program should follow the algorithm and should be logically
+									and syntactically correct.
+								</td>
+								<td>[5]</td>
+							</tr>
+							<tr>
+								<td>3.</td>
+								<td>Document the program using mnemonic names/comments, identifying and clearly describing the choice
+									of data types and meaning of variables.
+								</td>
+								<td>[2]</td>
+							</tr>
+							<tr>
+								<td>4.</td>
+								<td>Code / Type the program on the computer and get a printout (Hard Copy). Typically, this should be a
+									program that compiles and runs correctly.
+								</td>
+								<td>[2]</td>
+							</tr>
+							<tr>
+								<td>5.</td>
+								<td>Test run the program on the computer using the given sample data and get a printout of the output in the
+									format specified in the problem.
+								</td>
+								<td>[5]</td>
+							</tr>
+							<tr>
+								<td>6.</td>
+								<td>Viva-Voce on the Selected Problem.</td>
+								<td>[3]</td>
+							</tr>
+						</table>
+
+						<div class="extra-info">
+							<p>In addition to the above, the practical file of the candidate containing the practical work related
+								to programming assignments done during the year is to be evaluated as follows:
+							</p>
+							<ul>
+								<li>Programming assignments done throughout the year (by the Teacher) [5] </li>
+								<li>Programming assignments done throughout the year (by the Visiting Examiner) [5]</li>
+							</ul>
+						</div>
+						<hr />
+						<p>For more updated information, check out the council's <a href="http://cisce.org/" target="_blank" rel="nofollow">official website</a>.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

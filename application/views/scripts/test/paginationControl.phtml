@@ -1,0 +1,35 @@
+<?php
+if($this->pageCount){
+?>
+<table>
+    <tr>
+        <!-- Add Previous Button -->
+<?php
+if(isset($this->previous)){?>
+<td><a href="list?i=<?php $this->previous;?>">&lt;Previous</a> |
+</td>
+<?php }?>
+<!-- Show the available pages -->
+<?php
+foreach($this->pageInRange as $page){
+    if($page!=$this->current){
+?>
+<td>
+    <a href="list?i=<?php echo $page;?>"><?php echo $page;?></a> |
+</td>
+<?php
+    }else{
+        ?>
+<td><?php echo $this->current;?> | </td>
+<?php
+    }
+}
+?>
+<!-- Add Next Button -->
+<?php
+if(isset($this->next)){?>
+<td><a href="list?i=<?php echo $this->next;?>">Next &gt; </a></td>
+<?php }?>
+    </tr>
+</table>
+<?php }?>

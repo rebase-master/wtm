@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+<meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years' solved papers, quiz, riddles, doodle, forum, profile option and much more.">
+<meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+<meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important,
+PCM,computer applications,english,literature,10,12,computer coaching,
+java coaching,programs,board questions,sample papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+<link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+    <?php echo $this->headTitle(); ?>
+
+    <?php
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/jquery/jquery-1.11.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl().'/scripts/thirdparty/bootstrap/bootstrap.min.js');
+        $this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+    ?>
+    <?php
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/thirdparty/style.css');
+        $this->headLink()->appendStylesheet($this->baseUrl().'/skins/compact/css/style-r2c.css');
+    ?>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+    echo $this->headLink();
+?>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div id="page" class="container-fluid">
+        <?php require_once APPLICATION_PATH.'/../layouts/templates/new_header.php'; ?>
+         <div id="contentWrapper" class="row-fluid">
+            <div id="main" class="col-sm-8 col-lg-9">
+                <?php echo $this->layout()->content; ?>
+            </div>
+             <div class="col-sm-4 col-lg-3" id="sidebar_right">
+                 <fieldset class="home_right text-center google-ad">
+                     <div data-WRID="WRID-147055226549964151" data-widgetType="featuredDeals" data-responsive="yes" data-class="affiliateAdsByFlipkart" height="250" width="300"></div><script async src="//affiliate.flipkart.com/affiliate/widgets/FKAffiliateWidgets.js"></script>
+                 </fieldset>
+                 <fieldset class="home_right text-center google-ad">
+                     <?php include APPLICATION_PATH.'/../layouts/templates/google-ad-rectangle.php'; ?>
+                 </fieldset>
+                 <fieldset class="home_right text-center">
+                     <?php require_once APPLICATION_PATH.'/../layouts/templates/qotd.php'; ?>
+                 </fieldset>
+                 <fieldset class="home_right text-center">
+                     <?php require_once APPLICATION_PATH.'/../layouts/templates/fb.php'; ?>
+                 </fieldset>
+                 <fieldset class="home_right text-center qc">
+                     <?php require_once APPLICATION_PATH.'/../layouts/templates/quick-links.php'; ?>
+                 </fieldset>
+             </div>
+         </div>
+    </div>
+
+    <?php require_once APPLICATION_PATH.'/../layouts/templates/footer.php'; ?>
+
+    <?php 	echo $this->headScript(); ?>
+
+    </body>
+</html>

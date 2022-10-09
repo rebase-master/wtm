@@ -1,0 +1,35 @@
+<div class="content videos">
+<?php if($this->paginator){
+		foreach($this->paginator as $video){?>
+	<div class="linkHead text-center">
+	<h1> <?php echo $video->heading; ?></h1>
+	<div class="video-page">
+	    <iframe src="<?php echo $video->link;?>" ></iframe>
+	</div>
+    <div id="socials">
+        <input type="hidden" name="pgid" value="<?php echo $video->id; ?>" />
+<!--            <div class="fb-share-button buts" data-type="button_count"></div>-->
+<!--            <div class="fb-like buts" data-send="false" data-width="450" data-show-faces="true"></div>-->
+        <div class="buts"><button class="btn btn-primary" id="fb-publish">Share on Facebook</button></div>
+        <!--    <div class="fb-comments" data-href="http://www.wethementors.com/fun" data-num-posts="10" data-width="700"></div>-->
+    </div>
+	<div class="video-desc">
+	<?php echo $video->description;?>
+    <?php if(!empty($video->source)): ?>
+        <p>Source: <a href="<?php echo $video->source; ?>"><?php echo $video->source; ?></a></p>
+    <?php endif;?>
+
+	</div>
+	</div>
+<?php }?>
+    <div id="pagination" class="pagination">
+        <div class="controls">
+            <?php
+                echo $this->paginationControl($this->paginator,
+                            'Sliding',
+                            'includes/paginationcontrol2.phtml');
+            ?>
+        </div>
+    </div>
+<?php }?>
+</div>

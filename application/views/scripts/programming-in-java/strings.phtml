@@ -1,0 +1,53 @@
+<?php
+    $this->headTitle()->set('String handling in Java');
+    echo $this->headTitle();
+    $basic=$this->url(array('controller'=>'programming-in-java', 'action'=>'strings-basic'));
+    $advanced=$this->url(array('controller'=>'programming-in-java', 'action'=>'strings-advanced'));
+?>
+<div class="col-md-offset-1 programming topicsList" xmlns="http://www.w3.org/1999/html">
+    <h1 class="text-center">Immutable Strings in Java</h1><hr />
+    <div class="content">
+       <p>
+            The <i>String</i> class represents character strings. All string literals in Java programs,
+            such as <i>"abc"</i>, are implemented as instances of this class.
+       </p>
+        <p>
+            Strings are constant; their values cannot be changed after they are created.
+            String buffers support mutable strings. Because String objects are immutable they can be shared.
+        </p>
+        <p>For example:</p>
+        <pre>
+         String str = "abc";  is equivalent to:
+
+         char data[] = {'a', 'b', 'c'};
+         String str = new String(data);
+        </pre>
+        <p>
+            Here are some more examples of how strings can be used:
+        </p>
+        <pre>
+         System.out.println("abc");
+         String cde = "cde";
+         System.out.println("abc" + cde);
+         String c = "abc".substring(2,3);
+         String d = cde.substring(1, 2);
+        </pre> 
+        <p>
+            The class String includes methods for examining individual characters of the sequence,
+            for comparing strings, for searching strings, for extracting substrings, and for creating
+            a copy of a string with all characters translated to uppercase or to lowercase.
+            These methods used for manipulating strings are known as <i>accessor</i> methods.
+        </p>
+        <p>
+            The Java language provides special support for the string concatenation operator ( + ),
+            and for conversion of other objects to strings. String concatenation is implemented
+            through the StringBuffer class and its append method. String conversions are implemented
+            through the method toString, defined by Object and inherited by all classes in Java.
+        </p>
+         <div class="questions text-center">
+            <h2>Questions</h2>
+                <a href="<?php echo $basic; ?>">Basic</a>  | 
+                <a href="<?php echo $advanced; ?>">Advanced</a>
+         </div>
+    </div>
+</div>

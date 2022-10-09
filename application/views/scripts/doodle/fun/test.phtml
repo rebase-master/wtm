@@ -1,0 +1,19 @@
+<?php $this->headTitle()->set('Fun Facts');
+echo $this->headTitle();
+?>
+<link  href="<?php echo $this->baseUrl();?>/skins/reds/css/quiz.css" media="screen" rel="stylesheet" type="text/css" >
+<div class="content">
+    <h1 class="text-center">Fun Facts</h1><hr />
+    <div class="facts-cont">
+        <div class="clearfix">
+            <div class="col-lg-12 alpha">
+                <?php for($i=1;$i<=20;$i++){
+                    $v = mt_rand(1,20);
+                ?>
+                    <div class="squares bc<?php echo $i; ?>">A shark can detect one part of blood in 100 million parts of water.</div>
+                <?php } ?>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>

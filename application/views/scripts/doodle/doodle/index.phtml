@@ -1,0 +1,68 @@
+<script type="text/javascript">
+var sketcher = null;
+$(document).ready(function(e) {
+	sketcher = new Sketcher( "fbCover", "000" );
+	sketcher.updateGradient();
+	sketcher.updateFont();
+});
+</script>
+<script type="text/javascript">
+var browser=navigator.appName;
+if(browser=="Microsoft Internet Explorer"){
+$(document).ready(function(){
+	$('th').css({'font-family': 'arial'})
+});
+}
+</script>
+<div id="doodle_container">
+<div id="facebookCover">
+	<h1>Create a doodle Cover</h1>
+	<canvas id="fbCover" width="770" height="313">
+	<p>Sorry your browser does not support canvas!</p>
+	<p>Please upgrade to any of the following browsers to use facebook-cover:</p>
+	<ul>
+		<li>IE 9.0</li>
+		<li>Firefox 12.0</li>
+		<li>Chrome 19.0</li>
+		<li>Safari 5.1</li>
+		<li>Opera 11.6</li>
+	</ul>
+<!--	<img src="/images/doodle.png" alt="doodle image" />-->
+	</canvas>
+<form id="toolsForm">
+ <table id="toolbox">
+	<tr>
+		<th><label for="color">Background Color:</label></th>
+	<td><input id="color" class="color" onchange="color1=this.color.toString(); sketcher.updateGradient();" value="EA3D8E" size="5"  /></td>
+<th><label for="colorFont">Text Color:</label></th>
+<td><input id="colorFont" class="color" onchange="color1=this.color.toString(); sketcher.updateFont();" value="84ED6F" size="5" /></td>
+<th><label for="colorBrush">Brush Color:</label></th>
+<td><input id="colorBrush" class="color" onchange="color1=this.color.toString(); sketcher.brushColor(); " value="000" size="5" /></td>
+<th><label for="brushSize">Brush Size:</label></th>
+	<td><select id="brushSize" autocomplete="off" onchange="sketcher.brushColor();"><option value="small-x" selected="selected">Small-x</option><option value="small-xx">Small-xx</option><option value="medium-x">Medium-x</option><option value="medium-xx">Medium-xx</option><option value="big-x">Big-x</option><option value="big-xx">Big-xx</option></select></td>
+	</tr>
+<tr>
+<th><label for="eraser">Eraser:</label></th>
+<td><input type="checkbox" name="eraser" id="eraser" autocomplete="off" onclick=" sketcher.eraseIt();" /></td>
+	<th><label for="shape">Shape:</label></th>
+	<td><select id="shape"  autocomplete="off"><option value="none" >Neither</option><option value="dots" selected="selected">Dots</option><option value="circles">Circles</option><option value="squares">Squares</option></select></td>
+	<th><label for="shapeColor">Shape Color:</label></th>
+	<td><input id="shapeColor" class="color" onchange="color1=this.color.toString(); sketcher.previewHandler(); " value="D7DB65" size="5" /></td>
+<td><input type="button" id="previewButton" value="Preview" onclick=" sketcher.previewHandler(); " /></td>
+<td><input type="button" value="Clear"	onclick="sketcher.clear();" />
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+ </table>
+ <div id="socials">
+<div class="fb-like" data-href="http://www.wethementors.com/doodle" data-send="false" data-width="450" data-show-faces="true"></div>
+<!--<div class="fb-comments" data-href="http://www.wethementors.com/doodle" data-num-posts="10" data-width="700"></div>-->
+ </div>
+</form>
+</div>
+</div>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/scripts/js123.js"></script>

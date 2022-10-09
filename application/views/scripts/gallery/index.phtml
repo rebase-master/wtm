@@ -1,0 +1,49 @@
+<link rel="stylesheet"  type="text/css" media="screen" href="<?php echo $this->baseUrl();?>/skins/blues/css/css12.css" />
+<?php
+$this->headTitle()->set('Photo Gallery');
+echo $this->headTitle();
+?>
+<div id="ad_right">
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1662490668144398";
+/* gallery_right */
+google_ad_slot = "0516524453";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1662490668144398";
+/* gallery_right */
+google_ad_slot = "0516524453";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div id="gallery">
+<h1>Photo Gallery</h1>
+<?php
+	
+    // Display description of the current directory. (optional)
+    echo $this->gallery->description();
+   ?> 
+
+	<div class="image-navigation">
+		<?php echo $this->gallery_breadcrumbs ?>
+		<?php echo $this->gallery_pagination ?>
+	</div>    
+    
+	<?php echo $this->gallery->browse(); ?>
+    
+	<div class="image-navigation">
+    <?php echo $this->gallery_pagination ?>
+	</div>
+</div>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/scripts/photo.js"></script>
+<script type="text/javascript" charset="utf-8">$(document).ready(function(){$("a[rel^='photo']").prettyPhoto({animation_speed: 'fast',slideshow: 5000, autoplay_slideshow: false,opacity: 0.80,show_title: true,allow_resize: true,default_width: 600,default_height: 344,counter_separator_label: '/',theme: 'pp_default',horizontal_padding: 20,hideflash: false,wmode: 'opaque',autoplay: false,modal: false,deeplinking: false,overlay_gallery: true,keyboard_shortcuts: true,});});</script>

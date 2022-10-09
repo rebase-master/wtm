@@ -1,0 +1,11 @@
+<?php $this->headTitle()->set('Add notes');
+echo $this->headTitle();
+?>
+<div class="content">
+<h2>Add notes about people, places, historical events etc.</h2><br />
+<?php if($this->msg){
+	echo "<p>".$this->msg."</p>";
+	}
+	?>
+	<?php echo $this->form;?>
+</div>

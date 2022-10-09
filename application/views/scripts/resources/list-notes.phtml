@@ -1,0 +1,50 @@
+<?php $this->headTitle()->set('List Notes');
+echo $this->headTitle();
+?>
+<div class="content">
+<h1>Notes list</h1>
+<?php
+if($this->notes!=null){
+	$i=0;
+?>
+<table class="spreadsheet">
+	<tr>
+		<th>Sl no</th>
+		<th>Heading</th>
+		<th>Content</th>
+		<th colspan="2">Links</th>
+	</tr>
+<?php
+	foreach($this->notes as $note){
+		$i++;
+		?>
+
+		<tr>
+			<td><?php echo $i; ?></td>
+			<td><?php echo $note->heading; ?></td>
+			<td><?php echo substr($note->content,0,200); ?></td>
+			<?php
+			$delete=$this->url(array('controller'=>'resources', 'action'=>'delete-notes','id'=>$note->id));
+			$update=$this->url(array('controller'=>'resources', 'action'=>'update-notes','id'=>$note->id));
+			?>
+			<td><a href="<?php echo $delete; ?>">Delete</a></td> 
+			<td><a href="<?php echo $update; ?>">Update</a></td>
+		</tr>
+<?php
+	}
+?>
+</table>
+<?php
+		$add=$this->url(array('controller'=>'resources', 'action'=>'add-notes'));
+		?>
+		<p> <a href="<?php echo $add; ?>">Add more notes</a></p>
+	<?php
+	}else{
+		$add=$this->url(array('controller'=>'resources', 'action'=>'add-notes'));
+		
+		?>
+	<p>You do not have any programs yet. <a href="<?php echo $add; ?>">Add one now</a></p>
+	<?php
+	}
+	?>
+</div>

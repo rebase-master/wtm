@@ -1,0 +1,10 @@
+<?php $this->headTitle()->set('Update Notes');
+echo $this->headTitle();
+?>
+<div id="updateNotes">
+<h1>Update Notes</h1>
+<?php echo $this->form;?>
+</div>
+<?php $back=$this->url(array('controller'=>'resources', 'action'=>'list-notes'), null, true); ?>
+<br />
+<a href="<?php echo $back;?>">Back to list</a>

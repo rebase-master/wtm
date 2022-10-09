@@ -1,0 +1,38 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/scripts/quiz.js"></script>
+<?php if(strcasecmp($this->title,'beginner')==0){ $time="10m:0s";?><script type = "text/javascript"> startTimer(600,10);</script><?php }?>
+<?php if(strcasecmp($this->title,'intermediate')==0){ $time="15m:0s";?><script type = "text/javascript"> startTimer(900,15);</script><?php }?>
+<?php if(strcasecmp($this->title,'advanced')==0){ $time="20m:0s";?><script type = "text/javascript"> startTimer(1200,15);</script><?php }?>
+<?php $this->headTitle()->set('Java '.ucfirst($this->title).' Quiz');
+echo $this->headTitle();
+?>
+<div class="content" id="quiz_container">
+        <h1 class="text-center">Java <?php echo ucfirst($this->title); ?> Quiz</h1><hr />
+    <?php if(isset($this->questionSet)){
+        $questions=$this->questionSet;
+    ?>
+    <div id="loading" style="display:none; margin:25%"><img src="<?php echo $this->baseUrl();?>/images/ajax-load.gif" alt="Loading ...." /></div>
+    <div class="quiz_ques">
+        <div class="clearfix">
+            <input type="hidden" id="qno" value="<?php echo $questions['id'];?>" />
+            <p class="pull-right" id="countdown">Time Left - <span id="timer"><?php echo $time; ?></span></p>
+            <h2 class="pull-left" style="margin: 0">Question 1</h2>
+        </div>
+        <div class="quiz-ques-cont">
+            <p id="question"><?php echo $questions['question']; ?></p>
+              <div id="options-group">
+              <?php   $j=1;	foreach($questions['options'] as $question){ ?>
+                        <label for="<?php echo "options".$j;?>">
+                        <input type="radio" name="options" id="<?php echo $j++;?>" />
+                        <span class="option-group"><?php echo $question;?></span>
+                        </label><br />
+                      <?php	} ?>
+              </div>
+            <div class="buttons">
+                <button class="btn btn-success" id='next' title="Next Question" onclick="nextQuestion();">Next</button>
+                <button class="btn btn-warning" id='skip' title="Skip This Question" onclick="skip();">Skip</button>
+                <button class="btn btn-danger" id='end' title="End This Quiz" onclick="showResult();">End Quiz</button>
+            </div>
+        </div>
+    </div>
+<?php }?>
+</div>

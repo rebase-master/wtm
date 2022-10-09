@@ -1,0 +1,28 @@
+<?php $this->headTitle()->set('ISC - Syllabus, Sample Papers, Previous Years\' Papers, Solved Computer Practical, Viva');
+echo $this->headTitle();
+?>
+<?php
+	  $syllabus=$this->url(array('controller'=>'isc', 'action'=>'syllabus'),null,true);
+	  $sample=$this->url(array('controller'=>'isc', 'action'=>'sample-papers'),null,true);
+	  $previous=$this->url(array('controller'=>'isc', 'action'=>'previous-years'),null,true);
+	  $practical=$this->url(array('controller'=>'isc', 'action'=>'isc-computer-practical'),null,true);
+	  $viva=$this->url(array('controller'=>'isc', 'action'=>'viva-voce'),null,true);
+	$compProject=$this->url(array('controller'=>'isc', 'action'=>'computer-project'),null,true);
+?>
+<div class="resources">
+<h1>ISC</h1>
+    <div class="papers">
+        <ul>
+            <li><a href="<?php echo $syllabus; ?>">Syllabus</a></li>
+            <li><a href="<?php echo $sample; ?>">Sample Papers</a></li>
+            <li><a href="<?php echo $previous; ?>">Previous Years' Papers</a></li>
+            <li><a href="<?php echo $practical; ?>">ISC Computer Practical</a></li>
+            <li><a href="<?php echo $viva; ?>">Viva-Voce</a></li>
+            <li><a href="<?php echo $compProject; ?>">Computer Project</a></li>
+        </ul>
+	</div>
+
+    <div class="google-ad">
+        <?php include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-horizontal.php'; ?>
+    </div>
+</div>

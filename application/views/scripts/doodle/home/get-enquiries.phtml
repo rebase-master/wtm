@@ -1,0 +1,40 @@
+<div class="content">
+<?php if($this->enquiries){?>
+	<div id="users">
+		<h2>Student Enquiries</h2>
+	<table class="spreadsheet" cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Sno</th>
+			<th>Name</th>
+			<th>Class</th>
+			<th>Subject</th>
+			<th>School</th>
+			<th>Contact no</th>
+			<th>Email</th>
+			<th>Enquiry date</th>
+		</tr>
+<?php
+	$i=1;
+	foreach($this->enquiries as $enquiry){
+	$created=strtotime($enquiry->created_at);
+	$current=strtotime(date('Y-m-d H:i:s', time()+5.5*60*60));
+	$frmUser=new Form_User();
+	$time=$frmUser->makeTime($current,$created);
+?>
+<tr>
+	<td><?php echo $i++; ?></td>
+	<td><?php echo $enquiry->name;?></td>
+	<td><?php echo $enquiry->grade; ?></td>
+	<td><?php echo $enquiry->subject; ?></td>
+	<td><?php echo $enquiry->school; ?></td>
+	<td><?php echo $enquiry->phone; ?></td>
+	<td><?php echo $enquiry->email; ?></td>
+	<td><?php echo $time; ?></td>
+</tr>
+<?php }?>
+</table>
+	</div>
+<?php }else{?>
+<h3>No enquiries currently.</h3>
+<?php }?>
+</div>

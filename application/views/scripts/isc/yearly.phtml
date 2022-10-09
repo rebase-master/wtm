@@ -1,0 +1,87 @@
+<div class="years" ng-animate="'animate'" ng-show="!noresult">
+	<div class="clearfix">
+		<h1 title="ISC Computer Science Practical" class="pull-left">
+			[Question {{ data.position }}] ISC {{ data.year }} Computer Science Practical<span ng-if="solution"> - SOLVED</span>
+			<?php if(isset($_SESSION['user']) && $_SESSION['user']['admin'] == true):?>
+				<a class="btn btn-primary btn-xs" href="<?php echo $this->baseUrl('/admin/update-yearly-question/id/{{ data.id }}'); ?>">Edit</a>
+			<?php endif; ?>
+		</h1>
+	</div>
+	<br />
+
+	<div class="qdesc">
+
+		<p ng-bind-html="question"></p>
+
+		<div class="sbu">
+			<div data-WRID="WRID-147349608048432930" data-widgetType="staticBanner" data-responsive="yes" data-class="affiliateAdsByFlipkart" height="90" width="728"></div><script async src="//affiliate.flipkart.com/affiliate/widgets/FKAffiliateWidgets.js"></script>
+		</div>
+		<button class="btn btn-info btn-lg shsol" ng-click="showSolution = !showSolution"  ng-show="solution">View/Hide Solution</button>
+		<div class="solution vhs" ng-show="showSolution">
+			<div ng-bind-html="solution"></div>
+		</div>
+
+		<div class="tag-group">
+			<strong>Tags: </strong>
+			<a href="<?php echo BASE_URL."category/"; ?>{{tag.url_name}}" class="tag label label-primary" ng-repeat="tag in tags">
+				{{ tag.url_name }}
+			</a>
+		</div>
+	</div>
+
+	<div id="ccomments" class="hide1">
+		<hr />
+		<input type="hidden" value="{{ data.id }}" />
+		<div class="post-cc">
+			<?php if(isset($_SESSION['user'])): ?>
+				<div class="aqc">
+					<form id="aqform" class="form" action="javascript:void(0);">
+						<div class="form-group">
+							<label class="control-label sr-only" for="comment">Comment</label>
+							<div>
+								<textarea name="comment" id="comment" placeholder="Leave a comment..." class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" name="Submit" value="Post Comment" class="btn btn-primary" />
+						</div>
+					</form>
+				</div>
+			<?php else: ?>
+				<h3>
+					Have something to say? <a class="" href="<?php echo $this->baseUrl('/login'); ?>">Log in</a> to comment on this post.
+				</h3>
+			<?php endif; ?>
+		</div>
+
+		<?php require_once APPLICATION_PATH.'/Misc/Util.php';?>
+
+		<div id="user-comments">
+			<div class="ccount text-warning" ng-if="comments.length > 0"><p><span class="cctr">{{ comments.length | number}}</span> comments</p></div>
+			<div class="cc" ng-show="comments">
+				<div class="comment" ng-repeat="comment in comments">
+					<a href="<?php echo BASE_URL."u/"; ?>{{ comment.username }}">{{ comment.username }}</a>
+					<p>
+						{{ comment.comment }}
+						<span class="ctime">{{comment.created | dateToISO | date:"medium"}}</span>
+					</p>
+				</div>
+				<hr />
+			</div>
+		</div>
+
+	</div>
+
+	<div class="related-questions" ng-if="rques">
+		<h3>Similar Questions Asked in Previous Years</h3>
+		<ul>
+			<li ng-repeat="ques in rques">
+				<a href="#/{{ques.year}}/Q{{ques.position}}">
+					ISC {{ques.year}} - {{ques.question | htmlToPlaintext | cut:true:60:' ...'}}
+				</a>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

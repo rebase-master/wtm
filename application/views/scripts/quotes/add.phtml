@@ -1,0 +1,38 @@
+<?php $this->headTitle()->set('Add - Quote');
+echo $this->headTitle();
+?>
+<?php
+    $list=$this->url(array('controller'=>'quotes','action'=>'list'),null,true);
+?>
+<div class="content">
+    <div class="fcgq">
+        <div class="clearfix">
+            <h1 class="pull-left">Add Quote</h1>
+            <a class="btn btn-sm btn-primary pull-right" href="<?php echo $list; ?>" >List Quotes</a>
+        </div>
+        <hr />
+        <div class="admin-form-center">
+            <div class="alert alert-danger hide">
+                <p>Something went wrong. Please try again later.</p>
+            </div>
+            <div class="alert alert-success hide">
+                <p>Record added successfully.</p>
+            </div>
+            <form role="form" action="#" id="add-quote">
+                <div class="form-group">
+                    <label for="quote">Quote</label>
+                    <textarea rows="5" class="form-control" id="quote" placeholder="Quote"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input class="form-control" id="author" placeholder="Author" />
+                </div>
+                <button class="btn btn-primary">Submit</button>
+                <span class="loading hide">Please wait ...
+                    <img src="<?php echo $this->baseUrl(); ?>/images/loading-s.gif" alt="loading" />
+                </span>
+
+            </form>
+        </div>
+    </div>
+</div>

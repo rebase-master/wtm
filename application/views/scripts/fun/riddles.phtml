@@ -1,0 +1,86 @@
+<?php
+	$this->headTitle()->set('Riddles');
+	echo $this->headTitle();
+?>
+<div class="content bg">
+	<h1 class="text-center">Riddles</h1><hr />
+<?php if($this->paginator):?>
+    <div id="riddles">
+    <ol>
+        <?php $c=0;	foreach($this->paginator as $riddle):$c++;?>
+	        <li><?php echo $riddle->riddle;?>
+	        <br /><button class="btn btn-primary">View/Hide Answer</button>
+		        <div class="solution quiz_answer hide">
+		            <p><?php echo (nl2br($riddle->answer));?></p>
+		        </div>
+	        </li><br />
+	        <?php if($c % 6 == 0):?>
+	            <div class="google-ad">
+	                <?php require_once APPLICATION_PATH.'/../layouts/templates/ads/google-ad.php'; ?>
+	            </div>
+	        <?php endif; ?>
+        <?php endforeach;?>
+    </ol>
+    </div>
+    <div id="pagination" class="pagination">
+        <div class="controls">
+            <?php   echo $this->paginationControl($this->paginator,
+                        'Sliding',
+                        'includes/paginationcontrol2.phtml');
+            ?>
+        </div>
+    </div>
+    <?php endif;?>
+</div>
+
+
+
+
+
+
+<?php //$this->headTitle()->set('Riddles');
+//echo $this->headTitle();
+//?>
+<!--<div class="content">-->
+<!--	<h1 class="text-center">Riddles</h1>-->
+<!--	--><?php //if($this->paginator):?>
+<!--		<div class="facts-cont">-->
+<!--			<div class="clearfix">-->
+<!--				--><?php //$ctr = 1;?>
+<!--				<div class="col-sm-12 alpha">-->
+<!--					--><?php //$c=1; foreach($this->paginator as $key => $record):?>
+<!--						<div class="facts" id="fact---><?php //echo $record->id; ?><!--">-->
+<!--							<div class="fact">-->
+<!--								--><?php //echo $record->riddle;?>
+<!--							</div>-->
+<!--							<div class="share-g">-->
+<!--								<div class="n_o_s"></div>-->
+<!--								<div class="center-block fb-fact-publish btn btn-primary">-->
+<!--									Share on Facebook-->
+<!--								</div>-->
+<!--								<button class="btn btn-danger">View/Hide Answer</button>-->
+<!--						        <div class="solution hide">-->
+<!--						            <p>--><?php //echo (nl2br($record->answer));?><!--</p>-->
+<!--						        </div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						--><?php //if($c%6 == 0): ?>
+<!--							<div class="facts ad">-->
+<!--								--><?php //include APPLICATION_PATH.'/../layouts/templates/ads/google-ad-rectangle.php'; ?>
+<!--							</div>-->
+<!--						--><?php //endif; ?>
+<!--						--><?php //$c++; endforeach; ?>
+<!--				</div>-->
+<!--			</div>-->
+<!--			<hr />-->
+<!--			<div id="pagination" class="pagination">-->
+<!--				<div class="controls text-center">-->
+<!--					--><?php	//	echo $this->paginationControl($this->paginator,
+//						'Sliding',
+//						'includes/paginationcontrol2.phtml');
+//					?>
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	--><?php //endif; ?>
+<!--</div>-->

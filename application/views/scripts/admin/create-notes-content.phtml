@@ -1,0 +1,84 @@
+<?php
+	$this->headTitle()->set('Add Notes Content');
+	echo $this->headTitle();
+	$notesList = $this->url(array('controller' => 'admin', 'action' => 'read-notes-content'));
+?>
+
+<div class="content">
+	<div class="list-head">
+		<h2>Add notes content</h2>
+		<a href="<?php echo $notesList; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-list"></i>
+			Notes Contents List
+		</a>
+	</div>
+	<div class="form_short full-stretch">
+		<?php  if(isset($this->message)): ?>
+			<div class="alert alert-info">
+				<p><?php echo $this->message; ?></p>
+			</div>
+		<?php endif; ?>
+		<?php $form = $this->form; ?>
+		<form class="form-horizontal notes-form" method="<?php echo $form->getMethod() ?>" action="<?php echo $form->getAction()?>" enctype="multipart/form-data">
+
+			<div class="form-group">
+				<?php echo $form->notes_id->renderLabel() ?>
+				<?php echo $form->notes_id->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->heading->renderLabel() ?>
+				<?php echo $form->heading->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->slug->renderLabel() ?>
+				<?php echo $form->slug->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->cover_image->renderLabel() ?>
+				<?php echo $form->cover_image->renderFile(); ?>
+				<div class="center-block" id="preview-image">
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->content->renderLabel() ?>
+				<div id="content-button-bar" class="wmd-button-row"></div>
+				<textarea id="content_html" class="form-control"></textarea><br />
+				<div id="content-preview"></div>
+				<div id="content_html"></div>
+				<strong>Output</strong>
+				<?php echo $form->content->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->extract->renderLabel() ?>
+				<?php echo $form->extract->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->source->renderLabel() ?>
+				<?php echo $form->source->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->deleted->renderLabel() ?>
+				<?php echo $form->deleted->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->submit->renderViewHelper() ?>
+			</div>
+	</div>
+</div>
+<script type="text/javascript">
+	setup_wmd({
+		input: "content_html",
+		button_bar: "content-button-bar",
+		preview: "content-preview",
+		output: "content"
+	});
+</script>

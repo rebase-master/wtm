@@ -1,0 +1,151 @@
+<?php echo $this->doctype();?>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta itemprop="name" content="Mentors - Providing education assistance to inquisitive minds.">
+<meta itemprop="description" content="Find sample papers, guess papers, programming tutorials in Java, previous years' solved papers, quiz, riddles, doodle, forum, profile option and much more.">
+<meta itemprop="image" content="http://www.wethementors.com/images/heading.png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Mentors is a coaching institute for classes IX to XII." />
+<meta name="keywords" content="mentors,wethementors,programming,ISC,ICSE,java,guess,important, 
+PCM,computer applications,english,literature,10,12,computer coaching,
+java coaching,programs,board questions,sample papers Tv3Z6pvVcAnZqkEb6AQvjjneOgs" />
+<link rel="icon" href="<?php echo $this->baseUrl();?>/images/logo.ico" type="image/icon" />
+    <?php
+    echo $this->headTitle();
+	$this->headScript()->appendFile('//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js');
+	$this->headScript()->appendFile($this->baseUrl()."/scripts/jquery.mCustomScrollbar.concat.min.js");
+//	$this->headScript()->appendFile($this->baseUrl()."/scripts/home.js");
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/blues/css/bootstrap.min.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/common/css/jquery.mCustomScrollbar.css');
+	$this->headLink()->appendStylesheet($this->baseUrl().'/skins/greens/css/fo-bizarre-min.css');
+?>
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<?php
+    echo $this->headLink();
+	echo $this->headScript();
+    $mdlUser=new Model_User();
+    $totalUsers=$mdlUser->getUserCount();
+    $friends=array();
+	$param=Zend_Controller_Front::getInstance()->getRequest()->getParam('user');
+  $totalFriends=0;
+	if (Zend_Auth::getInstance()->hasIdentity()) {
+		  $identity = Zend_Auth::getInstance()->getIdentity();
+		  $username=$identity->username;
+		  $currentUser=$mdlUser->getUserByEmail($identity->email);
+		  $mdlInvitations=new Model_Invitations();
+		  $result=$mdlInvitations->getInvitationsById($currentUser->id);
+		  $requests=count($result);
+		  $mdlFriends=new Model_Friends();
+		  $mdlUserData=new Model_UserData();
+		  if(isset($param) && $param!=$identity->username){
+		    $userP=$mdlUser->getUserByUsername($param);
+		  }
+		  else{
+			$userP=$mdlUser->getUserByUsername($identity->username);
+		  }
+		if($userP!=null){
+		$userId=$userP->id;
+        $results=$mdlFriends->getFriends($userP->username);
+        $totalFriends=$mdlFriends->getFriendCount($userP->username);
+        $i=0;
+		foreach($results as $result){
+            if($result->my_id==$userP->id)
+                $find=$result->friends_id;
+            if($result->friends_id==$userP->id)
+                $find=$result->my_id;
+			$user=$mdlUser->getUserById($find);
+            $friends[$i][1]=$user->username;
+			$user_data=$mdlUserData->findUserById($find);
+                foreach($user_data as $data){
+                    if($data->option_id==11)
+                       $friends[$i][0]=$this->baseUrl().'/users/thumbs/'.$user->username;
+				  if($data->option_id==1)
+				  $friends[$i][2]=$data->data;
+				  if($data->option_id==2)
+				  $friends[$i][3]=$data->data;
+                }
+				if(!isset($friends[$i][0])){
+				  if($user->gender=='m')
+				  $friends[$i][0]=$this->baseUrl().'/images/mt.png';
+				  else
+				  $friends[$i][0]=$this->baseUrl().'/images/ft.png';
+				}
+		$i++;
+		}
+		}
+		$toId=$mdlUser->getIdByEmail($identity->email);
+		$mdlMessages=new Model_Messages();
+		$messages=$mdlMessages->countUnreadMessages($toId);
+	}else{
+		  $username = "";
+		  $identity="";
+		  }
+    ?>
+</head>
+<body>
+<div id="One2ka4"></div>
+<div id="page">
+<div id="header">
+	<div id="topbar">
+		<div id="links" class="clearfix">
+		  <?php
+              $home=$this->url(array('module'=>'','controller'=>'home', 'action'=>'index'), null,true);
+              $contact=$this->url(array('controller'=>'home', 'action'=>'contact'), null,true);
+              $login=$this->url(array('controller'=>'user', 'action'=>'login'), null,true);
+              $logout=$this->url(array('controller'=>'user', 'action'=>'logout'), null,true);
+              $register=$this->url(array('controller'=>'user', 'action'=>'register'), null,true);
+              $profile=$this->url(array('controller'=>'profile', 'action'=>'index', 'user'=>$username), null,true);
+              $inbox=$this->url(array('controller'=>'profile', 'action'=>'messages'), null,true);
+            ?>
+                <div class="pull-left">
+                  <span><a href='<?php echo $home;?>'>Home </a>| </span>
+                  <span><a href='<?php echo $contact;?>'>Contact </a> </span>
+                </div>
+              <?php if (!$identity) { ?>
+                  <div class="pull-right"><a href="<?php echo $register;?>">Register</a> | <a href="<?php echo $login; ?>">Login</a></div>
+	    	  <?php } else { ?>
+                <div class="pull-right">
+                    <a href="<?php echo $profile; ?>"><?php echo $username; ?></a>  |
+<!--                    <a href="--><?php //echo $inbox; ?><!--"> Messages<span class="prominent">--><?php //echo isset($messages)?$messages:""?><!--</span></a> |-->
+                    <a href="<?php echo $logout; ?>">Logout</a>
+                </div>
+              <?php } ?>
+		</div>
+	</div>
+</div>
+<div id="contentWrapper" style="margin-top: 30px">
+	  <?php echo $this->layout()->content; ?>&nbsp;
+</div>
+</div>
+<div id="Two4ka1">
+	  <div id="copyright">
+	  <span><?php
+	  $pp=$this->url(array('controller'=>'home', 'action'=>'privacy-policy'),null,true);
+	  $tou=$this->url(array('controller'=>'home', 'action'=>'terms-of-use'),null,true);?>
+	  &copy;<?php echo strftime("%Y", time()); ?> Mentors. All Rights Reserved.
+	  <a href="<?php echo $pp;?>">Privacy Policy</a> and <a href="<?php echo $tou;?>">Terms of Use</a>
+	  </span><br />
+	  <span><script type="text/javascript">document.write(Date());</script>
+	  </span>
+	  </div>
+	  
+</div>
+<!--<script type="text/javascript" src="https://apis.google.com/js/plusone.js">-->
+<!--window.___gcfg = {-->
+<!--lang: 'en-GB',-->
+<!--parsetags: 'onload'-->
+<!--};-->
+<!--</script>-->
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".sol_snippet").hide();
+  $("button").click(function(){$(this).next().slideToggle(5);$(this).next().css("visibility","visible")});
+	$("#guidelines").hide();$(".slide").click(function(){$("#guidelines").css("visibility","visible");
+  $("#guidelines").slideToggle(500,function(){if($(this).is(":hidden")){$(".slide").html("&#x25BE; ")}else{$(".slide").html("&#x25B4; ")}})});
+  $(".years li div").hide();
+  $(".years h4").click(function(){$(this).next().slideToggle(500);$(this).next().css("visibility","visible")})
+  });
+</script>
+</body>
+</html>

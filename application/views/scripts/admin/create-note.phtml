@@ -1,0 +1,55 @@
+<?php
+	$this->headTitle()->set('Add Notes');
+	echo $this->headTitle();
+	$notesList = $this->url(array('controller' => 'admin', 'action' => 'read-notes'));
+?>
+
+<div class="content">
+	<div class="list-head">
+		<h2>Add notes about people, places, historical events etc.</h2>
+		<a href="<?php echo $notesList; ?>" class="btn btn-success pull-right">
+			<i class="glyphicon glyphicon-list"></i>
+			Notes List
+		</a>
+	</div>
+
+	<div class="form_short stretch">
+
+		<?php  if(isset($this->message)): ?>
+			<div class="alert alert-info">
+				<p><?php echo $this->message; ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php $form = $this->form; ?>
+
+		<form class="form-horizontal notes-form" method="<?php echo $form->getMethod() ?>" action="<?php echo $form->getAction()?>" enctype="multipart/form-data">
+			<div class="form-group">
+				<?php echo $form->category->renderLabel() ?>
+				
+					<?php echo $form->category->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->sub_category->renderLabel() ?>
+				
+					<?php echo $form->sub_category->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->slug->renderLabel() ?>
+				
+					<?php echo $form->slug->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->deleted->renderLabel() ?>
+				
+					<?php echo $form->deleted->renderViewHelper() ?>
+			</div>
+
+			<div class="form-group">
+					<?php echo $form->submit->renderViewHelper() ?>
+			</div>
+	</div>
+</div>

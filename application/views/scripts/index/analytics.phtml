@@ -1,0 +1,27 @@
+<?php
+    $this->headTitle()->set('Analytics');
+    echo $this->headTitle();
+    $mdlDownloads = new Model_Downloads();
+    $downloads = $mdlDownloads->groupDownloads();
+?>
+<div id="analytics">
+    <h1 class="text-center">Analytics</h1><hr />
+    <table class="table table-striped table-bordered analytics">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Resource</th>
+                <th>Total Downlaods</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=1; foreach($downloads as $download): ?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $download['resource'];?></td>
+                    <td><?php echo $download['total']; ?></td>
+                </tr>
+            <?php $i++; endforeach; ?>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+table.spreadsheet {
+	margin: 10px 0;
+	border: #999 1px solid;
+}
+
+table.spreadsheet th {
+	background: #ccc;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 5px 2px;
+}
+
+table.spreadsheet td {
+	border-top: #999 1px solid;
+	padding: 5px 2px;
+	border-left:#999 1px solid;
+	text-align:center
+}
+#sorter{
+    margin: 10px 0;
+}
+#users{	margin:1%;	padding:1%;}
+#users table{	border:1px solid #eef;	padding:5px;
+}
+#users table td{
+    text-align:center
+}
+#year-sort-table{
+    max-width: 400px;
+}
+#year-sort-table th{
+    text-align: center;
+}

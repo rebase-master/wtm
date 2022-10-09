@@ -1,0 +1,111 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Mutual Friends Finder</title>
+    <script src="<?php echo $this->baseUrl();?>/scripts/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<style type="text/css">
+    html,body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    body{
+        background-color: #fff;
+    }
+    .mf_container {
+        /*border: 1px solid #FF0000;*/
+        padding: 1%;
+    }
+    .mf_container h1 {
+        color: #FF0033;
+        font-family: trebuchet ms,sans-serif;
+        font-weight: 500;
+        text-align: center;
+    }
+    .mf_container a img {
+        border: 1px solid #CCCCCC;
+        border-radius: 1ex 1ex 1ex 1ex;
+    }
+    span.nomf {
+        background: none repeat scroll 0 0 #000000;
+        border-radius: 1ex 1ex 1ex 1ex;
+        color: #FFFFFF;
+        opacity: 0.5;
+        padding: 1px;
+        position: absolute;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+    .mf_container table {
+        border: 1px solid #CCCCCC;
+        margin: 0 auto;
+        padding: 5px;
+        visibility: hidden;
+    }
+    .loginUrl{
+        text-decoration: none;
+        color: #0084FA;
+        text-align: center;
+    }
+</style>
+
+
+<div class='mf_container'>
+    <h1>Mutual Friends Finder</h1>
+        <?php if($this->loginUrl == null) :?>
+        <script>
+            $(document).ready(function(){
+                findMutualFriends();
+            });
+        </script>
+    <?php else : ?>
+    <p class="loginUrl"><a href='<?php echo $this->loginUrl; ?>'>Login</a></p>
+    <?php endif; ?>
+</div>
+<script>
+        function findMutualFriends(){
+            var mf_container = $('.mf_container');
+            var i = 1;
+            var users = Array();
+            var mfs = Array();
+            $.ajax({
+                type:'GET',
+                url:'http://wethementors.com/apps/mutual-friends',
+                beforeSend:function(){
+                    mf_container.empty().append("<h4 style='margin-left: 40%; margin-top: 20%'>Loading...</h4>");
+                },
+                success:function(data){
+                    $.each(data,function(index, value){
+                        users.push(index);
+                        mfs.push(value);
+                        i++;
+                    });
+                    var index = 0;
+                    var noOfrc = Math.ceil(Math.sqrt(i));
+                    var table = "<table>";
+                    for(var j=0;j<noOfrc;j++){
+                        table += "<tr>";
+                        for(k=0;k<noOfrc;k++){
+                            table += "<td><a href='http://facebook.com/"+users[index]+"'><span class='nomf'>"+mfs[index]+"</span><img src='http://graph.facebook.com/"+users[index]+"/picture' /></a></td>";
+                            index++;
+                            if(mfs[index] === undefined)
+                                break;
+                        }
+                        table += "</tr>";
+                    }
+                    table += "</table";
+                    mf_container.empty().append("<h1>Mutual Friends</h1>"+table);
+                },
+                complete: function(){
+                    setTimeout(function(){
+                        $('.mf_container').find('table').css({'visibility':'visible'});
+                    },3000);
+                }
+            });
+        }
+</script>
+
+</body>
+</html>

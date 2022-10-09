@@ -1,0 +1,46 @@
+<?php
+	$this->headTitle()->set('Ask your question');
+	echo $this->headTitle();
+	$askQuestion=$this->url(array('controller'=>'qa','action'=>'ask-question'),null,true);
+	$allQuestions=$this->url(array('controller'=>'qa','action'=>''),null,true);
+?>
+
+    <div id="main" class="question_area col-sm-12 col-md-8 col-lg-9">
+       <div class="form-container qa-ask">
+           <h2>Ask your question here</h2><hr />
+         <div class="notice hide">
+             <p>Please provide a tag. Heading is required.</p>
+         </div>
+        <div class="ask-program col-md-12">
+            <form class="form" role="form" action="javascript:void(0);" method="post">
+                <div class="form-group">
+                    <label for="heading">Title</label>
+                    <input type="text" class="form-control" id="heading" placeholder="What's your programming question? Give a short summary of your problem.">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" placeholder="Describe your question in detail here."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">Tags</label>
+                    <input autocomplete="off" type="text" class="form-control" id="tag" placeholder="At least one tag (like isc, isc-practical, strings) is required, max 5 tags.">
+                </div>
+                <div class="form-group">
+                    <button id="ask-question" class="btn btn-primary">Post your question</button>
+                </div>
+
+            </form>
+        </div>
+       </div>
+    </div>
+    <div id="sidebar_right" class="col-sm-12 col-md-4 col-lg-3">
+        <fieldset class="home_right text-center google-ad">
+            <!--        --><?php //include APPLICATION_PATH.'/../layouts/templates/google-ad.php'; ?>
+        </fieldset>
+        <fieldset class="home_right">
+            <a class="btn btn-success" href="<?php echo $allQuestions;?>">View All Questions</a>
+        </fieldset>
+        <fieldset class="home_right text-center" id="tags">
+            <?php include APPLICATION_PATH.'/../layouts/templates/quesByTopic.php'; ?>
+        </fieldset>
+    </div>
